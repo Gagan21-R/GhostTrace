@@ -1,0 +1,24 @@
+[
+  {
+    "file": "06_statement_rahul.docx",
+    "category": "statement",
+    "collection_source": "Statement taken by investigator on 15 Mar",
+    "tags": [
+      "statement"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "5eec27a3e5abeecaea7f5af4f4684985f2ad8210ccb20c4e2b538196e6bac532",
+    "size": 36791
+  },
+  {
+    "file": "07_device_list.png",
+    "category": "screenshot",
+    "collection_source": "Screenshot by account holder on 15 Mar 08:10",
+    "tags": [
+      "devices"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "70d3b62487eaeb77b69881ecc30673d8592868ba215c44d8222a458a47d01f56",
+    "size": 32412
+  }
+]

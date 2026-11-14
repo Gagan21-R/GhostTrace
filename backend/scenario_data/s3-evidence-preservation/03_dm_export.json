@@ -1,0 +1,85 @@
+{
+  "platform": "SocialHub Direct Messages",
+  "conversation": "void_whisper <> meera.iyer",
+  "participants": [
+    "void_whisper",
+    "meera.iyer"
+  ],
+  "export_info": {
+    "exported_by": "meera.iyer",
+    "exported_at": "2026-03-08T12:00:00+05:30",
+    "complete": false,
+    "total_messages": 14,
+    "note": "Export generated after some messages were unsent by the other party"
+  },
+  "messages": [
+    {
+      "id": 1,
+      "sender": "void_whisper",
+      "timestamp": "2026-03-04T23:10:00+05:30",
+      "text": "Why are you ignoring my messages?"
+    },
+    {
+      "id": 2,
+      "sender": "meera.iyer",
+      "timestamp": "2026-03-04T23:15:00+05:30",
+      "text": "Please stop contacting me."
+    },
+    {
+      "id": 3,
+      "sender": "void_whisper",
+      "timestamp": "2026-03-05T00:02:00+05:30",
+      "text": "You don't get to decide that."
+    },
+    {
+      "id": 4,
+      "sender": "void_whisper",
+      "timestamp": "2026-03-05T21:45:00+05:30",
+      "text": "Check my profile. Everyone will see soon."
+    },
+    {
+      "id": 7,
+      "sender": "void_whisper",
+      "timestamp": "2026-03-06T22:10:00+05:30",
+      "text": "I have your photos. I will leak them."
+    },
+    {
+      "id": 8,
+      "sender": "void_whisper",
+      "timestamp": "2026-03-06T22:11:00+05:30",
+      "text": "",
+      "attachments": [
+        {
+          "name": "photo_0306.jpg",
+          "type": "image/jpeg",
+          "included": false
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "sender": "meera.iyer",
+      "timestamp": "2026-03-07T09:00:00+05:30",
+      "text": "I am reporting this account."
+    },
+    {
+      "id": 11,
+      "sender": "void_whisper",
+      "timestamp": "2026-03-07T09:05:00+05:30",
+      "text": "Watch your back."
+    },
+    {
+      "id": 12,
+      "sender": "void_whisper",
+      "timestamp": "2026-03-07T09:06:00+05:30",
+      "text": "This message was deleted",
+      "deleted": true
+    },
+    {
+      "id": 14,
+      "sender": "meera.iyer",
+      "timestamp": "2026-03-08T11:30:00+05:30",
+      "text": "Saving everything for the police."
+    }
+  ]
+}

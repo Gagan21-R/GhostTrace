@@ -1,0 +1,136 @@
+[
+  {
+    "file": "01_complaint_email.eml",
+    "category": "email",
+    "collection_source": "Exported from Ethics Office mailbox by investigator",
+    "tags": [
+      "complaint"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "dfc0033a327af2b00fd42e6b90a654ae621cbcd0696abf75c8b5e05ab2bf5f5b",
+    "size": 864
+  },
+  {
+    "file": "02_hr_acknowledgement.eml",
+    "category": "email",
+    "collection_source": "Exported from Priya Nair's mailbox",
+    "tags": [
+      "hr"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "91350c4bdef93fb1ebec937f66b0a18858bc9c32f4ddc0b3820414214506db9a",
+    "size": 742
+  },
+  {
+    "file": "03_hr_access_reply.eml",
+    "category": "email",
+    "collection_source": "Exported from Priya Nair's mailbox",
+    "tags": [
+      "hr",
+      "access"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "4fedca4f812a484114de2a5e8569bbbec6aeeb7fc7d7661401f57ad48fbf9c76",
+    "size": 803
+  },
+  {
+    "file": "04_access_log.csv",
+    "category": "log",
+    "collection_source": "IAM audit export provided by IT on 17 Mar",
+    "tags": [
+      "access log"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "dd977a7442e258faf399782041e9d283b555c64902fc92fea478e61606f0fbce",
+    "size": 450
+  },
+  {
+    "file": "05_access_review_policy.pdf",
+    "category": "policy",
+    "collection_source": "Intranet policy library download",
+    "tags": [
+      "policy"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "a3e58658a5528f78202055580c0e79bf93f62b3a41a8932880480b6966cb8d60",
+    "size": 1954
+  },
+  {
+    "file": "06_team_chat.json",
+    "category": "chat",
+    "collection_source": "eDiscovery export of Teams channel",
+    "tags": [
+      "chat"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "7a4389448c38744639b0ff87b8394056e291464a1f92a9b7a92935d717d3734b",
+    "size": 947
+  },
+  {
+    "file": "07_meeting_records.xlsx",
+    "category": "meetings",
+    "collection_source": "Calendar export by IT on 17 Mar",
+    "tags": [
+      "meetings"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "6397d1c808c9e3c43534cb582b76a78fab4055523727b957e69fa88bc4e20ebc",
+    "size": 5081
+  },
+  {
+    "file": "08_statement_priya.docx",
+    "category": "statement",
+    "collection_source": "Interview on 18 Mar",
+    "tags": [
+      "statement"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "e9c24fbe4a025fe3d462be668633bdc82b43e81031feb54646ef913fa7eee43d",
+    "size": 36779
+  },
+  {
+    "file": "09_statement_arjun.txt",
+    "category": "statement",
+    "collection_source": "Interview on 19 Mar",
+    "tags": [
+      "statement"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "067ea1a2a9f23fc0a15a2096c961c3b397d0b6181de95cf5445a61ea177d453f",
+    "size": 199
+  },
+  {
+    "file": "11_fwd_access_reply.eml",
+    "category": "email",
+    "collection_source": "Priya Nair's sent-mail export",
+    "tags": [
+      "forward"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "8c5084c5b6cd8f13070407ffd773941df49743caec8716f1bb801416474e1d07",
+    "size": 1066
+  },
+  {
+    "file": "12_steering_meeting_recording.mp4",
+    "category": "meeting",
+    "collection_source": "Teams recording exported by IT on 17 Mar",
+    "tags": [
+      "meeting",
+      "video"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "4898c6cf73a9a79f98d9dcb39193001925bfcbbc999dfbe12c5ae6fceaa95cfe",
+    "size": 106159
+  },
+  {
+    "file": "10_document_history.csv",
+    "category": "log",
+    "collection_source": "SharePoint version history export",
+    "tags": [
+      "document history"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "b601ee8fa35579edc6787cc6b8b5108f991e5d895989a3f5848f7ea218616d6f",
+    "size": 220
+  }
+]

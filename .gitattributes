@@ -1,0 +1,9 @@
+# Evidence datasets must stay byte-exact (their SHA-256 values are part of the ground truth)
+backend/scenario_data/** -text
+*.pdf binary
+*.eml -text
+*.wav binary
+*.mp4 binary
+*.png binary
+*.jpg binary
+*.webp binary

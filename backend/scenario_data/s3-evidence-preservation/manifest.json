@@ -1,0 +1,115 @@
+[
+  {
+    "file": "01_post_screenshot_1.png",
+    "category": "screenshot",
+    "collection_source": "Captured by Meera Iyer on laptop (Firefox full-page)",
+    "tags": [
+      "post"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "a507e1d9d6323d22969a8dad9a55b26b2f9df3c0858d1a3570e8438fd59d576a",
+    "size": 35050
+  },
+  {
+    "file": "02_post_screenshot_2.png",
+    "category": "screenshot",
+    "collection_source": "Captured by Meera Iyer on laptop (Firefox full-page)",
+    "tags": [
+      "post"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "6485f83ce5a2c26e4b2180f5b7b0c5f1912c77cfae2550233f2c09f0460c1432",
+    "size": 29473
+  },
+  {
+    "file": "03_dm_export.json",
+    "category": "chat",
+    "collection_source": "SocialHub 'Download your data' DM export",
+    "tags": [
+      "dm",
+      "chat"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "db4fbb7a316ca9fa5b18c2605961499966535d5b2b018351fc53cd1508eaefb2",
+    "size": 2181
+  },
+  {
+    "file": "04_downloaded_media.jpg",
+    "category": "media",
+    "collection_source": "Downloaded from SocialHub DM on 7 Mar by Meera Iyer",
+    "tags": [
+      "media"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "e5306f9043ee9bee69b6fdbdbbd95c0a71eb5df57c26742681abed7e43594baa",
+    "size": 31383
+  },
+  {
+    "file": "05_collection_log.csv",
+    "category": "collection log",
+    "collection_source": "Collection log kept by complainant",
+    "tags": [
+      "log"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "642fe7d110a145eade544f4d158c13cbf2c6ae410881518cabc27a09be894060",
+    "size": 691
+  },
+  {
+    "file": "06_urls.txt",
+    "category": "urls",
+    "collection_source": "List typed by complainant",
+    "tags": [
+      "urls"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "89586e5ab46ec77019854d5fc365d76e2490ee9479e2078398866103601c8a5a",
+    "size": 327
+  },
+  {
+    "file": "07_victim_statement.txt",
+    "category": "statement",
+    "collection_source": "Statement recorded by investigator 9 Mar",
+    "tags": [
+      "statement"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "cbeb9e11a69c0ac02a8d7e684b062b72d67ed21a1d1e90cf6a3545f2fd48a994",
+    "size": 415
+  },
+  {
+    "file": "01b_post_screenshot_1_copy.png",
+    "category": "screenshot",
+    "collection_source": "Copy found in complainant's cloud backup",
+    "tags": [
+      "post",
+      "copy"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "a507e1d9d6323d22969a8dad9a55b26b2f9df3c0858d1a3570e8438fd59d576a",
+    "size": 35050
+  },
+  {
+    "file": "02b_post_screenshot_2_resaved.jpg",
+    "category": "screenshot",
+    "collection_source": "Version forwarded by a friend (re-compressed by messaging app)",
+    "tags": [
+      "post",
+      "copy"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "903a3a418a715abe1041f762754b3df39f28ccd43c42445185af095688954b0b",
+    "size": 28670
+  },
+  {
+    "file": "08_comment_screenshot.png",
+    "category": "screenshot",
+    "collection_source": null,
+    "tags": [
+      "comment"
+    ],
+    "collected_by": null,
+    "sha256": "e01a2cffbbb9c23dc2b90d933237e160e8016f2b637a3c84342058946e81a406",
+    "size": 25052
+  }
+]

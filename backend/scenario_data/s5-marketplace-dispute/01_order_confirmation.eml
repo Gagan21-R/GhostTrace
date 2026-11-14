@@ -1,0 +1,24 @@
+Received: from mail-out.bazaarhub.in by mx.inbox.example; Mon, 02 Mar 2026
+ 11:20:00 +0530
+Authentication-Results: mx.inbox.example; spf=pass smtp.mailfrom=bazaarhub.in;
+ dkim=pass header.d=bazaarhub.in; dmarc=pass
+From: "BazaarHub Orders" <orders@bazaarhub.in>
+To: "Karthik Bhat" <karthik.bhat@shopmail.in>
+Subject: Order OD-48213 confirmed
+Date: Mon, 02 Mar 2026 11:20:00 +0530
+Message-ID: <a14df1cf3df23534@bazaarhub.in>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi Karthik,
+
+Your order has been confirmed.
+
+Order ID: OD-48213
+Item: Stainless steel water bottle 1L
+Qty: 50
+Order Total: Rs 62,500.00
+Seller: Sunrise Kitchenware Traders
+
+BazaarHub

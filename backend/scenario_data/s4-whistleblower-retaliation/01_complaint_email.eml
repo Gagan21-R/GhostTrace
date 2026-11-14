@@ -1,0 +1,22 @@
+Received: from mail-out.northwind-analytics.com by mx.inbox.example; Fri, 06
+ Mar 2026 18:42:00 +0530
+Authentication-Results: mx.inbox.example; spf=pass
+ smtp.mailfrom=northwind-analytics.com; dkim=pass
+ header.d=northwind-analytics.com; dmarc=pass
+From: "Priya Nair" <priya.nair@northwind-analytics.com>
+To: "Ethics Office" <ethics@northwind-analytics.com>
+Subject: Confidential complaint - irregular vendor payments
+Date: Fri, 06 Mar 2026 18:42:00 +0530
+Message-ID: <b681fd3894b67734@northwind-analytics.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Dear Ethics Office,
+
+I am reporting concerns about vendor invoices approved by Arjun Sethi in Febr=
+uary 2026. Several invoices from Brightline Supplies appear to be duplicated.
+
+I request that this complaint be treated confidentially.
+
+Priya Nair

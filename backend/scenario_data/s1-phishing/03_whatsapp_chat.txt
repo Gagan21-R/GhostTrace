@@ -1,0 +1,9 @@
+10/03/2026, 09:31 - Ananya Rao: Hi, I got an email about KYC. Is this the HDFC KYC desk?
+10/03/2026, 09:33 - +91 98765 43210: Yes madam. Your account will be blocked today. Pay the refundable verification fee of ₹24,999 to UPI kycdesk.verify@okaxis
+10/03/2026, 09:34 - +91 98765 43210: <Media omitted>
+10/03/2026, 09:35 - +91 98765 43210: Scan this QR and send screenshot after payment
+10/03/2026, 09:48 - Ananya Rao: Paid ₹24,999. UPI Ref No: 407215583921
+10/03/2026, 09:52 - +91 98765 43210: Received. KYC will be updated in 2 hours
+11/03/2026, 18:05 - Ananya Rao: My account is still showing KYC pending. Please refund my money
+11/03/2026, 18:20 - +91 98765 43210: Madam we will refund ₹24,999 within 48 hours
+13/03/2026, 10:02 - Ananya Rao: No refund yet. Please call me

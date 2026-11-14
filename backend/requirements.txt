@@ -1,0 +1,30 @@
+# Core API
+fastapi==0.162.7
+uvicorn[standard]==0.54.0
+SQLAlchemy==2.0.57          # 2.0.x keeps a pure-Python fallback when compiled extensions are blocked
+pydantic==2.14.3
+pydantic-settings==2.16.3
+email-validator==2.3.0
+python-multipart==0.0.33
+PyJWT==2.15.1
+bcrypt==5.0.0
+cryptography==50.0.2
+httpx==0.28.1
+python-dateutil==2.9.0.post0
+
+# Document parsing & reporting
+pypdf==7.1.0
+pdfplumber==0.11.10
+python-docx==1.2.0
+openpyxl==3.1.5
+pillow==13.0.0
+reportlab==5.1.0
+
+# Intelligence & orchestration
+networkx==3.7
+langgraph==1.2.22
+anthropic==2.8.0
+
+# Testing
+pytest==9.2.0
+alembic==1.14.0

@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+html, body, #root { height: 100%; }
+body {
+  @apply bg-paper text-ink-900 antialiased;
+  /* faint graph-paper grid, the investigator's evidence board */
+  background-image: linear-gradient(rgba(11, 11, 11, 0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(11, 11, 11, 0.045) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+::selection { background: #e4ff3a; color: #0b0b0b; }
+
+@layer components {
+  .card { @apply bg-surface border-2 border-ink-900 shadow-card; }
+  .card-lift { @apply transition-transform duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-brutal-lg; }
+  .btn { @apply inline-flex items-center gap-2 border-2 border-ink-900 px-3.5 py-2 text-sm font-bold uppercase tracking-wide transition-all duration-100
+    shadow-brutal-sm hover:-translate-x-px hover:-translate-y-px hover:shadow-brutal active:translate-x-0.5 active:translate-y-0.5 active:shadow-none
+    disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0 disabled:hover:shadow-brutal-sm
+    focus:outline-none focus-visible:ring-4 focus-visible:ring-volt/40; }
+  .btn-primary { @apply btn bg-acid text-ink-900; }
+  .btn-accent { @apply btn bg-volt text-white; }
+  .btn-ghost { @apply inline-flex items-center gap-2 px-3 py-2 text-sm font-bold text-ink-900 transition hover:bg-acid/60 focus:outline-none focus-visible:ring-4 focus-visible:ring-volt/40 disabled:opacity-50; }
+  .btn-outline { @apply btn bg-surface text-ink-900 hover:bg-paper; }
+  .input { @apply w-full border-2 border-ink-900 bg-surface px-3 py-2 text-ink-900 text-sm placeholder:text-slate-400 focus:outline-none focus:shadow-brutal-sm focus:bg-white; }
+  .label { @apply text-[11px] font-bold uppercase tracking-[0.14em] text-slate-600; }
+  .chip { @apply inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold; }
+  .mono { @apply font-mono text-[12px]; }
+  .tab { @apply px-3 py-2 text-[13px] font-bold uppercase tracking-wide text-slate-500 border-b-4 border-transparent hover:text-ink-900 hover:bg-acid/40 whitespace-nowrap; }
+  .tab-active { @apply text-ink-900 border-ink-900 bg-acid; }
+  .stroke-text { -webkit-text-stroke: 2px #0b0b0b; color: transparent; }
+}
+
+.scrollbar-thin::-webkit-scrollbar { width: 10px; height: 10px; }
+.scrollbar-thin::-webkit-scrollbar-thumb { background: #0b0b0b; border: 2px solid #f3efe4; }
+.scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}

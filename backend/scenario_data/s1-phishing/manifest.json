@@ -1,0 +1,139 @@
+[
+  {
+    "file": "01_kyc_email.eml",
+    "category": "email",
+    "collection_source": "Victim's mailbox export (EML) by investigator",
+    "tags": [
+      "phishing",
+      "email"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "b89bfabb7b08cd83237ef5c8ecbb9f85ec15a0d9a55efe19e379774c59636782",
+    "size": 849
+  },
+  {
+    "file": "02_phishing_site.png",
+    "category": "screenshot",
+    "collection_source": "Screenshot captured by victim on phone, shared via email",
+    "tags": [
+      "website"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "870c1d238fb42c636fee7495741af4f3d475b1ac377b63b7c9694a82c28cabee",
+    "size": 50667
+  },
+  {
+    "file": "03_whatsapp_chat.txt",
+    "category": "chat",
+    "collection_source": "WhatsApp 'Export chat' (without media) from victim's phone",
+    "tags": [
+      "chat"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "44fec48cde44785caf9623927af3c9122f506057f24c9f53ae1208756924b799",
+    "size": 790
+  },
+  {
+    "file": "04_payment_receipt.png",
+    "category": "payment",
+    "collection_source": "Screenshot from victim's UPI app",
+    "tags": [
+      "payment",
+      "receipt"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "ea9c4a6956412bd2fca49f218ec92bc6c9c0d0ec9a1fa96a8d36ec17c6721fd1",
+    "size": 43212
+  },
+  {
+    "file": "05_bank_statement.csv",
+    "category": "bank",
+    "collection_source": "Statement downloaded from NetBanking by investigator with victim",
+    "tags": [
+      "bank"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "cd602011cbc639f98f26a79c0536a28ac4d68452be8ef137fb6fbcb5d8777104",
+    "size": 419
+  },
+  {
+    "file": "06_bank_sms_alert.txt",
+    "category": "bank",
+    "collection_source": "SMS transcribed from victim's phone by investigator",
+    "tags": [
+      "bank",
+      "notification"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "ea91076155b3956c750e8a4e692ad25979c3513081ab9ea9a34ff12f4fe6718e",
+    "size": 179
+  },
+  {
+    "file": "07_victim_statement.docx",
+    "category": "statement",
+    "collection_source": "Signed statement recorded at police station",
+    "tags": [
+      "statement"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "48fc255a2733a35b0da4ad2a3704f253474c74be4d4d016243201cab1094a7dc",
+    "size": 36933
+  },
+  {
+    "file": "08_followup_email.eml",
+    "category": "email",
+    "collection_source": "Victim's mailbox export (EML)",
+    "tags": [
+      "follow-up"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "e6b98e6bc8206abf40d784c12639d3408413fd178f18a7530f2dcb5b4bc78d8a",
+    "size": 601
+  },
+  {
+    "file": "09_flipkart_newsletter.eml",
+    "category": "email",
+    "collection_source": "Victim's mailbox export (EML) - unrelated control item",
+    "tags": [
+      "unrelated"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "5425f4765c87b34cba5efd27f10089b70a03c3d472ff816e323ddf0e7ddf10d4",
+    "size": 633
+  },
+  {
+    "file": "04b_receipt_copy.png",
+    "category": "payment",
+    "collection_source": "Same screenshot sent again by victim via WhatsApp to investigator",
+    "tags": [
+      "payment",
+      "copy"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "ea9c4a6956412bd2fca49f218ec92bc6c9c0d0ec9a1fa96a8d36ec17c6721fd1",
+    "size": 43212
+  },
+  {
+    "file": "11_forward_to_bank.eml",
+    "category": "email",
+    "collection_source": "Victim's sent-mail export",
+    "tags": [
+      "forward"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "dfce237c253f5dccf7abdc5db11debe8d80f48382f0493d71b5af9dd3f142f93",
+    "size": 1175
+  },
+  {
+    "file": "10_voicemail.wav",
+    "category": "audio",
+    "collection_source": "Voicemail exported from victim's phone",
+    "tags": [
+      "audio",
+      "voicemail"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "6154770b4926bab5bf0c96671a23a68b752fa64d0dde7eb41fa83865a8dcee26",
+    "size": 665404
+  }
+]

@@ -1,0 +1,18 @@
+Received: from mail-out.cloudvault.io by mx.inbox.example; Sat, 14 Mar 2026
+ 02:26:40 +0530
+Authentication-Results: mx.inbox.example; spf=pass
+ smtp.mailfrom=cloudvault.io; dkim=pass header.d=cloudvault.io; dmarc=pass
+From: "CloudVault Security" <security@cloudvault.io>
+To: "Rahul Mehta" <rahul.mehta@inboxmail.com>
+Subject: Recovery email changed
+Date: Sat, 14 Mar 2026 02:26:40 +0530
+Message-ID: <e819e3dcf30fede0@cloudvault.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+The recovery email for your account was changed to r.mehta.secure@protonmail-=
+mail.net
+
+Time: 14 Mar 2026 02:25 IST
+IP address: 102.89.34.17

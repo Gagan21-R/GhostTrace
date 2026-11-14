@@ -1,0 +1,15 @@
+Received: from mail-out.bazaarhub.in by mx.inbox.example; Wed, 11 Mar 2026
+ 17:00:00 +0530
+Authentication-Results: mx.inbox.example; spf=pass smtp.mailfrom=bazaarhub.in;
+ dkim=pass header.d=bazaarhub.in; dmarc=pass
+From: "BazaarHub Orders" <orders@bazaarhub.in>
+To: "Karthik Bhat" <karthik.bhat@shopmail.in>
+Subject: Order OD-51120 delivered
+Date: Wed, 11 Mar 2026 17:00:00 +0530
+Message-ID: <92888bb9fd585c11@bazaarhub.in>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Your order OD-51120 (Cotton kitchen towels, Qty: 6) was delivered on 11 Mar 2=
+026.

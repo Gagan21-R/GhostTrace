@@ -1,0 +1,49 @@
+{
+  "platform": "BazaarHub buyer-seller chat",
+  "conversation": "Order OD-48213",
+  "participants": [
+    "Karthik Bhat",
+    "Sunrise Kitchenware Traders"
+  ],
+  "export_info": {
+    "complete": true
+  },
+  "messages": [
+    {
+      "id": 1,
+      "sender": "Sunrise Kitchenware Traders",
+      "timestamp": "2026-03-05T18:30:00+05:30",
+      "text": "Your order OD-48213 has been dispatched. 50 units packed in 5 cartons. AWB 7781234590."
+    },
+    {
+      "id": 2,
+      "sender": "Karthik Bhat",
+      "timestamp": "2026-03-16T10:00:00+05:30",
+      "text": "Tracking still shows in transit. When will it arrive?"
+    },
+    {
+      "id": 3,
+      "sender": "Sunrise Kitchenware Traders",
+      "timestamp": "2026-03-16T12:10:00+05:30",
+      "text": "As per our records order OD-48213 was delivered on 16 March 2026."
+    },
+    {
+      "id": 4,
+      "sender": "Karthik Bhat",
+      "timestamp": "2026-03-18T16:05:00+05:30",
+      "text": "Received today but only 40 units in 4 cartons. Unboxing video attached.",
+      "attachments": [
+        {
+          "name": "unboxing.mp4",
+          "included": false
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "sender": "Sunrise Kitchenware Traders",
+      "timestamp": "2026-03-19T11:00:00+05:30",
+      "text": "Sorry for this. We will refund Rs 12,500 for the 10 missing units within 5 days for order OD-48231."
+    }
+  ]
+}

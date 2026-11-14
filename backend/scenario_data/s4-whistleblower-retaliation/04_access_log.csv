@@ -1,0 +1,5 @@
+Timestamp,User,Resource,Action,Changed By,Ticket,Reason
+2026-02-02 10:00,Priya Nair,Finance-SharePoint,Access granted (Editor),it.admin,CHG-1102,Onboarding to finance analytics
+2026-03-02 11:30,Rohan Das,Finance-SharePoint,Access revoked,it.admin,CHG-1180,Quarterly access review
+2026-03-11 09:42,Priya Nair,Finance-SharePoint,Access revoked,arjun.sethi,,
+2026-03-11 09:44,Priya Nair,Project-Atlas,Role downgraded Editor to Viewer,arjun.sethi,,

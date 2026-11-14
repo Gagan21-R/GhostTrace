@@ -1,0 +1,113 @@
+[
+  {
+    "file": "01_order_confirmation.eml",
+    "category": "order",
+    "collection_source": "Buyer's mailbox export",
+    "tags": [
+      "order"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "b91207c4bd6c04d744da4f6cff5e386ad90787307906a531febf8ca56686a7a6",
+    "size": 700
+  },
+  {
+    "file": "02_invoice.pdf",
+    "category": "invoice",
+    "collection_source": "Downloaded from BazaarHub order page",
+    "tags": [
+      "invoice"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "e12b18f5e515f4cc38450b0247c2a46f809d802226eb90c4daaa831b9a3bbe0e",
+    "size": 1854
+  },
+  {
+    "file": "03_payment_receipt.png",
+    "category": "payment",
+    "collection_source": "Screenshot from buyer's phone",
+    "tags": [
+      "payment"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "d3a91c1a314da3a5625266bdd6b652d7ba5878e13626b9c196b84979adc3f70a",
+    "size": 34911
+  },
+  {
+    "file": "04_seller_chat.json",
+    "category": "chat",
+    "collection_source": "BazaarHub chat export from buyer account",
+    "tags": [
+      "chat"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "aff1877a0301cb8c90ad3cb2f71f4798583c163372f024aeeb008413c86783ea",
+    "size": 1433
+  },
+  {
+    "file": "05_courier_tracking.csv",
+    "category": "courier",
+    "collection_source": "Courier website tracking export",
+    "tags": [
+      "courier"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "634362366ea8142f8d296906598151c2ebdeb0d4a33a5c0e437f0ac3e614e0f3",
+    "size": 318
+  },
+  {
+    "file": "06_delivery_confirmation.pdf",
+    "category": "delivery",
+    "collection_source": "Downloaded from BazaarHub order page",
+    "tags": [
+      "delivery"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "76c84cdc22d52cf4009e2600fd2c16edc1e724fed73dbf1d7d9067dcd94a2fef",
+    "size": 1741
+  },
+  {
+    "file": "07_product_photo.jpg",
+    "category": "photo",
+    "collection_source": "Photo taken by buyer 18 Mar",
+    "tags": [
+      "photo"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "6ec94e08ec34838a1d4a63f32a93b130d25bae339715b692c32fed55cee4a719",
+    "size": 45453
+  },
+  {
+    "file": "10_delivery_screenshot.png",
+    "category": "delivery",
+    "collection_source": "Screenshot of the BazaarHub delivery page sent by seller",
+    "tags": [
+      "delivery",
+      "screenshot"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "09b0a91a94b7c62a4a49a78c1b3345f42d25c0b78b906dfa3f03ed6a5e154950",
+    "size": 35178
+  },
+  {
+    "file": "08_refund_followup.eml",
+    "category": "email",
+    "collection_source": "Buyer's sent-mail export",
+    "tags": [
+      "refund"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "2f97e586a98fa9b922258293540af2ed3a95825d4510318138d09250caa06e2e",
+    "size": 652
+  },
+  {
+    "file": "09_other_order.eml",
+    "category": "order",
+    "collection_source": "Buyer's mailbox export - unrelated control item",
+    "tags": [
+      "unrelated"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "f8c3d18b29f1446da11ad63a318bba3d9a6b2220912ff8ae7ed686d2fa104c2d",
+    "size": 613
+  }
+]

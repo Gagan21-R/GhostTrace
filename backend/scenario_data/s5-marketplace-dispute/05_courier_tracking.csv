@@ -1,0 +1,4 @@
+Date,Status,Location,AWB,Order ID,Pieces,Weight,Remarks
+2026-03-05 18:10,Picked up,Pune,7781234590,OD-48213,5,25.0 kg,Shipper: Sunrise Kitchenware
+2026-03-07 06:40,In transit,Bengaluru hub,7781234590,OD-48213,5,25.0 kg,
+2026-03-18 14:35,Delivered,Bengaluru,7781234590,OD-48213,4,20.0 kg,Received by: Security desk

@@ -1,0 +1,91 @@
+[
+  {
+    "file": "01_new_signin_alert.eml",
+    "category": "email",
+    "collection_source": "Exported from account holder's mailbox",
+    "tags": [
+      "security alert"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "cd24e04493f4aeb3683d370300f9f7dcbf02fa82a95af5faec347301f3ee78c7",
+    "size": 763
+  },
+  {
+    "file": "02_password_changed.eml",
+    "category": "email",
+    "collection_source": "Exported from account holder's mailbox",
+    "tags": [
+      "password reset"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "ebc3ed33f5f566f6e5fdef454cd202a5a0f26bae9dd9818d53f722f499929144",
+    "size": 709
+  },
+  {
+    "file": "03_recovery_email_changed.eml",
+    "category": "email",
+    "collection_source": "Exported from account holder's mailbox",
+    "tags": [
+      "recovery"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "a33c430ea6b0e726fcd325378c608b86517c57d8485b011f6a31ec5b49832f8d",
+    "size": 679
+  },
+  {
+    "file": "04_session_log.csv",
+    "category": "log",
+    "collection_source": "CloudVault 'Download account activity' export requested 15 Mar",
+    "tags": [
+      "log"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "d0523f14525ec99c04cd2b9017ce1b70ae5efe0e24cf2e746840a5bc6743054c",
+    "size": 532
+  },
+  {
+    "file": "05_otp_chat.txt",
+    "category": "chat",
+    "collection_source": "WhatsApp export from account holder's phone",
+    "tags": [
+      "chat",
+      "otp"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "d237d47a1bb08f221a5b15fc9e1d03f4ed0f8d11c4ce5e2e83d2a42e3286b172",
+    "size": 458
+  },
+  {
+    "file": "06_statement_rahul.docx",
+    "category": "statement",
+    "collection_source": "Statement taken by investigator on 15 Mar",
+    "tags": [
+      "statement"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "11f494095a1fcb1323338415d4f735f10f81cff3d141d1b469d51a9b66c7dda7",
+    "size": 36791
+  },
+  {
+    "file": "07_device_list.png",
+    "category": "screenshot",
+    "collection_source": "Screenshot by account holder on 15 Mar 08:10",
+    "tags": [
+      "devices"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "70d3b62487eaeb77b69881ecc30673d8592868ba215c44d8222a458a47d01f56",
+    "size": 32412
+  },
+  {
+    "file": "08_product_update.eml",
+    "category": "email",
+    "collection_source": "Exported from account holder's mailbox - unrelated control",
+    "tags": [
+      "unrelated"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "e179082f7f6bee71296b1ac357497f5fe17777764e23735187039d8abacbbf74",
+    "size": 619
+  }
+]

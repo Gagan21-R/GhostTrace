@@ -1,0 +1,38 @@
+{
+  "platform": "Northwind Teams export",
+  "conversation": "Atlas leads",
+  "participants": [
+    "Arjun Sethi",
+    "Neha Kapoor"
+  ],
+  "export_info": {
+    "complete": true,
+    "exported_by": "IT eDiscovery"
+  },
+  "messages": [
+    {
+      "id": 1,
+      "sender": "Arjun Sethi",
+      "timestamp": "2026-03-07T09:12:00+05:30",
+      "text": "Let's keep Priya off the Atlas steering calls for now."
+    },
+    {
+      "id": 2,
+      "sender": "Neha Kapoor",
+      "timestamp": "2026-03-07T09:20:00+05:30",
+      "text": "Ok. Any reason I should give her?"
+    },
+    {
+      "id": 3,
+      "sender": "Arjun Sethi",
+      "timestamp": "2026-03-07T09:21:00+05:30",
+      "text": "Just say the meeting is leads-only now."
+    },
+    {
+      "id": 4,
+      "sender": "Arjun Sethi",
+      "timestamp": "2026-03-10T17:45:00+05:30",
+      "text": "Also remove her from the finance sharepoint group."
+    }
+  ]
+}

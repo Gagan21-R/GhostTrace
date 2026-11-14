@@ -1,0 +1,21 @@
+Received: from mail-out.cloudvault.io by mx.inbox.example; Sat, 14 Mar 2026
+ 02:16:05 +0530
+Authentication-Results: mx.inbox.example; spf=pass
+ smtp.mailfrom=cloudvault.io; dkim=pass header.d=cloudvault.io; dmarc=pass
+From: "CloudVault Security" <security@cloudvault.io>
+To: "Rahul Mehta" <rahul.mehta@inboxmail.com>
+Subject: New sign-in to your CloudVault account
+Date: Sat, 14 Mar 2026 02:16:05 +0530
+Message-ID: <4789e1a3ae49af96@cloudvault.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+We noticed a new sign-in to your CloudVault account.
+
+Time: 14 Mar 2026 02:14 IST
+Device: Windows 11 Chrome 133
+Location: Lagos, Nigeria (approximate)
+IP address: 102.89.34.17
+
+If this wasn't you, secure your account now.

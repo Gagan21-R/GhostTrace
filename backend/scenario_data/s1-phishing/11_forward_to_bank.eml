@@ -1,0 +1,31 @@
+Received:
+ from mail-out.mailbox.in by mx.inbox.example; Wed, 11 Mar 2026 19:05:00 +0530
+Authentication-Results: mx.inbox.example; spf=pass smtp.mailfrom=mailbox.in;
+ dkim=pass header.d=mailbox.in; dmarc=pass
+From: "Ananya Rao" <ananya.rao@mailbox.in>
+To: "Phishing Reports" <report-phishing@securebank.example>
+Subject: Fwd: Urgent: Your NetBanking will be blocked - complete KYC today
+Date: Wed, 11 Mar 2026 19:05:00 +0530
+Message-ID: <a08512aca2f8951a@mailbox.in>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Is this email genuine? I paid them yesterday.
+
+---------- Forwarded message ---------
+From: HDFC Bank Alerts <alerts@hdfc-secure-kyc.xyz>
+Date: Tue, 10 Mar 2026 09:12:00 +0530
+Subject: Urgent: Your NetBanking will be blocked - complete KYC today
+To: Ananya Rao <ananya.rao@mailbox.in>
+
+Dear Customer,
+
+Your NetBanking access will be BLOCKED within 24 hours because your KYC is in=
+complete.
+Complete verification now: https://hdfc-secure-kyc.xyz/verify?id=3D88213
+
+For assistance call or WhatsApp our KYC desk on +91 98765 43210.
+Please find the KYC form attached and keep it ready.
+
+HDFC Bank KYC Team

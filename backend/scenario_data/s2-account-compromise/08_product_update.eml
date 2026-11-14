@@ -1,0 +1,15 @@
+Received: from mail-out.cloudvault.io by mx.inbox.example; Tue, 03 Mar 2026
+ 10:00:00 +0530
+Authentication-Results: mx.inbox.example; spf=pass
+ smtp.mailfrom=cloudvault.io; dkim=pass header.d=cloudvault.io; dmarc=pass
+From: "CloudVault" <news@cloudvault.io>
+To: "Rahul Mehta" <rahul.mehta@inboxmail.com>
+Subject: What's new in CloudVault - March
+Date: Tue, 03 Mar 2026 10:00:00 +0530
+Message-ID: <68ec873f9c1ae5b5@cloudvault.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+New: shared folders and faster sync. Read more at https://cloudvault.io/blog/=
+march

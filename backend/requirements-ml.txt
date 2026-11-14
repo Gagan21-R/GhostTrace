@@ -1,0 +1,16 @@
+# Optional extraction engines. Without them, image/audio evidence is stored and hashed but
+# recorded as "engine unavailable" - nothing is faked.
+rapidocr-onnxruntime==1.4.4   # OCR using PaddleOCR PP-OCR models on ONNX Runtime (default)
+faster-whisper==1.2.1         # speech-to-text (Whisper, CTranslate2, CPU int8)
+av==19.0.2                    # audio/video decoding for ASR
+numpy==2.3.5
+
+# Optional: native PaddleOCR (set OCR_ENGINE=paddleocr) and spaCy NER
+# paddlepaddle==3.3.1
+# paddleocr==3.7.0
+# spacy==3.8.18   then: python -m spacy download en_core_web_sm
+
+# Optional infrastructure clients (docker-compose stack)
+psycopg[binary]==3.3.9
+boto3==1.44.3
+neo4j==6.4.1
