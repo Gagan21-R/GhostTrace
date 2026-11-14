@@ -15,6 +15,7 @@ RUN pip install --no-cache-dir -r requirements.txt -r requirements-ml.txt
 COPY backend/ ./
 COPY --from=web /web/dist /app/frontend/dist
 RUN useradd -m evx && mkdir -p data && chown -R evx /app
-USER evx
 EXPOSE 8000
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Hosts pass the port in $PORT (Render) - default 8000 locally. A mounted disk (Render) arrives owned by root, so the
+# container fixes ownership of the data folder, then drops to the unprivileged "evx" user before starting the app.
+CMD ["sh", "-c", "mkdir -p /app/backend/data && chown -R evx /app/backend/data && exec setpriv --reuid=evx --regid=evx --init-groups uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000} --proxy-headers --forwarded-allow-ips=*"]

@@ -1,0 +1,33 @@
+# Render blueprint for the GhostTrace backend (FastAPI + OCR + speech-to-text) built from the Dockerfile.
+# Secrets marked sync:false are entered in the Render dashboard, never committed.
+services:
+  - type: web
+    name: ghosttrace-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: standard            # 2 GB RAM: needed for OCR + Whisper. "starter" works with OCR_ENGINE/ASR_ENGINE=none.
+    healthCheckPath: /api/health
+    autoDeploy: true
+    disk:                     # keeps the database and evidence files across restarts and deploys
+      name: ghosttrace-data
+      mountPath: /app/backend/data
+      sizeGB: 5
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGINS
+        sync: false           # your Netlify URL, e.g. https://ghosttrace.netlify.app
+      - key: SEED_ADMIN_EMAIL
+        sync: false
+      - key: SEED_ADMIN_PASSWORD
+        sync: false
+      - key: OCR_ENGINE
+        value: auto
+      - key: ASR_ENGINE
+        value: auto
+      - key: WHISPER_MODEL
+        value: base
+      - key: MAX_UPLOAD_MB
+        value: "25"
