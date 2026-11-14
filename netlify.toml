@@ -1,5 +1,5 @@
 # Netlify: build the React frontend and forward API calls to the backend on Render.
-# 1) Replace YOUR-RENDER-SERVICE below with your Render service name (e.g. ghosttrace-api).
+# Backend: https://ghosttrace-z69t.onrender.com (Render).
 # 2) Netlify proxies /api/* to Render, so the browser only ever talks to one site (no CORS setup needed).
 [build]
   base    = "frontend"
@@ -11,7 +11,7 @@
 
 [[redirects]]
   from   = "/api/*"
-  to     = "https://YOUR-RENDER-SERVICE.onrender.com/api/:splat"
+  to     = "https://ghosttrace-z69t.onrender.com/api/:splat"
   status = 200
   force  = true
 
