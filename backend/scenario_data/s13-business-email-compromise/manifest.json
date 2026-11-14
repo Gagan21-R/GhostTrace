@@ -1,0 +1,46 @@
+[
+  {
+    "file": "01_vendor_bank_change.eml",
+    "category": "email",
+    "collection_source": "Finance mailbox export, BrightBuild Pvt Ltd",
+    "tags": [
+      "email"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "541d29983377089f9137e97609d3f6a7dfa04a185e5c75d4b92a83889c6c8b8f",
+    "size": 747
+  },
+  {
+    "file": "02_invoice.pdf",
+    "category": "invoice",
+    "collection_source": "Original invoice received by post",
+    "tags": [
+      "invoice"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "54602ba3074cfe512001c9c050f4fa868804f54d7835c9330e6b844ee7be7a77",
+    "size": 1738
+  },
+  {
+    "file": "03_payment_register.csv",
+    "category": "payment register",
+    "collection_source": "Finance payment register export",
+    "tags": [
+      "payment"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "52b352a103d8fe720fed754b6c4a6c8e22d061095d35b1726a6b95febbdcfeae",
+    "size": 139
+  },
+  {
+    "file": "04_real_vendor_reply.eml",
+    "category": "email",
+    "collection_source": "Finance mailbox export",
+    "tags": [
+      "email"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "a7e9a9246d0a0cbaa8406256be7a00fe3957d22d2e8ac3e2f29d19ee19413ce3",
+    "size": 663
+  }
+]

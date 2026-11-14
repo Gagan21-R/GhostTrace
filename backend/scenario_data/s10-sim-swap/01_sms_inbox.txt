@@ -1,0 +1,5 @@
+SMS export - phone of Deepak Joshi (+91 90080 55667)
+
+[02/04/2026 01:10] JIONET: Your SIM card has been deactivated as a new SIM was issued on your request. Not you? Call 198.
+[02/04/2026 01:25] AX-SBIOTP: 482913 is the OTP for adding a new beneficiary. Do not share it with anyone.
+[02/04/2026 01:28] AX-SBIINB: New login to SBI Online from a new device at 01:28.

@@ -150,7 +150,14 @@ class CaseIndex:
 
         # Free-text patterns.
         for m in nlp.EMAIL_RE.finditer(text):
+            line_start = text.rfind("\n", 0, m.start()) + 1
+            if re.match(r"\s*(?:message-id|in-reply-to|references)\s*:", text[line_start:m.start()], re.I) or \
+                    text[max(0, m.start() - 1):m.start()] == "<" and re.match(r"[0-9a-f]{12,}@", m.group(0)):
+                continue  # Message-IDs look like addresses but identify a message, not a person
             add("email", m.group(0), m.group(0).lower(), m.start())
+        for m in nlp.UPI_RE.finditer(text):
+            if not nlp.EMAIL_RE.match(text, m.start()):
+                add("upi", m.group(0), m.group(0).lower(), m.start())
         urls = set()
         for m in nlp.URL_RE.finditer(text):
             u = m.group(0).rstrip(".,;")

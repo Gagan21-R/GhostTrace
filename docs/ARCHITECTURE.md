@@ -1,4 +1,4 @@
-# EVIDENCE-X architecture
+# GhostTrace architecture
 
 ## Layers
 

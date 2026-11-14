@@ -7,7 +7,8 @@ import { api } from "../../lib/api";
 import { fmtDate, titleCase, useApi, usePoll } from "../../lib/hooks";
 
 const STAGES = ["creating case", "ingesting evidence", "intake", "extraction", "entity_intelligence", "timeline", "relationship", "contradiction",
-  "evidence_gap", "investigation", "counter_investigation", "verification", "skeptical_review", "report", "evaluating against ground truth", "generating report", "done"];
+  "evidence_gap", "investigation", "counter_investigation", "verification", "skeptical_review", "report", "testing alternative hypotheses", "question_analyzer", "hypothesis_generator", "evidence_mapper", "counterevidence",
+  "hypothesis_evaluator", "next_evidence_planner", "independent_reviewer", "evaluating against ground truth", "generating report", "done"];
 
 const METRIC_ORDER = ["critical_findings", "all_findings", "contradiction_precision", "contradiction_recall", "entity_precision", "entity_recall", "entity_f1", "timestamp_accuracy",
   "timeline_order_accuracy", "ocr_char_similarity", "asr_similarity", "hash_verification_accuracy", "source_reference_coverage", "unsupported_claim_rate",
@@ -70,7 +71,7 @@ export default function ScenarioRunPage() {
               <div className="mt-3 grid grid-cols-2 gap-2 text-xs sm:grid-cols-4">
                 {Object.entries(ev.actual || {}).map(([k, v]) => <div key={k} className="rounded-lg bg-slate-50 p-2"><div className="text-slate-500">{titleCase(k)}</div><div className="font-semibold">{v === null ? "—" : titleCase(String(v))}</div></div>)}
               </div>
-              <p className="mt-3 text-[11px] text-slate-500">PASS/FAIL/HOLD is computed deterministically from the ground truth below — not from an LLM opinion. HOLD means nothing critical was missed but the evidence does not support a definitive assessment.</p>
+              <p className="mt-3 text-[11px] text-slate-500">PASS/FAIL/HOLD is computed deterministically from the ground truth below — not from an LLM opinion.</p>
             </div>
           </motion.div>
 

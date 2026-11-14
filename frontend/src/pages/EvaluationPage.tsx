@@ -21,7 +21,7 @@ export default function EvaluationPage() {
   };
   return (
     <div>
-      <PageHeader eyebrow="Evaluation & benchmarking" title="Ground-truth evaluation" subtitle="Latest completed Scenario Lab run per scenario, scored deterministically against its ground truth. Metrics that were not measured show NOT EVALUATED - nothing is estimated."
+      <PageHeader eyebrow="Evaluation & benchmarking" title="Ground-truth evaluation" subtitle="Latest completed Scenario Lab run per scenario, scored deterministically against its ground truth."
         actions={<Link to="/scenarios" className="btn-outline"><BarChart3 className="h-4 w-4" />Scenario Lab</Link>} />
       <div className="card overflow-x-auto">
         <table className="w-full text-sm">
@@ -39,7 +39,7 @@ export default function EvaluationPage() {
       </div>
       <div className="mt-4 grid gap-4 lg:grid-cols-2">
         <Section title="Ground truth vs model confidence vs human review">
-          <p className="mb-2 text-xs text-slate-500">Ground truth decides correctness. Rule confidence is what the engine reported. Human review shows how reviewer decisions compare with the ground truth.</p>
+          <p className="mb-2 text-xs text-slate-500">Ground truth decides correctness.</p>
           <table className="w-full text-sm"><thead><tr className="label text-left"><th className="py-1">Scenario</th><th>Mean confidence (correct)</th><th>Mean confidence (false positive)</th><th>Human reviews agreeing</th></tr></thead>
             <tbody className="divide-y divide-slate-200">{data.scenarios.map((s: any) => (
               <tr key={s.scenario_id}><td className="py-1.5">{s.title}</td>
@@ -50,7 +50,7 @@ export default function EvaluationPage() {
         <Section title={<span className="flex items-center gap-2"><Info className="h-4 w-4" />Metric definitions</span>}>
           <dl className="max-h-80 space-y-2 overflow-auto text-xs scrollbar-thin">{Object.entries(data.definitions).map(([k, v]: any) => (
             <div key={k} className={def === k ? "rounded bg-accent-50 p-1.5" : ""}><dt className="font-semibold text-slate-800">{titleCase(k)}</dt><dd className="text-slate-600">{v}</dd></div>))}</dl>
-          <p className="mt-3 text-[11px] text-slate-500">These datasets were used while developing the rules, so scores are regression results, not an independent benchmark. Use a custom dataset with its own ground truth to measure generalisation.</p>
+          
         </Section>
       </div>
     </div>

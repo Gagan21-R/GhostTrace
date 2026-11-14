@@ -17,7 +17,7 @@ export default function AuditTab() {
   return (
     <div className="space-y-4">
       <Section title="Evidence integrity" actions={<button className="btn-outline" onClick={async () => { setRes(await api.post(`/api/cases/${c.id}/verify-all`)); ev.reload(true); }}><ShieldCheck className="h-4 w-4" />Re-verify all</button>}>
-        <p className="mb-3 text-xs text-slate-500">Each original is compared byte-for-byte (SHA-256) with the hash recorded at intake. A match shows the file is unchanged since intake; it does not prove the file was genuine before intake, and does not by itself establish chain of custody or admissibility.</p>
+        <p className="mb-3 text-xs text-slate-500">Each original is compared byte-for-byte (SHA-256) with the hash recorded at intake.</p>
         {res && <div className="mb-3 text-sm">{res.checked} checked · <b className="text-emerald-700">{res.results.filter((r: any) => r.result === "match").length} match</b> · <b className="text-rose-700">{res.results.filter((r: any) => r.result !== "match").length} mismatch/missing</b></div>}
         {ev.loading && !ev.data ? <Loading /> : (
           <div className="overflow-x-auto"><table className="w-full text-sm"><thead><tr className="label text-left"><th className="py-2">Code</th><th>File</th><th>SHA-256 at intake</th><th>Last check</th><th>Collected by / source</th></tr></thead>
@@ -62,7 +62,7 @@ function IntegrityFindings({ caseId }: { caseId: string }) {
               <td className="text-xs">{titleCase(f.check)}</td>
               <td><Badge tone={f.severity === "high" ? "red" : f.severity === "medium" ? "amber" : "slate"}>{f.severity}</Badge></td>
               <td className="text-xs text-slate-700">{f.observation}</td></tr>))}</tbody></table>)}
-      <p className="mt-2 text-[11px] text-slate-500">These are indicators for human review, not proof of tampering. Authenticity cannot be established by hashing alone.</p>
+      <p className="mt-2 text-[11px] text-slate-500">These are indicators for human review, not proof of tampering.</p>
     </Section>
   );
 }

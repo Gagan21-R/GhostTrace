@@ -150,7 +150,7 @@ def test_report_exports_and_citations(client):
     rep = client.post(f"/api/cases/{cid}/reports", json={}, headers=auth(tok)).json()
     full = client.get(f"/api/reports/{rep['id']}", headers=auth(tok)).json()
     titles = [s["title"] for s in full["content"]["sections"]]
-    assert len(titles) == 20 and titles[0] == "Case overview" and titles[-1] == "Audit and processing summary"
+    assert len(titles) == 21 and "Model confidence report" in titles and titles[0] == "Case overview" and titles[-1] == "Audit and processing summary"
     docx = client.get(f"/api/reports/{rep['id']}/docx", headers=auth(tok))
     assert docx.status_code == 200 and docx.content[:2] == b"PK"
     html = client.get(f"/api/reports/{rep['id']}/html", headers=auth(tok)).text

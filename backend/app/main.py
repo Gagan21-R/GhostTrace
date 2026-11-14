@@ -1,4 +1,4 @@
-"""EVIDENCE-X API entry point.
+"""GhostTrace API entry point.
 
 Run (dev):   uvicorn app.main:app --reload --port 8000
 Docs:        http://localhost:8000/docs
@@ -18,7 +18,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from .bootstrap import init_db
 from .config import get_settings
-from .routers import analysis, auth, cases, evidence, help, intel, reports, scenarios, spec, system
+from .routers import analysis, auth, authenticity, hypotheses, voice, cases, evidence, help, intel, reports, scenarios, spec, system
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 settings = get_settings()
@@ -30,7 +30,7 @@ async def lifespan(app: FastAPI):
     yield
 
 
-app = FastAPI(title="EVIDENCE-X API", version="1.0.0", lifespan=lifespan,
+app = FastAPI(title="GhostTrace API", version="1.0.0", lifespan=lifespan,
               description="AI-powered digital evidence intelligence platform. Every clue connected. Every claim traceable. "
                           "Every conclusion challenged.")
 app.add_middleware(CORSMiddleware, allow_origins=[o.strip() for o in settings.cors_origins.split(",") if o.strip()],
@@ -70,7 +70,7 @@ async def unhandled(_: Request, exc: Exception):
     return _err(500, "internal_error", "An internal error occurred. It has been logged.")
 
 
-for r in (auth.router, help.router, cases.router, evidence.router, analysis.router, intel.router, spec.router, scenarios.router, reports.router, system.router):
+for r in (auth.router, help.router, authenticity.router, hypotheses.router, voice.router, cases.router, evidence.router, analysis.router, intel.router, spec.router, scenarios.router, reports.router, system.router):
     app.include_router(r)
 
 

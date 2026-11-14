@@ -21,9 +21,9 @@ export function ReportList({ reports }: { reports: any[] }) {
           <button className="btn-ghost" disabled={opening === r.id} onClick={async () => {
             setOpening(r.id); try { const { url } = await api.blobUrl(`/api/reports/${r.id}/pdf`); window.open(url, "_blank"); } finally { setOpening(null); } }}>
             {opening === r.id ? <Loader2 className="h-4 w-4 animate-spin" /> : <FileText className="h-4 w-4" />}Open</button>
-          <button className="btn-ghost !px-2 text-xs" title="Download PDF" onClick={() => api.download(`/api/reports/${r.id}/pdf`, `EVIDENCE-X_report_${r.id.slice(0, 8)}.pdf`)}><Download className="h-4 w-4" />PDF</button>
-          <button className="btn-ghost !px-2 text-xs" title="Download DOCX" onClick={() => api.download(`/api/reports/${r.id}/docx`, `EVIDENCE-X_report_${r.id.slice(0, 8)}.docx`)}>DOCX</button>
-          <button className="btn-ghost !px-2 text-xs" title="Download HTML" onClick={() => api.download(`/api/reports/${r.id}/html`, `EVIDENCE-X_report_${r.id.slice(0, 8)}.html`)}>HTML</button>
+          <button className="btn-ghost !px-2 text-xs" title="Download PDF" onClick={() => api.download(`/api/reports/${r.id}/pdf`, `GhostTrace_report_${r.id.slice(0, 8)}.pdf`)}><Download className="h-4 w-4" />PDF</button>
+          <button className="btn-ghost !px-2 text-xs" title="Download DOCX" onClick={() => api.download(`/api/reports/${r.id}/docx`, `GhostTrace_report_${r.id.slice(0, 8)}.docx`)}>DOCX</button>
+          <button className="btn-ghost !px-2 text-xs" title="Download HTML" onClick={() => api.download(`/api/reports/${r.id}/html`, `GhostTrace_report_${r.id.slice(0, 8)}.html`)}>HTML</button>
         </div>))}
     </div>
   );
@@ -38,7 +38,7 @@ export default function ReportsTab() {
     <div className="space-y-4">
       {can("report:generate") && (
         <Section title="Generate evidence-linked report">
-          <p className="mb-3 text-sm text-slate-600">The PDF covers case information, evidence inventory with SHA-256 hashes, entities, chronology, relationships, contradictions, gaps, the adversarial assessment, reviewer findings, unresolved questions, next actions and source references. Engine interpretations and human decisions are labelled separately.</p>
+          
           <div className="flex flex-wrap items-center gap-3">
             <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={redact} onChange={(e) => setRedact(e.target.checked)} />Redact personal identifiers (emails, phone and account digits) for sharing</label>
             <button className="btn-primary ml-auto" disabled={busy} onClick={async () => { setBusy(true); setErr(null); try { await api.post(`/api/cases/${c.id}/reports`, { redact }); reload(true); } catch (e: any) { setErr(e.message); } finally { setBusy(false); } }}>

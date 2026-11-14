@@ -1,0 +1,18 @@
+Received: from mail-out.phonehub-electronics.in by mx.inbox.example; Tue, 12
+ May 2026 12:00:00 +0530
+Authentication-Results: mx.inbox.example; spf=pass
+ smtp.mailfrom=phonehub-electronics.in; dkim=pass
+ header.d=phonehub-electronics.in; dmarc=pass
+From: "PhoneHub Electronics" <support@phonehub-electronics.in>
+To: "Rahul Nair" <rahul.nair@inboxmail.com>
+Subject: Order - Pixel 8
+Date: Tue, 12 May 2026 12:00:00 +0530
+Message-ID: <67e4c4dfde53d045@phonehub-electronics.in>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Dear Rahul,
+We have not received any payment. Our only UPI ID is phonehub.store@okhdfcban=
+k. Your receipt shows phonehub.stores@okhdfcbank, which is not ours.
+PhoneHub Electronics

@@ -1,0 +1,46 @@
+[
+  {
+    "file": "01_chat.txt",
+    "category": "chat",
+    "collection_source": "WhatsApp export from the buyer's phone",
+    "tags": [
+      "chat"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "a8c8afa9c579a68f9dae1fb15af195d8117c1fceb05720c633a6913f7ee8686f",
+    "size": 342
+  },
+  {
+    "file": "02_payment_screenshot.png",
+    "category": "payment receipt",
+    "collection_source": "Screenshot from the buyer's payment app",
+    "tags": [
+      "payment"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "0d481cf16781db5dfc4ed19f271156416fbadb0274a807b4cd41f0f49bc473e0",
+    "size": 30885
+  },
+  {
+    "file": "07_complaint.txt",
+    "category": "complaint",
+    "collection_source": "Complaint statement recorded at the cyber cell on 9 May 2026",
+    "tags": [
+      "complaint"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "c0b6e70a0ccf3342b804f00db3554fbe6f2de02104675b807d51b48969fc6181",
+    "size": 192
+  },
+  {
+    "file": "08_marketplace_listing.png",
+    "category": "marketplace listing",
+    "collection_source": "Screenshot of the seller profile page taken by the buyer",
+    "tags": [
+      "listing"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "c0d8ef6ce29560dae0f7826424717d3ecfb811e189cde5c9944d131a5a1667c1",
+    "size": 33897
+  }
+]

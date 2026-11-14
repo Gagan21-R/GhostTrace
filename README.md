@@ -1,9 +1,9 @@
-# EVIDENCE-X
+# GhostTrace
 
 **AI-powered digital evidence intelligence and forensic investigation platform.**
 *Every clue connected. Every claim traceable. Every conclusion challenged.*
 
-EVIDENCE-X turns disconnected digital evidence into traceable investigative intelligence. It preserves and verifies originals, extracts content from documents, spreadsheets, email, chats, images, audio and video, reconstructs timelines, maps entities and relationships, detects contradictions and gaps, and then actively tries to **disprove** its own hypotheses before a human reviews them.
+GhostTrace turns disconnected digital evidence into traceable investigative intelligence. It preserves and verifies originals, extracts content from documents, spreadsheets, email, chats, images, audio and video, reconstructs timelines, maps entities and relationships, detects contradictions and gaps, and then actively tries to **disprove** its own hypotheses before a human reviews them.
 
 Four flagship capabilities:
 1. **Evidence Challenge Engine** – investigation, counter-investigation, deterministic verification and a skeptical reviewer return SUPPORTED / CONTRADICTED / INCONCLUSIVE / HOLD for every candidate hypothesis.

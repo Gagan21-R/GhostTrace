@@ -1,0 +1,27 @@
+Received:
+ from mail-out.finedge.in by mx.inbox.example; Mon, 20 Apr 2026 19:05:00 +0530
+Authentication-Results: mx.inbox.example; spf=pass smtp.mailfrom=finedge.in;
+ dkim=pass header.d=finedge.in; dmarc=pass
+From: "Amit Kapoor" <amit.kapoor@finedge.in>
+To: "Amit" <amitk.personal@gmail.com>
+Subject: docs
+Date: Mon, 20 Apr 2026 19:05:00 +0530
+Message-ID: <a2838b9e8254905d@finedge.in>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="===============4750891203370347081=="
+
+--===============4750891203370347081==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+for reference
+
+--===============4750891203370347081==
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="client_master_2026.xlsx"
+MIME-Version: 1.0
+
+UEsDBCBzeW50aGV0aWM=
+
+--===============4750891203370347081==--

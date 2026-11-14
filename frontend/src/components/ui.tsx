@@ -3,18 +3,19 @@ import { AnimatePresence, motion } from "framer-motion";
 import { AlertTriangle, Check, Copy, Inbox, Loader2, X } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { ExplainButton } from "./Assistant";
+import { t, tn } from "../lib/i18n";
 
 export function PageHeader({ title, subtitle, actions, eyebrow, explain = true, topic }: { title: ReactNode; subtitle?: ReactNode; actions?: ReactNode; eyebrow?: ReactNode; explain?: boolean; topic?: string }) {
   return (
     <motion.div className="mb-7 flex flex-wrap items-end justify-between gap-4 border-b-[3px] border-ink-900 pb-4"
       initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, ease: [0.2, 0.8, 0.2, 1] }}>
       <div className="min-w-0">
-        {eyebrow && <div className="mb-2 inline-block bg-ink-900 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em] text-acid">{eyebrow}</div>}
+        {eyebrow && <div className="mb-2 inline-block bg-ink-900 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em] text-acid">{tn(eyebrow)}</div>}
         <div className="flex flex-wrap items-center gap-3">
-          <h1 className="font-display text-[30px] uppercase leading-[0.95] tracking-tight text-ink-900 sm:text-[38px]">{title}</h1>
+          <h1 className="font-display text-[30px] uppercase leading-[0.95] tracking-tight text-ink-900 sm:text-[38px]">{tn(title)}</h1>
           {explain && <ExplainButton title={title} topic={topic} context={typeof subtitle === "string" ? subtitle : undefined} />}
         </div>
-        {subtitle && <p className="mt-2 max-w-3xl text-sm text-slate-600">{subtitle}</p>}
+        {subtitle && <p className="mt-2 max-w-3xl text-sm text-slate-600">{tn(subtitle)}</p>}
       </div>
       {actions && <div className="flex flex-wrap items-center gap-2">{actions}</div>}
     </motion.div>
@@ -27,7 +28,7 @@ export function Stat({ label, value, hint, tone = "default", icon, topic }: { la
   return (
     <motion.div className="card card-lift relative overflow-hidden p-4" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
       <div className={clsx("absolute inset-x-0 top-0 h-1.5", bar)} />
-      <div className="flex items-center justify-between gap-2"><span className="label">{label}</span>
+      <div className="flex items-center justify-between gap-2"><span className="label">{t(label)}</span>
         <span className="flex items-center gap-1.5 text-slate-500">{icon}<ExplainButton title={label} topic={topic} size="xs" /></span></div>
       <div className={clsx("mt-2 font-display text-[32px] tabular-nums leading-none", toneCls)}>{value}</div>
       {hint && <div className="mt-1.5 text-xs text-slate-600">{hint}</div>}
@@ -37,8 +38,8 @@ export function Stat({ label, value, hint, tone = "default", icon, topic }: { la
 
 const TONES: Record<string, string> = {
   slate: "bg-slate-100 text-slate-700", blue: "bg-accent-50 text-accent-700 ring-1 ring-inset ring-accent-100",
-  green: "bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-100", amber: "bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-100",
-  red: "bg-rose-50 text-rose-700 ring-1 ring-inset ring-rose-100", violet: "bg-violet-50 text-violet-700 ring-1 ring-inset ring-violet-100",
+  green: "bg-emerald-500 text-white ring-1 ring-inset ring-emerald-600", amber: "bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-100",
+  red: "bg-rose-500 text-white ring-1 ring-inset ring-rose-600", violet: "bg-violet-50 text-violet-700 ring-1 ring-inset ring-violet-100",
   dark: "bg-accent-600 text-white",
 };
 export function Badge({ children, tone = "slate", className }: { children: ReactNode; tone?: keyof typeof TONES | string; className?: string }) {
@@ -47,15 +48,15 @@ export function Badge({ children, tone = "slate", className }: { children: React
 
 export function statusTone(s?: string | null): string {
   if (!s) return "slate";
-  if (["processed", "completed", "match", "confirmed", "resolved", "PASS", "supported", "accepted", "active"].includes(s)) return "green";
+  if (["processed", "completed", "match", "confirmed", "resolved", "PASS", "supported", "accepted", "active", "collected"].includes(s)) return "green";
   if (["processing", "running", "queued", "pending", "open", "HOLD", "supported_with_reservations", "needs_more_evidence"].includes(s)) return "amber";
-  if (["failed", "mismatch", "missing", "FAIL", "rejected", "contested", "high"].includes(s)) return "red";
-  if (["unsupported", "insufficient_evidence", "dismissed", "archived"].includes(s)) return "slate";
+  if (["failed", "mismatch", "missing", "FAIL", "rejected", "contested", "high", "dismissed", "not_available"].includes(s)) return "red";
+  if (["unsupported", "insufficient_evidence", "archived"].includes(s)) return "slate";
   return "blue";
 }
 
 export function Loading({ label = "Loading" }: { label?: string }) {
-  return <div className="flex items-center gap-2 py-10 justify-center text-sm text-slate-500"><Loader2 className="h-4 w-4 animate-spin" />{label}…</div>;
+  return <div className="flex items-center gap-2 py-10 justify-center text-sm text-slate-500"><Loader2 className="h-4 w-4 animate-spin" />{t(label)}…</div>;
 }
 
 export function ErrorBox({ error, onRetry }: { error: string; onRetry?: () => void }) {
@@ -63,7 +64,7 @@ export function ErrorBox({ error, onRetry }: { error: string; onRetry?: () => vo
     <div className="card flex items-start gap-3 border-rose-200 bg-rose-50/60 p-4 text-sm text-rose-800">
       <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
       <div className="flex-1">{error}</div>
-      {onRetry && <button className="btn-ghost !py-1 text-rose-800" onClick={onRetry}>Retry</button>}
+      {onRetry && <button className="btn-ghost !py-1 text-rose-800" onClick={onRetry}>{t("Retry")}</button>}
     </div>
   );
 }
@@ -72,7 +73,7 @@ export function Empty({ title, hint, action, icon }: { title: string; hint?: Rea
   return (
     <div className="card flex flex-col items-center justify-center px-6 py-14 text-center">
       <div className="mb-3 rounded-full bg-slate-100 p-3 text-slate-400">{icon || <Inbox className="h-5 w-5" />}</div>
-      <div className="font-medium text-slate-800">{title}</div>
+      <div className="font-medium text-slate-800">{t(title)}</div>
       {hint && <div className="mt-1 max-w-md text-sm text-slate-500">{hint}</div>}
       {action && <div className="mt-4">{action}</div>}
     </div>
@@ -153,7 +154,7 @@ export function Section({ title, children, actions, className, explain = true, t
       viewport={{ once: true, margin: "-40px" }} transition={{ duration: 0.35, ease: [0.2, 0.8, 0.2, 1] }}>
       <div className="flex flex-wrap items-center justify-between gap-2 border-b-2 border-ink-900 px-4 py-2.5">
         <div className="flex min-w-0 items-center gap-2">
-          <h3 className="text-[13px] font-bold uppercase tracking-[0.08em] text-ink-900">{title}</h3>
+          <h3 className="text-[13px] font-bold uppercase tracking-[0.08em] text-ink-900">{tn(title)}</h3>
           {explain && <ExplainButton title={title} topic={topic} />}
         </div>
         {actions}

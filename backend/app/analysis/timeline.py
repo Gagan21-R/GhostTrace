@@ -17,6 +17,16 @@ from ..models import Entity, EntityMention, TimelineEvent
 from . import nlp
 from .index import CaseIndex, Seg
 
+SPOKEN_DATE = re.compile(r"\b(\d{1,2})(?:st|nd|rd|th)?(?:\s+of)?\s+(January|February|March|April|May|June|July|August|September|October|"
+                         r"November|December)\b(?:[^.\d]{0,25}?(\d{1,2})[:.](\d{2})\s*(am|pm|a\.m\.|p\.m\.)?)?", re.I)
+
+
+def ocr_spacing(t: str) -> str:
+    """OCR often drops spaces ("Paid on03May2026,19:05"); re-insert them at digit/letter boundaries before reading dates."""
+    t = re.sub(r"(?<=\d)(?=[A-Za-z])|(?<=[a-z])(?=\d)|(?<=[a-z])(?=[A-Z][a-z])", " ", t)
+    return re.sub(r",(?=\d{1,2}:\d{2})", ", ", t)
+
+
 ROW_TITLE_KEYS = ("event", "activity", "action", "description", "status", "details", "type", "message", "change")
 
 
@@ -80,13 +90,14 @@ def build_timeline(db: Session, idx: CaseIndex) -> dict:
                               {"channel": "log", "row": s.locator}))
             continue
         if s.kind in ("paragraph", "page", "ocr_line", "transcript", "email_body"):
-            found = nlp.find_dates(s.text)
+            text = ocr_spacing(s.text) if s.kind == "ocr_line" else s.text
+            found = nlp.find_dates(text)
             seen = set()
             for raw, pos in found:
                 dt, info = nlp.parse_datetime(raw, default_tz=idx.tz)
                 if not dt:
                     continue
-                sent = _sentence_around(s.text, pos)
+                sent = _sentence_around(text, pos)
                 if s.kind == "ocr_line":
                     neighbours = [x for x in idx.segments_of(s.evidence_id) if abs(x.seq - s.seq) <= 2]
                     ctx = " ".join(x.text for x in neighbours)
@@ -101,6 +112,20 @@ def build_timeline(db: Session, idx: CaseIndex) -> dict:
                 label = re.split(r"[:=]", sent)[0][:60] if ":" in sent[:60] else ""
                 events.append(_mk(s, dt, info, "source_reported", etype, sent[:140] or raw, sent, [],
                                   {"channel": ev.detected_type, "field_label": label}))
+            if not found and s.kind == "transcript":
+                # Spoken dates rarely include a year ("the 18th of March at 10:40"). Use the recording date's year and
+                # label the result as estimated, so it is never mistaken for a source-reported time.
+                for m in SPOKEN_DATE.finditer(s.text):
+                    base = ev.intake_at
+                    raw = f"{m.group(1)} {m.group(2)} {base.year}" + (f" {m.group(3)}:{m.group(4)} {m.group(5) or ''}" if m.group(3) else "")
+                    dt, info = nlp.parse_datetime(raw.strip(), default_tz=idx.tz)
+                    if not dt:
+                        continue
+                    info.update({"note": f"Year not spoken; assumed {base.year} from the recording date", "raw": m.group(0)})
+                    sent = _sentence_around(s.text, m.start())
+                    events.append(_mk(s, dt, info, "estimated", nlp.classify_event(sent) or "statement", sent[:140], sent, [],
+                                      {"channel": "audio", "spoken_date": m.group(0)}))
+                    found = [(m.group(0), m.start())]
             if not found and s.kind in ("paragraph", "transcript"):
                 for c in nlp.claims_in(s.text):
                     events.append(_mk(s, None, {}, "unknown", c["event_type"], c["sentence"][:140], c["sentence"], [],
@@ -141,7 +166,7 @@ def build_timeline(db: Session, idx: CaseIndex) -> dict:
                                   {"channel": "metadata", "lane": "file"}))
         if e.intake_at:
             events.append(_mk(anchor, e.intake_at, {"raw": e.intake_at.isoformat(), "display_offset": "UTC", "precision": "second"},
-                              "system_recorded", "evidence_received", f"Received into EVIDENCE-X: {e.evidence_code} {e.original_filename}",
+                              "system_recorded", "evidence_received", f"Received into GhostTrace: {e.evidence_code} {e.original_filename}",
                               "Server-side intake time (when the platform received the file), recorded by the system clock.", [],
                               {"channel": "system", "lane": "system"}))
 

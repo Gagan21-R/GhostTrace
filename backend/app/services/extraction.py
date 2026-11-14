@@ -502,14 +502,28 @@ def _extract_audio(data: bytes, filename: str) -> Extraction:
         ex.warnings.append(f"Audio stream could not be decoded: {type(e).__name__}: {e}")
         return ex
     if True:
-        segments, info = asr.transcribe(audio, beam_size=5, vad_filter=True, language=None)
+        # Language identification restricted to the languages this deployment supports (English, Hindi, Kannada):
+        # Whisper scores ~100 languages; we keep the best of these three and transcribe in that language.
+        lang, lang_p, cands = None, None, None
+        try:
+            _, _, all_probs = asr.detect_language(audio)
+            probs = {k: float(v) for k, v in all_probs}
+            sub = {k: probs.get(k, 0.0) for k in ("en", "hi", "kn")}
+            tot = sum(sub.values()) or 1.0
+            cands = {k: round(v / tot, 3) for k, v in sub.items()}
+            lang = max(cands, key=cands.get)
+            lang_p = cands[lang]
+        except Exception as e:  # older faster-whisper: fall back to automatic detection during transcription
+            ex.warnings.append(f"Language pre-detection unavailable ({type(e).__name__}); Whisper auto-detect used")
+        segments, info = asr.transcribe(audio, beam_size=5, vad_filter=True, language=lang)
         for i, s in enumerate(segments, 1):
             conf = max(0.0, min(1.0, 1.0 + float(s.avg_logprob) / 2)) if s.avg_logprob is not None else 0.5
             ex.segments.append(_seg(f"{_fmt(s.start)}-{_fmt(s.end)}", "transcript", s.text, ex.method,
                                     confidence=conf, author=None,
                                     data={"start": s.start, "end": s.end, "speaker": "unattributed",
                                           "no_speech_prob": round(float(s.no_speech_prob), 3)}))
-        ex.metadata.update({"language": info.language, "duration_s": round(info.duration, 2),
+        ex.metadata.update({"language": lang or info.language, "language_probability": lang_p if lang else round(float(info.language_probability), 3),
+                            "language_candidates": cands, "duration_s": round(info.duration, 2),
                             "speaker_labels": "not available - transcript speech is not attributed to a verified identity"})
     return ex
 

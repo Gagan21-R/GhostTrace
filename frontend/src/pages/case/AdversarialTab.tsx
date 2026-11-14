@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { motion } from "framer-motion";
 import { AlertTriangle, BadgeCheck, CircleSlash, Gavel, HelpCircle, Lightbulb, Scale, Search, ShieldAlert, Swords } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { SourceRef } from "../../components/EvidenceViewer";
 import { Badge, Empty, ErrorBox, Loading, Section, VERDICT_LABEL, statusTone } from "../../components/ui";
 import { api } from "../../lib/api";
@@ -32,7 +33,11 @@ export default function AdversarialTab() {
   if (active !== was) { setWas(active); if (!active) { hyps.reload(true); reloadCase(true); } }
   const [err, setErr] = useState<string | null>(null);
   const [note, setNote] = useState("");
-  const start = async () => { setErr(null); try { await api.post(`/api/cases/${c.id}/adversarial`); runs.reload(true); } catch (e: any) { setErr(e.message); } };
+  const nav = useNavigate();
+  const start = async () => {
+    setErr(null);
+    try { await api.post(`/api/cases/${c.id}/adversarial`); nav(`/cases/${c.id}/processing?live=1`); } catch (e: any) { setErr(e.message); }
+  };
   const [ci, setCi] = useState(0);
   const h = hyps.data?.[ci] ?? hyps.data?.[0];
 
@@ -40,7 +45,7 @@ export default function AdversarialTab() {
     <div className="space-y-4">
       <Section title={<span className="flex items-center gap-2"><Swords className="h-4 w-4" />Challenge Centre · Evidence Challenge Engine</span>}
         actions={canWrite && <button className="btn-accent" onClick={start} disabled={active}><Swords className="h-4 w-4" />{h ? "Run again" : "Run adversarial review"}</button>}>
-        <p className="mb-4 max-w-4xl text-sm text-slate-500">An Investigation agent proposes the best-supported hypothesis. A Counter-Investigation agent independently searches for records that weaken it. A Verification agent checks every citation deterministically, and a Skeptical Reviewer weighs both sides. No agent can declare guilt; a human makes the final call.</p>
+        <p className="mb-4 max-w-4xl text-sm text-slate-500">An Investigation agent proposes the best-supported hypothesis.</p>
         <AgentPipeline agents={ADVERSARIAL_AGENTS} run={runDetail.data} />
         {err && <div className="mt-3"><ErrorBox error={err} /></div>}
         {runDetail.data?.agents?.find((a: any) => a.agent === "counter_investigation")?.mode && (
@@ -136,7 +141,7 @@ export default function AdversarialTab() {
               <div className="flex flex-wrap items-center gap-2">
                 <input className="input flex-1" placeholder="Reviewer note (recorded in audit log and report)" value={note} onChange={(e) => setNote(e.target.value)} />
                 {[["accepted", "Accept assessment"], ["needs_more_evidence", "Needs more evidence"], ["rejected", "Reject"]].map(([s, l]) => (
-                  <button key={s} className={clsx(s === "accepted" ? "btn-primary" : "btn-outline")} onClick={async () => { await api.patch(`/api/hypotheses/${h.id}`, { status: s, note }); hyps.reload(true); }}>{l}</button>))}
+                  <button key={s} className={clsx(s === "accepted" ? "btn-ok" : s === "rejected" ? "btn-no" : "btn-outline")} onClick={async () => { await api.patch(`/api/hypotheses/${h.id}`, { status: s, note }); hyps.reload(true); }}>{l}</button>))}
               </div>
               <div className="mt-2 text-xs text-slate-500">Current: <Badge tone={statusTone(h.human_review_status)}>{h.human_review_status}</Badge> {h.human_review_note && `— ${h.human_review_note}`}</div>
             </Section>)}
@@ -156,7 +161,7 @@ function VerifyClaim({ caseId }: { caseId: string }) {
   if (!can("review:decide")) return null;
   return (
     <Section title="Verify a claim before citing it (Verification agent)">
-      <p className="mb-3 text-xs text-slate-500">Check any claim - your own or an AI draft - against the original evidence. The check is deterministic: the cited segment must exist in this case, contain the quoted value, and must not assert guilt or identity.</p>
+      <p className="mb-3 text-xs text-slate-500">Check any claim - your own or an AI draft - against the original evidence.</p>
       <div className="grid gap-2 md:grid-cols-2">
         <input className="input md:col-span-2" placeholder="Claim, e.g. The bank debited Rs 24,999 under UTR 407215538921" value={text} onChange={(e) => setText(e.target.value)} />
         <select className="input" value={evId} onChange={(e) => { setEvId(e.target.value); setSegId(""); }}><option value="">Cite evidence…</option>

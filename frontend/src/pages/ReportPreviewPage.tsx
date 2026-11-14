@@ -36,7 +36,7 @@ export default function ReportPreviewPage() {
   if (error) return <ErrorBox error={error} />;
   const c = r.content || {};
   const sections: any[] = c.sections || [];
-  const dl = (fmt: string) => api.download(`/api/reports/${r.id}/${fmt === "pdf" ? "download" : fmt}`, `EVIDENCE-X_report_${r.id.slice(0, 8)}.${fmt}`);
+  const dl = (fmt: string) => api.download(`/api/reports/${r.id}/${fmt === "pdf" ? "download" : fmt}`, `GhostTrace_report_${r.id.slice(0, 8)}.${fmt}`);
   return (
     <div>
       <Link to="/reports" className="mb-2 inline-flex items-center gap-1 text-xs font-medium text-slate-500 hover:text-ink-900"><ChevronLeft className="h-3.5 w-3.5" />Reports</Link>

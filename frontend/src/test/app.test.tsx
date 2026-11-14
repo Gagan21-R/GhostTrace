@@ -17,7 +17,7 @@ const TIMELINE = [
   { id: "t2", occurred_at: "2026-03-10T04:17:00Z", display_time: "10 Mar 2026 09:47 +05:30", timestamp_raw: "x", timestamp_kind: "source_reported", event_type: "payment",
     title: "UPI debit 24999", description: "", actors: [], entity_ids: [], data: {}, conflict: true, evidence_id: "e2", segment_id: "s2", evidence_code: "EV-002", filename: "bank.csv", source_type: "spreadsheet" },
   { id: "t3", occurred_at: "2026-11-14T00:00:00Z", display_time: "14 Nov 2026 00:00 UTC", timestamp_raw: "x", timestamp_kind: "system_recorded", event_type: "evidence_received",
-    title: "Received into EVIDENCE-X: EV-001", description: "", actors: [], entity_ids: [], data: {}, conflict: false, evidence_id: "e1", segment_id: "s1", evidence_code: "EV-001", filename: "mail.eml", source_type: "email" },
+    title: "Received into GhostTrace: EV-001", description: "", actors: [], entity_ids: [], data: {}, conflict: false, evidence_id: "e1", segment_id: "s1", evidence_code: "EV-001", filename: "mail.eml", source_type: "email" },
 ];
 
 function renderAt(path: string) {
@@ -36,7 +36,7 @@ describe("navigation and case selection", () => {
     mockFetch({ "GET /api/auth/me": ME, "GET /api/dashboard": DASH });
     renderAt("/");
     expect(await screen.findByText("Investigation workspace")).toBeTruthy();
-    for (const label of ["Evidence Vault", "Evidence DNA", "Challenge Centre", "Missing Evidence", "What-If Lab", "Investigation Replay", "Scenario Lab", "Evaluation"])
+    for (const label of ["Evidence", "Relationships", "Message Check", "Challenge", "Scenario Lab", "AI Lab", "Evaluation"])
       expect(screen.getAllByText(label).length).toBeGreaterThan(0);
     expect(screen.getByText("Integrity verification")).toBeTruthy();
   });
@@ -59,10 +59,10 @@ describe("case workspace", () => {
       "GET /api/cases/c1/timeline/analysis": { silent_periods: [], simultaneous_groups: [], reported_vs_header: [] } });
     renderAt("/cases/c1/timeline");
     expect(await screen.findByText("Email: Urgent KYC")).toBeTruthy();
-    expect(screen.queryByText(/Received into EVIDENCE-X/)).toBeNull();
+    expect(screen.queryByText(/Received into GhostTrace/)).toBeNull();
     expect(screen.getByText("conflict")).toBeTruthy();
     fireEvent.click(screen.getByLabelText(/Show file & upload times/));
-    expect(await screen.findByText(/Received into EVIDENCE-X/)).toBeTruthy();
+    expect(await screen.findByText(/Received into GhostTrace/)).toBeTruthy();
     fireEvent.change(screen.getByPlaceholderText("Search events…"), { target: { value: "UPI" } });
     await waitFor(() => expect(screen.queryByText("Email: Urgent KYC")).toBeNull());
     expect(screen.getByText("UPI debit 24999")).toBeTruthy();
@@ -101,20 +101,23 @@ describe("case workspace", () => {
     await waitFor(() => expect(calls.some((c) => c.method === "POST" && c.url === "/api/cases/c1/reports")).toBe(true));
   });
 
-  it("evidence vault uploads with metadata and lists results", async () => {
-    mockFetch({ "GET /api/auth/me": ME, "GET /api/cases/c1": CASE, "GET /api/cases/c1/evidence": [] });
+  it("evidence vault uploads with metadata, starts the full analysis and opens the live view", async () => {
+    const api = mockFetch({ "GET /api/auth/me": ME, "GET /api/cases/c1": CASE, "GET /api/cases/c1/evidence": [],
+      "POST /api/cases/c1/analyse": { status: "queued" }, "GET /api/cases/c1/runs": [], "GET /api/runs/active": [] });
     const sent: FormData[] = [];
     class XHR { status = 200; responseText = JSON.stringify({ accepted: 1, rejected: 0, results: [{ filename: "a.txt", ok: true, evidence: { code: "EV-003", sha256: "a".repeat(64) } }] });
       upload: any = {}; onload: any; onerror: any; open() {} setRequestHeader() {} send(fd: FormData) { sent.push(fd); this.upload.onprogress?.({ lengthComputable: true, loaded: 1, total: 1 }); setTimeout(() => this.onload(), 0); } }
     (globalThis as any).XMLHttpRequest = XHR;
     const { container } = renderAt("/cases/c1/evidence");
-    await screen.findByText(/Drop evidence files here/);
-    const input = container.querySelector('input[type="file"]') as HTMLInputElement;
+    await screen.findByText(/Drop evidence files/);
+    expect(screen.getByText(/Choose a folder/i)).toBeTruthy();
+    const input = container.querySelector('input[type="file"]:not([webkitdirectory])') as HTMLInputElement;
     fireEvent.change(input, { target: { files: [new File(["hello"], "a.txt", { type: "text/plain" })] } });
     fireEvent.change(screen.getByPlaceholderText(/Exported from victim/), { target: { value: "Phone export" } });
     fireEvent.click(screen.getByText("Upload & hash"));
-    expect(await screen.findByText(/1 accepted/)).toBeTruthy();
+    expect(await screen.findByText(/Evidence processing pipeline/i)).toBeTruthy();  // jumped to the live processing view
     expect(sent[0].get("collection_source")).toBe("Phone export");
+    expect(api.some((c: any) => c.method === "POST" && c.url.endsWith("/api/cases/c1/analyse"))).toBe(true);
   });
 });
 

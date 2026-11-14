@@ -1,0 +1,46 @@
+[
+  {
+    "file": "01_message_to_contact.png",
+    "category": "screenshot",
+    "collection_source": "Screenshot from contact Sunil Das, forwarded to Manoj Pillai",
+    "tags": [
+      "screenshot"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "9f96c5d7c416e3470c11a8bd58243480fbb2205e4d6afeacdce02a7086178f04",
+    "size": 33953
+  },
+  {
+    "file": "02_recovery_chat.txt",
+    "category": "chat",
+    "collection_source": "WhatsApp export from Manoj Pillai's phone",
+    "tags": [
+      "chat"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "d42769c2504e0b4d10538266fecf5913f9affdb09a8b8ef06e1585e9c6233c36",
+    "size": 423
+  },
+  {
+    "file": "03_repayment_proof.csv",
+    "category": "bank statement",
+    "collection_source": "Bank statement extract",
+    "tags": [
+      "bank"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "4d202f518493c6b361e3e73adbb33ed85a3b154c16196095e8c68c9c2b394473",
+    "size": 104
+  },
+  {
+    "file": "04_app_permissions.png",
+    "category": "screenshot",
+    "collection_source": "Screenshot of Android app permissions, Manoj Pillai's phone",
+    "tags": [
+      "screenshot"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "c9b61e3623b638afbe0b3d58608ab683d8b5eca4e96d86c5ac24145f6396ee6c",
+    "size": 24127
+  }
+]

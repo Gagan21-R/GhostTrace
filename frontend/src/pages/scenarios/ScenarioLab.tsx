@@ -21,7 +21,7 @@ export default function ScenarioLab() {
   return (
     <div>
       <PageHeader eyebrow="Scenario Lab" title="Investigation simulations"
-        subtitle="Each scenario feeds a prepared synthetic evidence set through the same pipeline as a real case, then scores the result against a deterministic ground truth. No outcome is hard-coded."
+        subtitle="Each scenario feeds a prepared synthetic evidence set through the same pipeline as a real case, then scores the result against a deterministic ground truth."
         actions={<Link to="/scenarios/history" className="btn-outline"><History className="h-4 w-4" />Run history & comparison</Link>} />
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {data!.map((s, i) => (
@@ -39,14 +39,19 @@ export default function ScenarioLab() {
               <div className="mt-2 text-[11px] text-slate-500">Formats: {s.file_types.join(", ")}</div>
               <div className="mt-auto flex items-center justify-between pt-4">
                 <div className="text-xs text-slate-500">{s.last_run ? <span className="flex items-center gap-1.5">Last: <OutcomeBadge outcome={s.last_run.outcome} /> {s.last_run.status !== "completed" && titleCase(s.last_run.status)}</span> : "Not run yet"}</div>
-                <Link to={`/scenarios/${s.id}`} className="btn-primary !py-1.5">Open<ArrowRight className="h-4 w-4" /></Link>
+                <div className="flex gap-1.5">
+                  <Link to={`/scenarios/${s.id}`} className="btn-outline !py-1.5">Open</Link>
+                  {can("scenario:run") && <button className="btn-primary !py-1.5" disabled={busy}
+                    onClick={async () => { setBusy(true); setErr(null); try { const r = await api.post<any>(`/api/scenarios/${s.id}/run`); nav(`/scenarios/runs/${r.id}`); } catch (e: any) { setErr(e.message); setBusy(false); } }}>
+                    Run<ArrowRight className="h-4 w-4" /></button>}
+                </div>
               </div>
             </div>
           </motion.div>))}
       </div>
       {can("scenario:run") && (
         <Section title={<span className="flex items-center gap-2"><FileUp className="h-4 w-4" />Test with a custom evidence dataset</span>} className="mt-6">
-          <p className="mb-3 text-sm text-slate-600">Upload your own (consented or synthetic) files. Optionally paste a ground-truth JSON using the same schema as the built-in scenarios to get PASS/FAIL/HOLD and accuracy metrics; without it, only processing status and the reviewer verdict are reported.</p>
+          <p className="mb-3 text-sm text-slate-600">Upload your own (consented or synthetic) files.</p>
           <div className="grid gap-3 lg:grid-cols-2">
             <div className="card flex cursor-pointer flex-col items-center justify-center border-dashed p-6 text-center" onClick={() => input.current?.click()}>
               <FlaskConical className="mb-2 h-6 w-6 text-slate-400" /><div className="text-sm font-medium">{files.length ? `${files.length} file(s) selected` : "Choose files"}</div>

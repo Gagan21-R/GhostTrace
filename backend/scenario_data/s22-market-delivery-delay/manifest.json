@@ -1,0 +1,90 @@
+[
+  {
+    "file": "01_chat.txt",
+    "category": "chat",
+    "collection_source": "WhatsApp export from the buyer's phone",
+    "tags": [
+      "chat"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "20f13ca8c39ba898bb363f0f5294c7381bf5bec0e960840f81e8f9a35d43e29b",
+    "size": 390
+  },
+  {
+    "file": "02_payment_screenshot.png",
+    "category": "payment receipt",
+    "collection_source": "Screenshot from the buyer's payment app",
+    "tags": [
+      "payment"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "0d481cf16781db5dfc4ed19f271156416fbadb0274a807b4cd41f0f49bc473e0",
+    "size": 30885
+  },
+  {
+    "file": "03_bank_statement.csv",
+    "category": "bank statement",
+    "collection_source": "Statement downloaded from the buyer's bank",
+    "tags": [
+      "bank"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "b09859468f8333995037212b1432ff5e5f91b7544ff8b7029f63575de0b0e21a",
+    "size": 119
+  },
+  {
+    "file": "04_order_confirmation.pdf",
+    "category": "order",
+    "collection_source": "Downloaded from the buyer's BazaarHub account",
+    "tags": [
+      "order"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "acd6d5d2e467f6bace2615a6156243e6607f7722f8889ca094c65d2a6a90d196",
+    "size": 1781
+  },
+  {
+    "file": "05_courier_tracking.csv",
+    "category": "courier tracking",
+    "collection_source": "Courier website tracking export",
+    "tags": [
+      "courier"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "52de4384265379e5f589eef64b2c39ab985c8234844675afda1b6ba9f5bc9330",
+    "size": 260
+  },
+  {
+    "file": "06_seller_email.eml",
+    "category": "email",
+    "collection_source": "Buyer's mailbox export",
+    "tags": [
+      "email"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "c323e36b6ce3b09476bcbda56c775657b8037163d14400fb4ded7462c956d866",
+    "size": 741
+  },
+  {
+    "file": "07_complaint.txt",
+    "category": "complaint",
+    "collection_source": "Complaint statement recorded at the cyber cell on 9 May 2026",
+    "tags": [
+      "complaint"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "c0b6e70a0ccf3342b804f00db3554fbe6f2de02104675b807d51b48969fc6181",
+    "size": 192
+  },
+  {
+    "file": "08_marketplace_listing.png",
+    "category": "marketplace listing",
+    "collection_source": "Screenshot of the seller profile page taken by the buyer",
+    "tags": [
+      "listing"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "c0d8ef6ce29560dae0f7826424717d3ecfb811e189cde5c9944d131a5a1667c1",
+    "size": 33897
+  }
+]

@@ -1,0 +1,29 @@
+NEW CASE FORM
+=============
+Case title:          Money request sent from a friend's WhatsApp - complainant N. Pai
+Case type:           Account compromise
+Priority:            high
+Default timezone:    +05:30
+
+Incident description:
+The complainant received late-night messages from her friend Aditi Rao's WhatsApp asking for Rs 8,000 and an OTP. Aditi says her account was hacked while she was at a hospital.
+
+Investigation objective:
+Test whether the messages were sent by the account holder or by someone using her account, and identify the records needed to confirm it.
+
+UPLOAD FORM (Evidence tab)
+==========================
+Category:            complaint evidence
+Tags:                whatsapp, impersonation, otp
+Collection source:   Screenshot and export from complainant's phone; account log from provider
+Collected by:        SI Farhan Ali, Cyber Crime PS
+Collected at:        2026-04-22 14:00
+
+Upload the whole folder '2_hacked_whatsapp_money_request' (drop it on the upload box or use 'Choose a folder').
+
+WHAT YOU SHOULD SEE
+===================
+- Message Check: 'Sent from the account, but indicators point to someone else using it' - a WhatsApp Web session was linked 13 minutes before, the messages were logged from it, and Aditi was in the hospital ICU at the time.
+- Hypothesis Lab: 'Sent by someone else using the account' strongly supported; 'Sent by the account holder' contradicted.
+- Message labels: the OTP message labelled 'OTP / password request'.
+- Entities: the linked session's IP 45.144.22.9 and the holder's usual IP 49.207.11.30.

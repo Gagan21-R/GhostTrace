@@ -29,7 +29,7 @@ export default function GapsTab() {
         <div className="h-2 min-w-[200px] flex-1 overflow-hidden rounded-full bg-slate-100"><div className="h-full bg-emerald-600 transition-all" style={{ width: `${total ? (done / total) * 100 : 0}%` }} /></div>
         <div className="flex gap-2 text-xs">{["high", "medium", "low"].map((s) => <Badge key={s} tone={s === "high" ? "red" : s === "medium" ? "amber" : "slate"}>{data!.filter((g) => g.severity === s).length} {s}</Badge>)}</div>
       </div>
-      <p className="mb-4 text-xs text-slate-500">A gap marks information that is missing or unverified. It never implies wrongdoing. Checklist ticks are saved in this browser; resolve/dismiss decisions are recorded in the audit log.</p>
+      <p className="mb-4 text-xs text-slate-500">A gap marks information that is missing or unverified.</p>
       <div className="grid gap-3 lg:grid-cols-2">
         {data!.map((g) => (
           <div key={g.id} className={clsx("card border-l-4 p-4", SEV[g.severity], g.review_status !== "open" && "opacity-60")}>
@@ -48,8 +48,8 @@ export default function GapsTab() {
             {can("review:decide") && (
               <div className="mt-3 flex gap-2 border-t border-slate-100 pt-3">
                 {g.review_status === "open" ? <>
-                  <button className="btn-outline !py-1 text-xs" onClick={() => review(g.id, "resolved")}>Mark resolved</button>
-                  <button className="btn-ghost !py-1 text-xs" onClick={() => review(g.id, "dismissed")}>Dismiss</button></> :
+                  <button className="btn-ok !py-1 text-xs" onClick={() => review(g.id, "resolved")}>Mark resolved</button>
+                  <button className="btn-no !py-1 text-xs" onClick={() => review(g.id, "dismissed")}>Dismiss</button></> :
                   <button className="btn-ghost !py-1 text-xs" onClick={() => review(g.id, "open")}>Reopen</button>}
               </div>)}
           </div>))}

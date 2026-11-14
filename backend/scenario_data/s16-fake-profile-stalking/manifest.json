@@ -1,0 +1,46 @@
+[
+  {
+    "file": "01_dm_account1.png",
+    "category": "screenshot",
+    "collection_source": "Screenshot by Neha Gupta",
+    "tags": [
+      "screenshot"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "ea6d652d4f5ff4ead40cbc9f0b1da36d047fdcfca546a60b772e98b4b4c5d11c",
+    "size": 25219
+  },
+  {
+    "file": "02_dm_account2.png",
+    "category": "screenshot",
+    "collection_source": "Screenshot by Neha Gupta",
+    "tags": [
+      "screenshot"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "999ebd5c04cb53389f081758445d4a1b3ccbf5e53b01f0cf1f57043616f726e3",
+    "size": 26608
+  },
+  {
+    "file": "03_platform_response.pdf",
+    "category": "platform record",
+    "collection_source": "Response to police request 15 Apr 2026",
+    "tags": [
+      "platform"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "0aae93aca5b1cfccc5ef2ff9d32dfc4c49371394d29a87e9d879e25b3503549c",
+    "size": 1819
+  },
+  {
+    "file": "04_statement.txt",
+    "category": "statement",
+    "collection_source": "Statement recorded 12 Apr 2026",
+    "tags": [
+      "statement"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "b0c05270111b3c2257246b0521c6eaf49e6a8ef7a138de360729f0c8f08518e6",
+    "size": 134
+  }
+]

@@ -10,6 +10,8 @@ from dateutil import parser as dparser
 
 # ------------------------------------------------------------------ identifier patterns
 EMAIL_RE = re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b")
+UPI_RE = re.compile(r"\b[a-z0-9][a-z0-9._-]{1,63}@(?:ok[a-z]+|ybl|ibl|axl|apl|paytm|upi|icici|sbi|hdfcbank|axisbank|kotak|yesbank|"
+                    r"fbl|freecharge|jupiteraxis|slc|pingpay|waicici|abfspay|barodampay|aubank|idfcbank|indus|federal|rbl)\b", re.I)
 URL_RE = re.compile(r"\b(?:https?://|www\.)[^\s\"'<>()\]]+", re.I)
 BARE_DOMAIN_RE = re.compile(r"\b(?:[a-z0-9-]+\.)+(?:com|net|org|in|io|co|info|xyz|top|site|online|support|live|app|biz|me|ru|cn)\b(?:/[^\s]*)?", re.I)
 PHONE_RE = re.compile(r"(?<![\w/.-])(?:\+\d{1,3}[\s-]?)?(?:\(?\d{2,5}\)?[\s-]?)?\d{3,5}[\s-]?\d{4,5}(?![\w/-]|\.\d)")
@@ -169,6 +171,10 @@ def resolve_relative(text: str, anchor: datetime) -> tuple[datetime, str] | None
 
 # ------------------------------------------------------------------ event classification
 EVENT_LEXICON: list[tuple[str, re.Pattern]] = [
+    ("device_link", re.compile(r"linked device (?:was )?(?:added|connected)|(?:new )?device (?:was )?linked|new device (?:was )?added|"
+                               r"logged in on a new device|web session (?:started|opened)", re.I)),
+    ("sim_change", re.compile(r"\bsim (?:swap|change|changed|replaced|replacement|deactivated|re-?issued)|new sim (?:card )?(?:issued|activated)|"
+                              r"e-?sim (?:activated|issued|transferred)", re.I)),
     ("password_reset", re.compile(r"password (?:reset|was reset|was changed|changed|change request)|reset (?:your|the|my) password|change (?:my|the|your) password", re.I)),
     ("recovery_change", re.compile(r"recovery (?:email|phone|address|number)|account recovery", re.I)),
     ("mfa", re.compile(r"\b(?:2fa|two-factor|otp|one-time (?:password|code)|verification code)\b", re.I)),

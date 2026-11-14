@@ -1,4 +1,4 @@
-"""LangGraph orchestration of the eleven EVIDENCE-X agents.
+"""LangGraph orchestration of the eleven GhostTrace agents.
 
 Processing graph:   intake -> extraction -> entity_intelligence -> timeline -> relationship
                     -> contradiction -> evidence_gap
@@ -148,7 +148,8 @@ def summarise(name: str, out: dict) -> str:
     keys = {"intake": ("evidence_items",), "entity_intelligence": ("entities", "relationships"), "timeline": ("events",),
             "relationship": ("nodes", "edges", "inferred"), "evidence_dna": ("pairs", "shared_identifiers"),
             "integrity_inspection": ("findings",), "contradiction": ("contradictions",), "evidence_gap": ("gaps",),
-            "missing_evidence": ("recommendations",)}
+            "missing_evidence": ("recommendations",), "message_classification": ("items_classified", "messages_flagged"),
+            "message_authenticity": ("assessed",), "confidence_report": ("score", "band")}
     if name in keys:
         return ", ".join(f"{k.replace('_', ' ')}: {out.get(k)}" for k in keys[name] if k in out) or "completed"
     if name == "extraction":
@@ -248,6 +249,18 @@ def processing_graph(r: Runner):
         db.commit()
         return res
 
+    def message_classification(state):
+        from ..analysis import classify
+        res = classify.run_case(db, CaseIndex(db, case_id))
+        db.commit()
+        return res
+
+    def message_authenticity(state):
+        from ..analysis import authenticity
+        res = authenticity.run_case(db, case_id, r.run.id)
+        db.commit()
+        return res
+
     def contradiction(state):
         res = contra.detect(db, CaseIndex(db, case_id))
         db.commit()
@@ -258,6 +271,11 @@ def processing_graph(r: Runner):
         db.commit()
         return res
 
+    def confidence_report(state):
+        from ..analysis import confidence
+        res = confidence.compute(db, case_id)
+        return {"score": res["score"], "band": res["band"], "components": res["components"], "weakest": res.get("weakest", [])}
+
     return _graph([
         ("intake", r.node("intake", intake, 0.05)),
         ("extraction", r.node("extraction", extraction, 0.1)),
@@ -266,8 +284,11 @@ def processing_graph(r: Runner):
         ("relationship", r.node("relationship", relationship, 0.7)),
         ("evidence_dna", r.node("evidence_dna", evidence_dna, 0.74)),
         ("integrity_inspection", r.node("integrity_inspection", integrity_inspection, 0.78)),
+        ("message_classification", r.node("message_classification", message_classification, 0.8, critical=False)),
+        ("message_authenticity", r.node("message_authenticity", message_authenticity, 0.81, critical=False)),
         ("contradiction", r.node("contradiction", contradiction, 0.82)),
         ("evidence_gap", r.node("evidence_gap", gap, 0.9)),
+        ("confidence_report", r.node("confidence_report", confidence_report, 0.96, critical=False)),
     ])
 
 

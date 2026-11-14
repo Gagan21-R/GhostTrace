@@ -13,6 +13,13 @@ from ..security import accessible_case_ids, case_access, get_case_or_403, get_cu
 router = APIRouter(prefix="/api/cases", tags=["cases"])
 
 
+def clean_translations(tr: dict) -> dict:
+    """Keep only Hindi / Kannada title, description and objective, with sane lengths."""
+    limits = {"title": 200, "description": 5000, "objective": 3000}
+    return {lang: {k: str(v).strip()[:limits[k]] for k, v in (fields or {}).items() if k in limits and str(v).strip()}
+            for lang, fields in (tr or {}).items() if lang in ("hi", "kn")}
+
+
 def case_summary(db: Session, c: Case, user: User | None = None) -> dict:
     def cnt(model, *conds):
         return db.scalar(select(func.count()).select_from(model).where(model.case_id == c.id, *conds)) or 0
@@ -21,6 +28,7 @@ def case_summary(db: Session, c: Case, user: User | None = None) -> dict:
     hyp = primary_hypothesis(db, c.id)
     return {
         "id": c.id, "case_number": c.case_number, "title": c.title, "description": c.description, "objective": c.objective,
+        "translations": c.translations or {},
         "case_type": c.case_type, "status": c.status, "priority": c.priority, "is_scenario": c.is_scenario,
         "default_timezone": c.default_timezone, "allow_external_ai": c.allow_external_ai,
         "created_at": c.created_at, "updated_at": c.updated_at,
@@ -54,7 +62,9 @@ def list_cases(include_scenarios: bool = False, status: str | None = None, q: st
 @router.post("", status_code=201)
 def create_case(body: CaseIn, db: Session = Depends(get_db), user: User = Depends(require("case:create"))):
     n = db.scalar(select(func.count()).select_from(Case)) or 0
-    c = Case(case_number=f"EVX-2026-{n + 1:04d}", created_by=user.id, **body.model_dump())
+    data = body.model_dump()
+    data["translations"] = clean_translations(data.get("translations") or {})
+    c = Case(case_number=f"EVX-2026-{n + 1:04d}", created_by=user.id, **data)
     db.add(c)
     db.flush()
     db.add(CaseMember(case_id=c.id, user_id=user.id, access="owner"))
@@ -78,6 +88,8 @@ def update_case(case_id: str, body: CaseUpdate, db: Session = Depends(get_db), u
     changes = body.model_dump(exclude_none=True)
     if "allow_external_ai" in changes and case_access(db, user, case_id) != "owner":
         raise HTTPException(403, "Only the case owner can authorise sending evidence to an external AI provider")
+    if "translations" in changes:
+        changes["translations"] = clean_translations(changes["translations"])
     for k, v in changes.items():
         setattr(c, k, v)
     db.commit()

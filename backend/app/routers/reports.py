@@ -62,7 +62,7 @@ def report_pdf(report_id: str, db: Session = Depends(get_db), user: User = Depen
     get_case_or_403(db, user, r.case_id)
     audit.record(db, "report.exported", user=user, case_id=r.case_id, detail={"report_id": r.id})
     return Response(get_storage().get(r.storage_key), media_type="application/pdf",
-                    headers={"Content-Disposition": f'attachment; filename="EVIDENCE-X_report_{r.id[:8]}.pdf"',
+                    headers={"Content-Disposition": f'attachment; filename="GhostTrace_report_{r.id[:8]}.pdf"',
                              "Cache-Control": "private, no-store"})
 
 
@@ -75,7 +75,7 @@ def report_docx(report_id: str, db: Session = Depends(get_db), user: User = Depe
     get_case_or_403(db, user, r.case_id)
     audit.record(db, "report.exported", user=user, case_id=r.case_id, detail={"report_id": r.id, "format": "docx"})
     return Response(render_docx(r), media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                    headers={"Content-Disposition": f'attachment; filename="EVIDENCE-X_report_{r.id[:8]}.docx"', "Cache-Control": "private, no-store"})
+                    headers={"Content-Disposition": f'attachment; filename="GhostTrace_report_{r.id[:8]}.docx"', "Cache-Control": "private, no-store"})
 
 
 @router.get("/reports/{report_id}/html")
@@ -87,5 +87,5 @@ def report_html(report_id: str, db: Session = Depends(get_db), user: User = Depe
     get_case_or_403(db, user, r.case_id)
     audit.record(db, "report.exported", user=user, case_id=r.case_id, detail={"report_id": r.id, "format": "html"})
     return Response(render_html(r), media_type="text/html; charset=utf-8",
-                    headers={"Content-Disposition": f'attachment; filename="EVIDENCE-X_report_{r.id[:8]}.html"', "Cache-Control": "private, no-store",
+                    headers={"Content-Disposition": f'attachment; filename="GhostTrace_report_{r.id[:8]}.html"', "Cache-Control": "private, no-store",
                              "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'"})

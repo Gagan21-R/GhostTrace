@@ -47,6 +47,74 @@ def _start(db, case_id, user, kind):
     return {"run_id": run.id, "status": "queued", "kind": kind}
 
 
+def full_chain(db, proc_id, user_id):
+    """Processing -> challenge run (when there are findings to test) -> alternative hypothesis engine."""
+    _job(db, proc_id, user_id, "processing")
+    proc = db.get(AnalysisRun, proc_id)
+    has_findings = db.scalar(select(TimelineEvent.id).where(TimelineEvent.case_id == proc.case_id).limit(1)) or \
+        db.scalar(select(Entity.id).where(Entity.case_id == proc.case_id).limit(1))
+    if proc.status != "completed" or not has_findings:
+        return
+    adv = AnalysisRun(case_id=proc.case_id, kind="adversarial", status="queued", started_by=user_id)
+    db.add(adv)
+    db.commit()
+    _job(db, adv.id, user_id, "adversarial")
+    try:
+        from ..agents import hypothesis_engine
+        hypothesis_engine.run(db, proc.case_id, db.get(User, user_id), trigger="analysis chain")
+    except Exception as e:  # the hypothesis engine must never undo a completed analysis
+        import logging
+        logging.getLogger("evidencex.hypotheses").warning("hypothesis engine failed: %s", e)
+        db.rollback()
+
+
+def start_full(db, case_id, user, trigger):
+    if _active(db, case_id):
+        return {"status": "skipped", "reason": "an analysis run is already in progress"}
+    proc = AnalysisRun(case_id=case_id, kind="processing", status="queued", started_by=user.id)
+    db.add(proc)
+    db.commit()
+    audit.record(db, "analysis.processing.started", user=user, case_id=case_id, detail={"run_id": proc.id, "trigger": trigger})
+    jobs.submit(full_chain, proc.id, user.id)
+    return {"status": "queued", "processing_run": proc.id}
+
+
+@router.get("/runs/active")
+def active_runs(db: Session = Depends(get_db), user: User = Depends(get_current_user)):
+    """Everything currently processing that this user may see, with the page where it can be watched live."""
+    from ..models import Case, CaseMember, ScenarioRun
+    out = []
+    member_cases = set(db.scalars(select(CaseMember.case_id).where(CaseMember.user_id == user.id)))
+    for r in db.scalars(select(AnalysisRun).where(AnalysisRun.status.in_(("queued", "running"))).order_by(AnalysisRun.started_at)):
+        if r.case_id not in member_cases and user.role != "admin":
+            continue
+        case = db.get(Case, r.case_id)
+        if case is None or case.is_scenario:
+            continue  # scenario cases are reported through their scenario run below
+        out.append({"kind": r.kind, "label": {"processing": "Evidence processing", "adversarial": "Challenge engine",
+                                             "hypotheses": "Hypothesis engine"}.get(r.kind, r.kind),
+                    "title": case.title, "case_id": case.id, "stage": r.stage, "progress": r.progress,
+                    "link": f"/cases/{case.id}/processing?live=1"})
+    for s in db.scalars(select(ScenarioRun).where(ScenarioRun.status.in_(("queued", "running")))):
+        if s.triggered_by != user.id and user.role != "admin":
+            continue
+        out.append({"kind": "scenario", "label": f"Scenario {s.test_code}", "title": s.scenario_id, "case_id": s.case_id,
+                    "stage": s.stage, "progress": s.progress, "link": f"/scenarios/runs/{s.id}"})
+    return out
+
+
+@router.post("/cases/{case_id}/analyse", status_code=202)
+def analyse_all(case_id: str, db: Session = Depends(get_db), user: User = Depends(require("analysis:run"))):
+    """Run the whole analysis (processing, challenge, hypotheses) in one go - used after uploads and recordings."""
+    get_case_or_403(db, user, case_id, write=True)
+    if not db.scalar(select(Evidence.id).where(Evidence.case_id == case_id, Evidence.deleted_at.is_(None)).limit(1)):
+        raise HTTPException(422, "Upload evidence before starting processing")
+    out = start_full(db, case_id, user, "manual")
+    if out["status"] != "queued":
+        raise HTTPException(409, out["reason"])
+    return out
+
+
 @router.post("/cases/{case_id}/process", status_code=202)
 def start_processing(case_id: str, db: Session = Depends(get_db), user: User = Depends(require("analysis:run"))):
     get_case_or_403(db, user, case_id, write=True)

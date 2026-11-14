@@ -1,0 +1,24 @@
+[
+  {
+    "file": "01_chat.txt",
+    "category": "chat",
+    "collection_source": "WhatsApp export from the buyer's phone",
+    "tags": [
+      "chat"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "9bfd2cb705861a206ad85555aa15b636c21734bb772e624a5f3927cd99bba54a",
+    "size": 168
+  },
+  {
+    "file": "07_complaint.txt",
+    "category": "complaint",
+    "collection_source": "Complaint statement recorded at the cyber cell on 9 May 2026",
+    "tags": [
+      "complaint"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "c0b6e70a0ccf3342b804f00db3554fbe6f2de02104675b807d51b48969fc6181",
+    "size": 192
+  }
+]

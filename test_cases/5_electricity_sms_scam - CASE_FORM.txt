@@ -1,0 +1,31 @@
+NEW CASE FORM
+=============
+Case title:          Electricity-bill SMS scam with remote-access app - complainant G. Rao
+Case type:           Fraud / phishing
+Priority:            critical
+Default timezone:    +05:30
+
+Incident description:
+A fake 'electricity disconnection' SMS led the complainant to call a number, install AnyDesk, and lose Rs 49,000 by IMPS minutes later.
+
+Investigation objective:
+Reconstruct SMS -> call -> app install -> OTP -> debit, identify the receiving account, and list the records to request.
+
+UPLOAD FORM (Evidence tab)
+==========================
+Category:            complaint evidence
+Tags:                sms scam, anydesk, imps
+Collection source:   Phone backup and bank statement provided by the complainant
+Collected by:        PC Anil Kumar, Cyber Cell
+Collected at:        2026-06-16 12:00
+
+Upload the whole folder '5_electricity_sms_scam' (drop it on the upload box or use 'Choose a folder').
+
+WHAT YOU SHOULD SEE
+===================
+- Evidence tab: the voice note is transcribed and its language shown as English (100%).
+- Timeline: SMS 19:02 -> call 19:05 -> AnyDesk 19:12 -> OTP 19:25 -> debit 19:31, plus the spoken date '15 June' from the voice note marked as estimated.
+- Entities: the scammer's number 8509912345 and the UTR 616619445501.
+- Hypothesis Lab: 'Deliberate scam' strongly supported; 'Genuine transaction' weakened.
+- Message Check stays empty here on purpose: there is no chat screenshot to check.
+- You can also record your own voice statement in this case to test Kannada / Hindi detection.

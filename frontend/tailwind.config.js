@@ -10,8 +10,8 @@ export default {
     borderRadius: { none: "0", sm: "0", DEFAULT: "0", md: "2px", lg: "3px", xl: "4px", "2xl": "6px", full: "9999px" },
     extend: {
       fontFamily: {
-        sans: ["'Space Grotesk'", "ui-sans-serif", "system-ui", "Segoe UI", "sans-serif"],
-        display: ["'Archivo Black'", "'Space Grotesk'", "Impact", "sans-serif"],
+        sans: ["'Space Grotesk'", "'Noto Sans Devanagari'", "'Noto Sans Kannada'", "ui-sans-serif", "system-ui", "Segoe UI", "sans-serif"],
+        display: ["'Archivo Black'", "'Noto Sans Devanagari'", "'Noto Sans Kannada'", "'Space Grotesk'", "Impact", "sans-serif"],
         mono: ["'JetBrains Mono'", "ui-monospace", "Consolas", "monospace"],
       },
       colors: {

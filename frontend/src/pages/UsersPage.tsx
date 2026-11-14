@@ -16,7 +16,7 @@ export default function UsersPage() {
   if (!can("user:manage")) return <ErrorBox error="You need the admin role to manage users." />;
   return (
     <div>
-      <PageHeader eyebrow="Administration" title="Users & access" subtitle="Roles grant capabilities; access to each case is granted separately by its owner. Users never see cases they are not members of." />
+      <PageHeader eyebrow="Administration" title="Users & access" subtitle="Roles grant capabilities; access to each case is granted separately by its owner." />
       <div className="grid gap-4 xl:grid-cols-[1fr_340px]">
         {loading && !data ? <Loading /> : error ? <ErrorBox error={error} /> : (
           <div className="card overflow-x-auto"><table className="w-full text-sm">

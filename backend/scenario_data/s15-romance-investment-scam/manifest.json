@@ -1,0 +1,35 @@
+[
+  {
+    "file": "01_chat.txt",
+    "category": "chat",
+    "collection_source": "WhatsApp export from Arvind Nair's phone",
+    "tags": [
+      "chat"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "abfd06ab43ead8552357edfb2c0a0d75e3a89c11d7093dd4146436b38b49e56e",
+    "size": 461
+  },
+  {
+    "file": "02_platform.png",
+    "category": "screenshot",
+    "collection_source": "Screenshot by Arvind Nair 9 Apr 2026",
+    "tags": [
+      "screenshot"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "6ea18cbc0b2999227c3a73198b28a00a936a88068cb3bcbd3a47e0d0024ab1f9",
+    "size": 42343
+  },
+  {
+    "file": "03_bank_statement.csv",
+    "category": "bank statement",
+    "collection_source": "Bank statement download",
+    "tags": [
+      "bank"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "e145b6d751625c77bb4f25b91fe18be037bb119e56ffcf4000412f7c0b0b3075",
+    "size": 190
+  }
+]

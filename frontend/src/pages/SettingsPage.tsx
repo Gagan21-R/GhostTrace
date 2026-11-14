@@ -19,7 +19,7 @@ export default function SettingsPage() {
   const e = s.engines;
   return (
     <div>
-      <PageHeader eyebrow="Settings" title="System configuration" subtitle="Engines and infrastructure in use. Secrets are configured through environment variables on the server and are never sent to the browser." />
+      <PageHeader eyebrow="Settings" title="System configuration" subtitle="Engines and infrastructure in use." />
       <div className={`mb-4 rounded-xl border p-4 text-sm ${e.llm.configured ? "border-emerald-200 bg-emerald-50 text-emerald-900" : "border-amber-200 bg-amber-50 text-amber-900"}`}>
         <b>Analysis mode:</b> {s.llm_mode}. {!e.llm.configured && "Set ANTHROPIC_API_KEY to let the Counter-Investigation agent add LLM-suggested challenges (each one is still verified against the evidence)."}
       </div>
@@ -34,7 +34,7 @@ export default function SettingsPage() {
         <Section title={<span className="flex items-center gap-2"><Bot className="h-4 w-4" />LLM provider</span>}>
           <Row k="Provider" v={e.llm.provider} /><Row k="Model" v={<span className="mono text-xs">{e.llm.model}</span>} />
           <Row k="SDK" v={yes(e.llm.sdk_installed, "installed", "missing")} /><Row k="API key" v={yes(e.llm.configured, "configured", "not configured")} />
-          <p className="mt-2 text-xs text-slate-500">The LLM never controls hashing, permissions, timestamps or PASS/FAIL. Its suggestions must cite segment IDs and pass the Verification agent.</p>
+          <p className="mt-2 text-xs text-slate-500">The LLM never controls hashing, permissions, timestamps or PASS/FAIL.</p>
         </Section>
         <Section title={<span className="flex items-center gap-2"><Workflow className="h-4 w-4" />Orchestration</span>}>
           <Row k="Agent orchestrator" v={<Badge tone="blue">{s.orchestration.orchestrator}</Badge>} />

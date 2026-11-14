@@ -43,6 +43,7 @@ class ExplainIn(BaseModel):
     page: str = Field("", max_length=200)
     topic: str | None = Field(None, max_length=64)
     context: str = Field("", max_length=500)
+    lang: str = Field("en", pattern="^(en|hi|kn)$")
 
 
 class ChatMsg(BaseModel):
@@ -53,6 +54,7 @@ class ChatMsg(BaseModel):
 class ChatIn(BaseModel):
     messages: list[ChatMsg] = Field(..., min_length=1, max_length=30)
     page: str = Field("", max_length=200)
+    lang: str = Field("en", pattern="^(en|hi|kn)$")
 
 
 @router.get("/api/help/topics")
@@ -62,16 +64,17 @@ def topics():
 
 
 @router.get("/api/help/topics/{key}")
-def topic(key: str):
+def topic(key: str, lang: str = "en"):
     t = T.get(key)
     if not t:
         raise HTTPException(404, "Unknown help topic")
-    return {"answer": assistant.render(t), "topic": key, "related": assistant.related(t), "mode": "guide"}
+    return assistant.localize({"answer": assistant.render(t), "topic": key, "related": assistant.related(t), "mode": "guide"},
+                              lang if lang in ("hi", "kn") else "en")
 
 
 @router.post("/api/help/explain")
 def explain(body: ExplainIn):
-    return assistant.explain(body.title, body.page, body.topic, body.context)
+    return assistant.explain(body.title, body.page, body.topic, body.context, body.lang)
 
 
 @router.post("/api/help/chat")
@@ -79,8 +82,8 @@ def chat(body: ChatIn, user: User | None = Depends(optional_user)):
     msgs = [m.model_dump() for m in body.messages]
     if user is None:  # anonymous visitors always get the offline guide
         last = next((m["content"] for m in reversed(msgs) if m["role"] == "user"), "")
-        return assistant._guide_reply(last, body.page)
-    return assistant.chat(msgs, body.page)
+        return assistant._guide_reply(last, body.page, body.lang)
+    return assistant.chat(msgs, body.page, body.lang)
 
 
 # ------------------------------------------------------------------ public landing data

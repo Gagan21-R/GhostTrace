@@ -1,0 +1,17 @@
+Received: from mail-out.orbitsoft.in by mx.inbox.example; Fri, 06 Mar 2026
+ 09:00:00 +0530
+Authentication-Results: mx.inbox.example; spf=pass smtp.mailfrom=orbitsoft.in;
+ dkim=pass header.d=orbitsoft.in; dmarc=pass
+From: "Shruti Kamath" <shruti.kamath@orbitsoft.in>
+To: "HR" <hr@orbitsoft.in>
+Subject: Complaint against my manager
+Date: Fri, 06 Mar 2026 09:00:00 +0530
+Message-ID: <9cc6f9638ae8417f@orbitsoft.in>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Dear HR,
+I am reporting misconduct and harassment by my manager Vikas Menon. His email=
+s of 2 and 5 March are attached.
+Shruti Kamath

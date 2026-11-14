@@ -1,0 +1,30 @@
+NEW CASE FORM
+=============
+Case title:          Manager harassment and retaliation - complainant S. Kamath
+Case type:           Harassment / preservation
+Priority:            high
+Default timezone:    +05:30
+
+Incident description:
+An employee received threatening emails from her manager, complained to HR on 6 March 2026, and within four days lost repository access, was downgraded and received a written warning.
+
+Investigation objective:
+Establish the sequence of complaint and adverse actions, classify the messages, and identify missing records (HR investigation file).
+
+UPLOAD FORM (Evidence tab)
+==========================
+Category:            workplace records
+Tags:                harassment, retaliation, email
+Collection source:   Mailbox export and IT access log provided by the company
+Collected by:        Internal Complaints Committee
+Collected at:        2026-03-12 15:00
+
+Upload the whole folder '4_workplace_harassment' (drop it on the upload box or use 'Choose a folder').
+
+WHAT YOU SHOULD SEE
+===================
+- Message labels (Naive Bayes): both manager emails labelled 'Harassment / threat'.
+- Timeline: HR complaint on 6 March, then repository access revoked and role downgraded on 9 March, warning letter on 10 March.
+- Challenge tab: a workplace-retaliation hypothesis, decision SUPPORTED.
+- Gaps: the access changes have no documented reason; the complaint mentions attachments that were not provided.
+- Hypothesis Lab: the allegation partially supported; 'innocent explanation' contradicted.

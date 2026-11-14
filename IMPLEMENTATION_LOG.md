@@ -1,8 +1,8 @@
-# EVIDENCE-X — Implementation log
+# GhostTrace — Implementation log
 
 ## 2026-11-14 · Session 1 — initial build
 
-**Assessment.** No existing EVIDENCE-X repository was found, so a new project was created in `Desktop/EVIDENCE-X`. Environment: Windows 11, Python 3.12, Node 24, no Docker, no PostgreSQL/Neo4j. Windows Application Control blocks some compiled extensions (spaCy `srsly`, `xxhash`, SQLAlchemy 2.1 Cython modules).
+**Assessment.** No existing GhostTrace repository was found, so a new project was created in `Desktop/GhostTrace`. Environment: Windows 11, Python 3.12, Node 24, no Docker, no PostgreSQL/Neo4j. Windows Application Control blocks some compiled extensions (spaCy `srsly`, `xxhash`, SQLAlchemy 2.1 Cython modules).
 
 **Decisions**
 - Local tested path: SQLite + local write-once storage + NetworkX; Docker Compose provided for PostgreSQL/pgvector + MinIO (+ Neo4j profile).

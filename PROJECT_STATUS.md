@@ -1,4 +1,4 @@
-# EVIDENCE-X — Project status
+# GhostTrace — Project status
 
 Last updated: 2026-11-14 (session 3). Statuses: **Fully implemented** · **Partially implemented** · **Not implemented** · **Blocked**.
 "Tested" = covered by an automated test that passed on the development machine (Windows 11, Python 3.12, CPU only); "browser" = also checked manually in the UI.

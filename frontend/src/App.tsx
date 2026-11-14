@@ -11,6 +11,7 @@ import Dashboard from "./pages/Dashboard";
 import LoginPage from "./pages/LoginPage";
 import NewCasePage from "./pages/NewCasePage";
 import EvaluationPage from "./pages/EvaluationPage";
+import LabPage from "./pages/LabPage";
 import EvidencePage from "./pages/EvidencePage";
 import GoPage from "./pages/GoPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -25,7 +26,7 @@ import UsersPage from "./pages/UsersPage";
 
 export default function App() {
   const { user, loading } = useAuth();
-  if (loading) return <Loading label="Starting EVIDENCE-X" />;
+  if (loading) return <Loading label="Starting GhostTrace" />;
   if (!user) return (
     <AssistantProvider><Routes>
       <Route path="/login" element={<LoginPage />} />
@@ -51,6 +52,7 @@ export default function App() {
           <Route path="profile" element={<ProfilePage />} />
           <Route path="go/:section" element={<GoPage />} />
           <Route path="evaluation" element={<EvaluationPage />} />
+          <Route path="lab" element={<LabPage />} />
           <Route path="audit" element={<AuditPage />} />
           <Route path="users" element={<UsersPage />} />
           <Route path="settings" element={<SettingsPage />} />

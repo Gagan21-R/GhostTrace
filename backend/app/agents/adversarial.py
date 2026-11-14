@@ -24,7 +24,7 @@ from sqlalchemy.orm import Session
 
 from ..analysis import nlp
 from ..analysis.index import CaseIndex
-from ..models import Contradiction, Entity, EvidenceDependency, EvidenceGap, Relationship, TimelineEvent
+from ..models import AuthenticityAssessment, Contradiction, Entity, EvidenceDependency, EvidenceGap, Relationship, TimelineEvent
 from .llm import CHALLENGE_SCHEMA, evidence_block, get_llm
 
 GUILT_RX = re.compile(r"\b(?:is guilty|committed the (?:crime|fraud)|proves? (?:that )?(?:he|she|they) (?:did|is)|"
@@ -40,6 +40,7 @@ class Ctx:
     entities: dict[str, Entity]
     relationships: list[Relationship]
     dependencies: list = None
+    authenticity: list = None
 
     @classmethod
     def load(cls, db: Session, idx: CaseIndex) -> "Ctx":
@@ -51,7 +52,8 @@ class Ctx:
                    list(db.scalars(select(EvidenceGap).where(EvidenceGap.case_id == cid))),
                    {e.id: e for e in db.scalars(select(Entity).where(Entity.case_id == cid))},
                    list(db.scalars(select(Relationship).where(Relationship.case_id == cid))),
-                   list(db.scalars(select(EvidenceDependency).where(EvidenceDependency.case_id == cid))))
+                   list(db.scalars(select(EvidenceDependency).where(EvidenceDependency.case_id == cid))),
+                   list(db.scalars(select(AuthenticityAssessment).where(AuthenticityAssessment.case_id == cid))))
 
     def of(self, *types) -> list[TimelineEvent]:
         return [e for e in self.events if e.event_type in types]
@@ -284,10 +286,14 @@ def investigation_agent(ctx: Ctx) -> dict:
             candidates.append(h)
     viable = [c for c in candidates if "claims" in c]
     if not viable:
-        key = [e for e in ctx.events if e.occurred_at][:5]
+        key = [e for e in ctx.events if e.occurred_at and e.segment_id][:5]
+        claims = [_claim(f"C{i}", f"Recorded event: {e.title[:150]}", [e.segment_id], temporal=True) for i, e in enumerate(key, 1)]
+        if not claims:  # e.g. a single recording with no dated events: cite what was extracted instead
+            claims = [_claim(f"C{i}", f"Recorded content ({s.locator}): {s.text[:150]}", [s.id])
+                      for i, s in enumerate([s for s in ctx.idx.segments if s.text.strip()][:3], 1)]
         return {"pattern": "insufficient_signals", "score": 0,
                 "statement": "The evidence does not match any supported investigation pattern strongly enough to form a hypothesis.",
-                "claims": [_claim(f"C{i}", f"Recorded event: {e.title[:150]}", [e.segment_id], temporal=True) for i, e in enumerate(key, 1)],
+                "claims": claims,
                 "assumptions": [], "other_patterns": []}
     viable.sort(key=lambda c: -c["score"])
     top = viable[0]
@@ -553,7 +559,13 @@ def reviewer_agent(ctx: Ctx, hyp: dict, counter: dict, ver: dict) -> dict:
     # Decision: SUPPORTED / CONTRADICTED / INCONCLUSIVE / HOLD
     contradicting = [k for k in counters if k["kind"] == "contradiction" and k["strength"] == "strong"]
     hit_claims = {c["id"] for c in support for k in contradicting if set(c["citations"]) & set(k["citations"])}
-    if verdict == "insufficient_evidence" or rejected_claims:
+    disputed = [a for a in (ctx.authenticity or []) if a.verdict in ("possible_impersonation", "likely_fabricated")]
+    if disputed and verdict.startswith("supported"):
+        a = disputed[0]
+        verdict, band = "supported_with_reservations", "low"
+        reason += (f" The message authenticity check rates a key message as '{a.verdict.replace('_', ' ')}', so who sent it (or whether "
+                   "it exists) is unresolved until provider / device records are obtained.")
+    if verdict == "insufficient_evidence" or rejected_claims or disputed:
         decision = "HOLD"
     elif support and len(hit_claims) * 2 >= len(support):
         decision = "CONTRADICTED"

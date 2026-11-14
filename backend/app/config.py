@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=str(BASE_DIR / ".env"), env_file_encoding="utf-8", extra="ignore")
 
-    app_name: str = "EVIDENCE-X"
+    app_name: str = "GhostTrace"
     environment: str = "development"
 
     # Database: SQLite for zero-infra local runs, PostgreSQL (+pgvector) in docker-compose.

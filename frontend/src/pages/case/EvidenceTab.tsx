@@ -7,9 +7,33 @@ import { Badge, Empty, ErrorBox, Hash, Loading, statusTone } from "../../compone
 import { api } from "../../lib/api";
 import { fmtBytes, fmtDate, useApi } from "../../lib/hooks";
 import { useCase } from "./CaseWorkspace";
+import VoiceRecorder from "../../components/VoiceRecorder";
 
 const ICONS: Record<string, any> = { image: FileImage, pdf: FileText, docx: FileText, text: FileText, spreadsheet: FileSpreadsheet, email: Mail, chat: MessagesSquare, audio: FileAudio, video: Video };
-const ACCEPT = ".jpg,.jpeg,.png,.webp,.pdf,.docx,.txt,.md,.log,.csv,.xlsx,.eml,.json,.mp3,.wav,.mp4";
+const JUNK = /^(\.|desktop\.ini$|thumbs\.db$|\.ds_store$)/i;
+
+/** Files from a drop, including everything inside dropped folders (recursively). */
+async function filesFromDrop(dt: DataTransfer): Promise<File[]> {
+  const entries = Array.from(dt.items || []).map((it) => (it as any).webkitGetAsEntry?.()).filter(Boolean);
+  if (!entries.length) return Array.from(dt.files);
+  const out: File[] = [];
+  const walk = async (entry: any): Promise<void> => {
+    if (entry.isFile) {
+      out.push(await new Promise<File>((res, rej) => entry.file(res, rej)));
+    } else if (entry.isDirectory) {
+      const reader = entry.createReader();
+      for (;;) {  // readEntries returns results in batches
+        const batch: any[] = await new Promise((res, rej) => reader.readEntries(res, rej));
+        if (!batch.length) break;
+        for (const e of batch) await walk(e);
+      }
+    }
+  };
+  for (const e of entries) await walk(e);
+  return out;
+}
+
+const ACCEPT = ".jpg,.jpeg,.png,.webp,.pdf,.docx,.txt,.md,.log,.csv,.xlsx,.eml,.json,.mp3,.wav,.webm,.ogg,.mp4";
 
 export default function EvidenceTab() {
   const { c, reload: reloadCase, canWrite } = useCase();
@@ -26,6 +50,8 @@ export default function EvidenceTab() {
   const [result, setResult] = useState<any>(null);
   const [verifyAll, setVerifyAll] = useState<any>(null);
   const input = useRef<HTMLInputElement>(null);
+  const folderInput = useRef<HTMLInputElement>(null);
+  const addFiles = (files: File[]) => setQueue((q) => [...q, ...files.filter((f) => f.size > 0 && !JUNK.test(f.name))]);
 
   const upload = async () => {
     setBusy(true); setResult(null);
@@ -33,7 +59,14 @@ export default function EvidenceTab() {
     queue.forEach((f) => fd.append("files", f, f.name));
     Object.entries(meta).forEach(([k, v]) => fd.append(k, v));
     setProgress(0);
-    try { setResult(await api.uploadWithProgress(`/api/cases/${c.id}/evidence`, fd, setProgress)); setQueue([]); reload(true); reloadCase(true); }
+    try {
+      const r: any = await api.uploadWithProgress(`/api/cases/${c.id}/evidence`, fd, setProgress);
+      setResult(r); setQueue([]); reload(true); reloadCase(true);
+      if (r.accepted > 0) {  // analyse straight away and show the live pipeline
+        try { await api.post(`/api/cases/${c.id}/analyse`); } catch { /* already running: just show it */ }
+        nav(`/cases/${c.id}/processing?live=1`);
+      }
+    }
     catch (e: any) { setResult({ error: e.message }); } finally { setBusy(false); }
   };
 
@@ -41,14 +74,19 @@ export default function EvidenceTab() {
     <div className="grid gap-4 xl:grid-cols-[380px_1fr]">
       {canWrite && (
         <div className="space-y-3">
+          <VoiceRecorder caseId={c.id} onSaved={() => { reload(); reloadCase(true); setTimeout(() => nav(`/cases/${c.id}/processing?live=1`), 1800); }} />
           <div onDragOver={(e) => { e.preventDefault(); setDrag(true); }} onDragLeave={() => setDrag(false)}
-            onDrop={(e) => { e.preventDefault(); setDrag(false); setQueue([...queue, ...Array.from(e.dataTransfer.files)]); }}
+            onDrop={async (e) => { e.preventDefault(); setDrag(false); addFiles(await filesFromDrop(e.dataTransfer)); }}
             onClick={() => input.current?.click()}
             className={clsx("card flex cursor-pointer flex-col items-center justify-center border-2 border-dashed px-4 py-8 text-center transition", drag ? "border-accent-500 bg-accent-50" : "border-slate-300 hover:border-slate-400")}>
             <UploadCloud className="mb-2 h-7 w-7 text-slate-400" />
-            <div className="text-sm font-medium">Drop evidence files here or click to browse</div>
+            <div className="text-sm font-medium">Drop evidence files or a whole folder here, or click to browse</div>
             <div className="mt-1 text-xs text-slate-500">Images (JPG, PNG, WEBP), PDF, DOCX, TXT, CSV, XLSX, EML, chat JSON / WhatsApp TXT, MP3, WAV, MP4 · max 100 MB each</div>
-            <input ref={input} type="file" multiple accept={ACCEPT} className="hidden" onChange={(e) => { setQueue([...queue, ...Array.from(e.target.files || [])]); e.target.value = ""; }} />
+            <input ref={input} type="file" multiple accept={ACCEPT} className="hidden" onChange={(e) => { addFiles(Array.from(e.target.files || [])); e.target.value = ""; }} />
+            <input ref={folderInput} type="file" multiple className="hidden" {...({ webkitdirectory: "", directory: "" } as any)}
+              onChange={(e) => { addFiles(Array.from(e.target.files || [])); e.target.value = ""; }} />
+            <button type="button" className="btn-outline mt-3 !py-1 text-xs" onClick={(e) => { e.stopPropagation(); folderInput.current?.click(); }}>
+              Choose a folder</button>
           </div>
           {queue.length > 0 && (
             <div className="card space-y-3 p-4">

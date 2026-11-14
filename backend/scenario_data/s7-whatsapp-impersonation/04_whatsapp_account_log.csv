@@ -1,0 +1,6 @@
+Time,Account,Event,Device,IP address
+2026-03-18 21:02:11 +05:30,Rohan Verma +91 98450 11223,Message sent,Primary phone (Android),49.36.88.12
+2026-03-18 21:58:40 +05:30,Rohan Verma +91 98450 11223,Linked device added,WhatsApp Web (Chrome on Windows),103.211.54.90
+2026-03-18 22:41:10 +05:30,Rohan Verma +91 98450 11223,Message sent,WhatsApp Web (Chrome on Windows),103.211.54.90
+2026-03-18 22:42:05 +05:30,Rohan Verma +91 98450 11223,Message sent,WhatsApp Web (Chrome on Windows),103.211.54.90
+2026-03-18 23:24:51 +05:30,Rohan Verma +91 98450 11223,Linked device removed,Primary phone (Android),49.36.88.12

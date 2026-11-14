@@ -40,7 +40,7 @@ export default function EntitiesTab() {
                 <ul className="space-y-1.5">{e.mentions.slice(0, 20).map((m: any, i: number) => (
                   <li key={i} className="flex gap-2 text-xs"><SourceRef src={m} /><span className="text-slate-600">{m.snippet}</span></li>))}</ul></td></tr>)}
           </>))}</tbody></table></div>
-      <p className="mt-2 text-xs text-slate-500">Entities are normalised identifiers found in the evidence. The same value in two files does not establish that two people are the same person.</p>
+      <p className="mt-2 text-xs text-slate-500">Entities are normalised identifiers found in the evidence.</p>
     </div>
   );
 }

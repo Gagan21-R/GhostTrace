@@ -1,0 +1,31 @@
+NEW CASE FORM
+=============
+Case title:          Fake work-from-home job offer - complainant K. Shetty
+Case type:           Fraud / phishing
+Priority:            high
+Default timezone:    +05:30
+
+Incident description:
+The complainant received a job offer by email from 'Nexora Global', paid a 'refundable' onboarding deposit of Rs 18,500 by UPI, and was then asked for Rs 9,999 more. The 'HR' contact refuses to refund.
+
+Investigation objective:
+Establish whether the offer is genuine, link the email, letter, chat and payment, and identify where the money went.
+
+UPLOAD FORM (Evidence tab)
+==========================
+Category:            complaint evidence
+Tags:                job scam, upi, advance fee
+Collection source:   Files shared by the complainant from her phone and mailbox
+Collected by:        HC Ramesh Gowda, Cyber Cell
+Collected at:        2026-04-09 11:00
+
+Upload the whole folder '1_fake_job_offer' (drop it on the upload box or use 'Choose a folder').
+
+WHAT YOU SHOULD SEE
+===================
+- Processing page opens by itself and shows Evidence processing -> Challenge engine -> Hypothesis engine, then a Final output panel.
+- Hypothesis Lab: 'Deliberate scam' strongly supported; 'Genuine transaction or service dispute' weakened.
+- Entities: UPI ID nexora.onboard@ybl, website nexora-global-hr.site (flagged as suspicious), UTR 609612223411.
+- Message labels (Naive Bayes): the HR chat and the offer letter flagged as financial fraud.
+- Gaps: the offer email's sender cannot be verified; no payment confirmation from the receiving side.
+- Challenge tab: a phishing / payment-fraud hypothesis, decision SUPPORTED.

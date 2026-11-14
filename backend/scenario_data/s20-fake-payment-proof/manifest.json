@@ -1,0 +1,36 @@
+[
+  {
+    "file": "01_payment_screenshot.jpg",
+    "category": "screenshot",
+    "collection_source": "Sent by buyer on WhatsApp as proof of payment",
+    "tags": [
+      "payment",
+      "screenshot"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "43a6a3cdecb5b15e4fd847507fe90790853daa497f7ef17277744d77347359aa",
+    "size": 33566
+  },
+  {
+    "file": "02_chat.txt",
+    "category": "chat",
+    "collection_source": "WhatsApp export from Imran Sheikh's phone",
+    "tags": [
+      "chat"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "a66688d361eef9fe0b5e8abd3899292f1a31a75ed6dd209fd04b3dc582b4dd72",
+    "size": 338
+  },
+  {
+    "file": "03_bank_statement.csv",
+    "category": "bank statement",
+    "collection_source": "Imran Sheikh's bank statement 18-19 Apr",
+    "tags": [
+      "bank"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "8a45088d2478b6cd1b746f5c07f76a6cdf478db701658d01808515c20f653174",
+    "size": 156
+  }
+]

@@ -12,7 +12,7 @@ from reportlab.lib.units import mm
 from reportlab.platypus import KeepTogether, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
 INK, SLATE, LINE, ACCENT, SOFT = (colors.HexColor(c) for c in ("#0f172a", "#475569", "#cbd5e1", "#1d4ed8", "#f1f5f9"))
-LABEL_NOTE = {"ENGINE": "produced by EVIDENCE-X agents and rules; requires human review",
+LABEL_NOTE = {"ENGINE": "produced by GhostTrace agents and rules; requires human review",
               "HUMAN": "recorded by a human reviewer", "SYSTEM": "deterministic platform records",
               "ENGINE + HUMAN": "engine decision with the human review status"}
 
@@ -67,17 +67,17 @@ def to_pdf(c: dict) -> bytes:
     st = _styles()
     buf = io.BytesIO()
     doc = SimpleDocTemplate(buf, pagesize=A4, leftMargin=15 * mm, rightMargin=15 * mm, topMargin=15 * mm, bottomMargin=18 * mm,
-                            title=f"EVIDENCE-X report {c['case']['number']}")
+                            title=f"GhostTrace report {c['case']['number']}")
 
     def footer(cv, d):
         cv.saveState()
         cv.setFont("Helvetica", 7)
         cv.setFillColor(SLATE)
-        cv.drawString(15 * mm, 10 * mm, f"EVIDENCE-X · {c['case']['number']} · for human review - contains engine interpretations, not legal conclusions")
+        cv.drawString(15 * mm, 10 * mm, f"GhostTrace · {c['case']['number']} · for human review - contains engine interpretations, not legal conclusions")
         cv.drawRightString(195 * mm, 10 * mm, f"Page {d.page}")
         cv.restoreState()
 
-    s = [_pp("EVIDENCE-X", st["sub"]), _pp(("Scenario Lab Test Report" if c.get("scenario") else "Investigation Report") + f" — {c['case']['title']}", st["title"]),
+    s = [_pp("GhostTrace", st["sub"]), _pp(("Scenario Lab Test Report" if c.get("scenario") else "Investigation Report") + f" — {c['case']['title']}", st["title"]),
          Spacer(1, 3), _pp(f"Case {c['case']['number']} · generated {c['generated_at']}" + (" · REDACTED" if c.get("redacted") else ""), st["sub"]), Spacer(1, 4),
          _pp("Citations: [EV-code | location]. Labels: ENGINE = agent/rule output requiring review; HUMAN = reviewer decision; SYSTEM = platform record.", st["sub"])]
     sc = c.get("scenario")
@@ -179,7 +179,7 @@ def to_html(c: dict, link_base: str = "") -> str:
         return e(str(v)) if v not in (None, "") else "—"
 
     out = [f"<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>"
-           f"<title>EVIDENCE-X report {e(c['case']['number'])}</title><style>"
+           f"<title>GhostTrace report {e(c['case']['number'])}</title><style>"
            "body{font:14px/1.5 system-ui,Segoe UI,sans-serif;background:#0b1020;color:#e2e8f0;margin:0;padding:24px}main{max-width:1040px;margin:auto}"
            "h1{font-size:24px}h2{font-size:17px;margin-top:28px;border-bottom:1px solid #1e293b;padding-bottom:6px}"
            ".lab{color:#60a5fa;font-size:12px}table{border-collapse:collapse;width:100%;margin:8px 0;font-size:12.5px}"
@@ -187,7 +187,7 @@ def to_html(c: dict, link_base: str = "") -> str:
            "a.cite,.cite{color:#60a5fa;font-family:ui-monospace,Consolas,monospace;font-size:11.5px;text-decoration:none}a.cite:hover{text-decoration:underline}"
            ".card{border:1px solid #1e293b;border-radius:8px;margin:10px 0}.card h3{margin:0;padding:8px 10px;font-size:13px;background:#111827}"
            ".muted{color:#94a3b8}</style></head><body><main>",
-           f"<div class='muted'>EVIDENCE-X</div><h1>{'Scenario Lab Test Report' if c.get('scenario') else 'Investigation Report'} — {e(c['case']['title'])}</h1>",
+           f"<div class='muted'>GhostTrace</div><h1>{'Scenario Lab Test Report' if c.get('scenario') else 'Investigation Report'} — {e(c['case']['title'])}</h1>",
            f"<p class='muted'>Case {e(c['case']['number'])} · generated {e(c['generated_at'])}{' · REDACTED' if c.get('redacted') else ''}</p>",
            "<p class='muted'>Citations: [EV-code | location] link to the cited evidence location. ENGINE = agent/rule output requiring review; "
            "HUMAN = reviewer decision; SYSTEM = platform record.</p>"]

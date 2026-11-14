@@ -1,0 +1,15 @@
+Received: from mail-out.acmesupply.in by mx.inbox.example; Mon, 20 Apr 2026
+ 11:00:00 +0530
+Authentication-Results: mx.inbox.example; spf=pass
+ smtp.mailfrom=acmesupply.in; dkim=pass header.d=acmesupply.in; dmarc=pass
+From: "Acme Supply Accounts" <accounts@acmesupply.in>
+To: "Finance" <finance@brightbuild.in>
+Subject: RE: payment for INV-2207
+Date: Mon, 20 Apr 2026 11:00:00 +0530
+Message-ID: <7d08d326efff869f@acmesupply.in>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+We have not received payment for INV-2207. Our bank details have never change=
+d. We did not send any email from acme-supp1y.com.

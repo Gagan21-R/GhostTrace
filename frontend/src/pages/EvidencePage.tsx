@@ -25,7 +25,7 @@ export default function EvidencePage() {
               {!r.integrity_findings.length ? <div className="text-sm text-slate-500">No integrity observations.</div> :
                 <ul className="space-y-1.5">{r.integrity_findings.map((f: any, i: number) => (
                   <li key={i} className="text-xs"><Badge tone={f.severity === "high" ? "red" : f.severity === "medium" ? "amber" : "slate"}>{f.severity}</Badge> <b>{titleCase(f.check)}</b> - {f.observation}</li>))}</ul>}
-              <p className="mt-2 text-[11px] text-slate-500">Indicators for human review, not proof of tampering. Hash verification shows integrity since intake only.</p>
+              <p className="mt-2 text-[11px] text-slate-500">Indicators for human review, not proof of tampering.</p>
             </Section>
             <Section title={`Related evidence (${r.related_evidence.length})`}>
               {!r.related_evidence.length ? <div className="text-sm text-slate-500">No cross-file relationships.</div> :

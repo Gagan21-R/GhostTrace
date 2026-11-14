@@ -1,0 +1,5 @@
+SMS export - phone of Govind Rao (+91 94480 33221)
+
+[15/06/2026 19:02] VM-BESCOM: Dear consumer, your electricity will be disconnected tonight at 9.30 pm as your previous month bill was not updated. Please call our officer 8509912345 immediately.
+[15/06/2026 19:25] AX-SBIOTP: 774512 is the OTP to add a new device to SBI YONO. Do not share it with anyone.
+[15/06/2026 19:31] AX-SBIINB: Rs 49,000.00 debited from A/c XX7781 by IMPS to A/c XX2290. Not you? Call 1800 1234.

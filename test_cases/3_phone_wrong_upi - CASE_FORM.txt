@@ -1,0 +1,29 @@
+NEW CASE FORM
+=============
+Case title:          Phone paid for, never received - complainant R. Nair
+Case type:           Commercial / delivery dispute
+Priority:            medium
+Default timezone:    +05:30
+
+Incident description:
+The buyer paid Rs 38,000 by UPI for a phone listed on QuickBuy. The seller says no payment arrived. The buyer alleges fraud.
+
+Investigation objective:
+Test competing explanations (fraud, delay, wrong payment destination, failed payment, impersonation) and find where the money went.
+
+UPLOAD FORM (Evidence tab)
+==========================
+Category:            complaint evidence
+Tags:                marketplace, upi, dispute
+Collection source:   Files provided by the buyer
+Collected by:        ASI Lakshmi Devi
+Collected at:        2026-05-13 10:30
+
+Upload the whole folder '3_phone_wrong_upi' (drop it on the upload box or use 'Choose a folder').
+
+WHAT YOU SHOULD SEE
+===================
+- Hypothesis Lab: 'Incorrect payment destination' strongly supported - the receipt and bank show phonehub.STORES@okhdfcbank while the listing says phonehub.STORE@okhdfcbank (one letter different).
+- 'Seller impersonation' is also strongly supported, because the same UPI mismatch fits both; the first recommended step (KYC holder of the receiving UPI ID) is what separates them.
+- 'Payment processing issue' contradicted (the bank shows a completed debit); 'Deliberate fraud' weakened, because the money went to a different UPI ID than the seller's.
+- Both UPI IDs appear as separate entities in Entities / Relationships.

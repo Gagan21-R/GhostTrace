@@ -62,8 +62,8 @@ export default function ContradictionsTab() {
             {can("review:decide") && (
               <div className="flex flex-wrap items-center gap-2 border-t border-slate-100 bg-slate-50/60 px-4 py-3">
                 <input className="input !py-1.5 flex-1" placeholder="Reviewer note (recorded in the audit log)" value={notes[x.id] ?? x.reviewer_note ?? ""} onChange={(e) => setNotes({ ...notes, [x.id]: e.target.value })} />
-                <button className="btn-outline !py-1.5" onClick={() => review(x.id, "confirmed")}><Check className="h-4 w-4 text-emerald-600" />Confirm</button>
-                <button className="btn-outline !py-1.5" onClick={() => review(x.id, "dismissed")}><X className="h-4 w-4 text-slate-500" />Different events / dismiss</button>
+                <button className="btn-ok !py-1.5" onClick={() => review(x.id, "confirmed")}><Check className="h-4 w-4" />Confirm</button>
+                <button className="btn-no !py-1.5" onClick={() => review(x.id, "dismissed")}><X className="h-4 w-4" />Reject</button>
                 {x.review_status !== "pending" && <button className="btn-ghost !py-1.5 text-xs" onClick={() => review(x.id, "pending")}>Reset</button>}
               </div>)}
           </div>))}

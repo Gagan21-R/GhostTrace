@@ -1,0 +1,61 @@
+[
+  {
+    "file": "01_threat_screenshot.jpg",
+    "category": "screenshot",
+    "collection_source": "Screenshot attached to complaint by Karan Malhotra (sent via email)",
+    "tags": [
+      "complaint",
+      "screenshot"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "b68f9a8b499c1ac31d204f954e0c68fb453f2ceb4d2aa9ec18aa00477827aebe",
+    "size": 38812
+  },
+  {
+    "file": "02_karan_chat_export.txt",
+    "category": "chat",
+    "collection_source": "WhatsApp export from Karan Malhotra's phone, produced on notice 9 Apr 2026",
+    "tags": [
+      "chat",
+      "complainant"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "9f0f2dee1a2b8e85f173da1cc16f2b552256e6f3ac1c7a2f0ccf03cd9ccff55d",
+    "size": 575
+  },
+  {
+    "file": "03_priya_chat_export.txt",
+    "category": "chat",
+    "collection_source": "WhatsApp export from Priya Nair's phone, produced through her counsel 10 Apr 2026",
+    "tags": [
+      "chat",
+      "accused"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "9f0f2dee1a2b8e85f173da1cc16f2b552256e6f3ac1c7a2f0ccf03cd9ccff55d",
+    "size": 575
+  },
+  {
+    "file": "04_priya_account_log.csv",
+    "category": "account log",
+    "collection_source": "Account activity for Priya Nair's number, provider response",
+    "tags": [
+      "log",
+      "account"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "9932580dc1665669ebc4102fad1090b8881602fb8722ee24559e46c2158a0d38",
+    "size": 246
+  },
+  {
+    "file": "05_complaint_letter.pdf",
+    "category": "complaint",
+    "collection_source": "Complaint received at police station 7 Apr 2026",
+    "tags": [
+      "complaint"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "36341cf55ae0f263eec699bf233ecaa18ec3a2142d38318d5cc55e1fb58098e6",
+    "size": 1797
+  }
+]

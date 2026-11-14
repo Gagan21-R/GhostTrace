@@ -1,0 +1,61 @@
+[
+  {
+    "file": "01_screenshot.png",
+    "category": "screenshot",
+    "collection_source": "Screenshot submitted by complainant Ayesha Khan",
+    "tags": [
+      "complaint",
+      "screenshot"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "b1a11cd00024a7c365dd3bf0a2fc50fb8cdb5cd064bbb5e5ee9c53c239451661",
+    "size": 36391
+  },
+  {
+    "file": "02_ayesha_chat_export.txt",
+    "category": "chat",
+    "collection_source": "WhatsApp export from Ayesha Khan's phone, 24 Mar 2026",
+    "tags": [
+      "chat",
+      "complainant"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "4913c021f9cf092e47b64998962bbbd9d40af29d986daa95f164389c9c41e53b",
+    "size": 849
+  },
+  {
+    "file": "03_vikram_chat_export.txt",
+    "category": "chat",
+    "collection_source": "WhatsApp export from Vikram Singh's phone, seized 25 Mar 2026",
+    "tags": [
+      "chat",
+      "accused"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "4913c021f9cf092e47b64998962bbbd9d40af29d986daa95f164389c9c41e53b",
+    "size": 849
+  },
+  {
+    "file": "04_vikram_account_log.csv",
+    "category": "account log",
+    "collection_source": "Account activity for Vikram Singh's number, provider response",
+    "tags": [
+      "log",
+      "account"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "57d069bf4d7ec20fb9a900109c3944af676ade51b5f9b95386814da3fd89bfbb",
+    "size": 359
+  },
+  {
+    "file": "05_accused_statement.txt",
+    "category": "statement",
+    "collection_source": "Statement recorded by investigator 25 Mar 2026",
+    "tags": [
+      "statement"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "788d6ef7e952fdc9cdfcfe211eab5b2deeb459c7b14dd324763ba8d358a6656a",
+    "size": 144
+  }
+]

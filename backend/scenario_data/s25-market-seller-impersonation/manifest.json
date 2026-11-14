@@ -1,0 +1,79 @@
+[
+  {
+    "file": "01_chat.txt",
+    "category": "chat",
+    "collection_source": "WhatsApp export from the buyer's phone",
+    "tags": [
+      "chat"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "3e8ff5ee42b36e330396785dc7a89f7c5b35850fb4de2d3c954bf83e89ce82e5",
+    "size": 254
+  },
+  {
+    "file": "02_payment_screenshot.png",
+    "category": "payment receipt",
+    "collection_source": "Screenshot from the buyer's payment app",
+    "tags": [
+      "payment"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "011e6973a684389d1bcbaa538ce076caa1643a410278d465895329a9fdffcee0",
+    "size": 31231
+  },
+  {
+    "file": "03_bank_statement.csv",
+    "category": "bank statement",
+    "collection_source": "Statement downloaded from the buyer's bank",
+    "tags": [
+      "bank"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "f61720081ebec331a94702581f1b254fcb1db8547712d58c1ebec14e31a9df57",
+    "size": 119
+  },
+  {
+    "file": "04_order_confirmation.pdf",
+    "category": "order",
+    "collection_source": "Downloaded from the buyer's BazaarHub account",
+    "tags": [
+      "order"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "be0a832b591c080d84de5cd2a09fbded6035d8de19a83280761759d9a7896b3f",
+    "size": 1781
+  },
+  {
+    "file": "06_seller_email.eml",
+    "category": "email",
+    "collection_source": "Buyer's mailbox export",
+    "tags": [
+      "email"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "0a3f60371c4e175f7acfbcb6909d9cf04e76de0302ca63fbc236e7d709a99221",
+    "size": 746
+  },
+  {
+    "file": "07_complaint.txt",
+    "category": "complaint",
+    "collection_source": "Complaint statement recorded at the cyber cell on 9 May 2026",
+    "tags": [
+      "complaint"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "c0b6e70a0ccf3342b804f00db3554fbe6f2de02104675b807d51b48969fc6181",
+    "size": 192
+  },
+  {
+    "file": "08_marketplace_listing.png",
+    "category": "marketplace listing",
+    "collection_source": "Screenshot of the seller profile page taken by the buyer",
+    "tags": [
+      "listing"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "c0d8ef6ce29560dae0f7826424717d3ecfb811e189cde5c9944d131a5a1667c1",
+    "size": 33897
+  }
+]

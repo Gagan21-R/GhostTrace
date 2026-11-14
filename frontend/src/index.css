@@ -23,6 +23,9 @@ body {
   .btn-accent { @apply btn bg-volt text-white; }
   .btn-ghost { @apply inline-flex items-center gap-2 px-3 py-2 text-sm font-bold text-ink-900 transition hover:bg-acid/60 focus:outline-none focus-visible:ring-4 focus-visible:ring-volt/40 disabled:opacity-50; }
   .btn-outline { @apply btn bg-surface text-ink-900 hover:bg-paper; }
+  /* review decisions: green = confirm / accept / processed, red = reject / dismiss */
+  .btn-ok { @apply btn bg-emerald-500 text-white hover:bg-emerald-600; }
+  .btn-no { @apply btn bg-rose-500 text-white hover:bg-rose-600; }
   .input { @apply w-full border-2 border-ink-900 bg-surface px-3 py-2 text-ink-900 text-sm placeholder:text-slate-400 focus:outline-none focus:shadow-brutal-sm focus:bg-white; }
   .label { @apply text-[11px] font-bold uppercase tracking-[0.14em] text-slate-600; }
   .chip { @apply inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold; }

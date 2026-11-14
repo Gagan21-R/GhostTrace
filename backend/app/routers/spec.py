@@ -1,4 +1,4 @@
-"""Endpoints named in the EVIDENCE-X API specification that are not already served elsewhere.
+"""Endpoints named in the GhostTrace API specification that are not already served elsewhere.
 
 Where the spec path is an alias of an existing endpoint, it delegates to the same handler, so
 authorisation, auditing and response schemas are identical.

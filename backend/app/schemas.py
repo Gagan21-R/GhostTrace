@@ -59,6 +59,7 @@ class CaseIn(BaseModel):
     case_type: str = Field(default="general", max_length=64)
     priority: str = Field(default="medium", pattern="^(low|medium|high|critical)$")
     default_timezone: str = Field(default="UTC", pattern=r"^(UTC|unknown|[+-]\d{2}:\d{2})$")
+    translations: dict[str, dict[str, str]] = Field(default_factory=dict)
 
 
 class CaseUpdate(BaseModel):
@@ -70,6 +71,7 @@ class CaseUpdate(BaseModel):
     status: str | None = Field(default=None, pattern="^(active|completed|archived)$")
     default_timezone: str | None = Field(default=None, pattern=r"^(UTC|unknown|[+-]\d{2}:\d{2})$")
     allow_external_ai: bool | None = None  # owner only
+    translations: dict[str, dict[str, str]] | None = None
 
 
 class MemberIn(BaseModel):

@@ -1,0 +1,48 @@
+[
+  {
+    "file": "01_extortion_email.eml",
+    "category": "email",
+    "collection_source": "Exported from Nitin Rao's mailbox",
+    "tags": [
+      "email",
+      "extortion"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "ad0ae0fa8a6ad14aeb4b11ced90626b5605f10423fb43e2a8b9355abe97de2e9",
+    "size": 630
+  },
+  {
+    "file": "02_followup_email.eml",
+    "category": "email",
+    "collection_source": "Exported from Nitin Rao's mailbox",
+    "tags": [
+      "email",
+      "extortion"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "541c0b3494f5b12b8570ebb3248e470bd527048572258daa540a1caa4bf41c61",
+    "size": 376
+  },
+  {
+    "file": "03_breach_check.png",
+    "category": "screenshot",
+    "collection_source": "Screenshot taken by investigator 8 Apr 2026",
+    "tags": [
+      "osint"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "4abfff28e102359deab3e8be2a7031c021eabee121b26a073e9e8d301d521332",
+    "size": 32537
+  },
+  {
+    "file": "04_victim_statement.txt",
+    "category": "statement",
+    "collection_source": "Statement recorded 8 Apr 2026",
+    "tags": [
+      "statement"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "7036cae55b267f01aa65c9016278db8bac579e857b75f2561bf67c45efb7a404",
+    "size": 147
+  }
+]

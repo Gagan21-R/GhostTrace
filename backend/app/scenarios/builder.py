@@ -77,7 +77,7 @@ def pdf(path: Path, title: str, lines: list[str], meta_date="D:20260302112000+05
     from reportlab.pdfgen import canvas
     c = canvas.Canvas(str(path), pagesize=A4)
     c.setTitle(title)
-    c.setCreator("EVIDENCE-X synthetic dataset")
+    c.setCreator("GhostTrace synthetic dataset")
     w, h = A4
     c.setFont("Helvetica-Bold", 16)
     c.drawString(50, h - 60, title)
@@ -591,6 +591,14 @@ def build_s5(d: Path) -> list[dict]:
 BUILDERS = {"s1-phishing": build_s1, "s2-account-compromise": build_s2, "s3-evidence-preservation": build_s3,
             "s4-whistleblower-retaliation": build_s4, "s5-marketplace-dispute": build_s5,
             "s2h-sparse-account-records": lambda d: build_s2(d, sparse=True)}
+
+
+from .trials import TRIAL_BUILDERS  # noqa: E402  (trials reuses the helpers above)
+
+BUILDERS.update(TRIAL_BUILDERS)
+from .marketplace import BUILDERS as MARKET_BUILDERS  # noqa: E402
+
+BUILDERS.update(MARKET_BUILDERS)
 
 
 def build_all(force: bool = False) -> dict:

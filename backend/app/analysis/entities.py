@@ -17,7 +17,7 @@ from .index import CaseIndex
 FACT_TO_ENTITY = {"person": "person", "organisation": "organisation", "email": "email", "phone": "phone",
                   "url": "website", "username": "username", "account": "account", "txn_ref": "transaction",
                   "order_id": "order", "invoice_no": "document_ref", "tracking": "shipment", "ip": "ip_address",
-                  "device": "device", "location": "location", "ticket": "document_ref"}
+                  "device": "device", "location": "location", "ticket": "document_ref", "upi": "upi_id"}
 
 
 def _entity_key(f) -> tuple[str, str]:

@@ -61,7 +61,7 @@ export default function MissingEvidenceTab() {
                 <div className="text-xs text-slate-500">Linked: {Object.entries(r.linked).map(([k, v]) => `${k} ${v}`).join(", ")}</div>
                 {can("review:decide") && (
                   <div className="flex flex-wrap gap-2 pt-1">{["requested", "collected", "not_available", "open"].map((s) => (
-                    <button key={s} className="btn-outline !py-1 text-xs" disabled={r.status === s} onClick={() => setStatus(r.id, s)}>Mark {s.replace("_", " ")}</button>))}</div>)}
+                    <button key={s} className={s === "collected" ? "btn-ok !py-1 text-xs" : s === "not_available" ? "btn-no !py-1 text-xs" : "btn-outline !py-1 text-xs"} disabled={r.status === s} onClick={() => setStatus(r.id, s)}>Mark {s.replace("_", " ")}</button>))}</div>)}
               </div>
             </div>)}
         </li>))}</ol>

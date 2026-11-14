@@ -1,0 +1,35 @@
+[
+  {
+    "file": "01_ransom_note.txt",
+    "category": "ransom note",
+    "collection_source": "Copied from file server desktop by IT",
+    "tags": [
+      "ransomware"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "9e0b158e03ef688dec0f0b5edc395a8623b4874539ce18ff9f5f9c3ea779e07b",
+    "size": 217
+  },
+  {
+    "file": "02_server_events.csv",
+    "category": "server log",
+    "collection_source": "Windows event log export by IT",
+    "tags": [
+      "log"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "8930ca3c5e24f12b13be2df27e53af1c3aac46242e9470d61377cee8361509d4",
+    "size": 286
+  },
+  {
+    "file": "03_attacker_email.eml",
+    "category": "email",
+    "collection_source": "IT mailbox export",
+    "tags": [
+      "email"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "b9643916a26401672e3dd400e71a318df95cb929f172bacb1eb9f28ce9586186",
+    "size": 408
+  }
+]

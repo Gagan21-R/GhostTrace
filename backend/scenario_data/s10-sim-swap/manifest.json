@@ -1,0 +1,46 @@
+[
+  {
+    "file": "01_sms_inbox.txt",
+    "category": "sms",
+    "collection_source": "SMS backup restored from Deepak Joshi's cloud backup",
+    "tags": [
+      "sms"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "0e0db734245a38592b2dc9745670c3f35f1373646b8a08fb4e149ab9689c1b97",
+    "size": 370
+  },
+  {
+    "file": "02_bank_statement.csv",
+    "category": "bank statement",
+    "collection_source": "Downloaded from SBI Online by Deepak Joshi 2 Apr 2026",
+    "tags": [
+      "bank"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "45eaa1cdbfb4de162eb391314f43733152389c28bddeb967d89a833ec2f37f1c",
+    "size": 307
+  },
+  {
+    "file": "03_carrier_sim_record.pdf",
+    "category": "carrier record",
+    "collection_source": "Carrier response to police notice 5 Apr 2026",
+    "tags": [
+      "carrier"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "5594e8859a1064c5fc01d0c2e423d91946b2ad1d9b53996e79e216fd24627968",
+    "size": 1781
+  },
+  {
+    "file": "04_victim_statement.txt",
+    "category": "statement",
+    "collection_source": "Statement recorded 2 Apr 2026",
+    "tags": [
+      "statement"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "e56da5291aa9067f18e063bd168fa84e854bc8b13553a409604843afab493bc8",
+    "size": 205
+  }
+]

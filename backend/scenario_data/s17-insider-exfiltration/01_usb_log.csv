@@ -1,0 +1,4 @@
+Time,User,Host,Event,Device,Files
+2026-04-20 18:40 +05:30,amit.k,FIN-LT-044,USB storage connected,SanDisk Ultra 64GB,
+2026-04-20 18:46 +05:30,amit.k,FIN-LT-044,Files copied,SanDisk Ultra 64GB,client_master_2026.xlsx; pricing_q2.xlsx
+2026-04-20 18:52 +05:30,amit.k,FIN-LT-044,USB storage removed,SanDisk Ultra 64GB,

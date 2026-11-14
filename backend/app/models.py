@@ -1,4 +1,4 @@
-"""Relational schema for EVIDENCE-X.
+"""Relational schema for GhostTrace.
 
 Every investigation artefact carries a ``case_id`` so access control can be enforced at
 case level. Audit events are append-only and hash-chained (see ``audit.py``).
@@ -85,6 +85,8 @@ class Case(Base):
     # Evidence is never sent to an external AI provider unless the case owner explicitly authorises it.
     allow_external_ai: Mapped[bool] = mapped_column(Boolean, default=False)
     is_scenario: Mapped[bool] = mapped_column(Boolean, default=False)
+    # Hindi / Kannada versions of title, description and objective: {"hi": {...}, "kn": {...}}. Evidence is never translated.
+    translations: Mapped[dict] = mapped_column(JSON, default=dict)
     created_by: Mapped[str | None] = mapped_column(ForeignKey("users.id"), nullable=True)
     created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow)
     updated_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow, onupdate=utcnow)
@@ -512,4 +514,83 @@ class ContactMessage(Base):
     message: Mapped[str] = mapped_column(Text)
     client_ip: Mapped[str] = mapped_column(String(64), default="")
     status: Mapped[str] = mapped_column(String(16), default="new")  # new | read | archived
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow)
+
+
+class MessageClassification(Base):
+    """Naive Bayes label for a message or a screenshot's OCR text. A lead for review, not a finding of intent."""
+    __tablename__ = "message_classifications"
+    id: Mapped[str] = mapped_column(String(32), primary_key=True, default=_uuid)
+    case_id: Mapped[str] = mapped_column(ForeignKey("cases.id", ondelete="CASCADE"), index=True)
+    evidence_id: Mapped[str] = mapped_column(ForeignKey("evidence.id", ondelete="CASCADE"), index=True)
+    segment_id: Mapped[str | None] = mapped_column(String(32), nullable=True)
+    scope: Mapped[str] = mapped_column(String(16))  # document | message
+    locator: Mapped[str] = mapped_column(String(128), default="")
+    author: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    text: Mapped[str] = mapped_column(Text, default="")
+    label: Mapped[str] = mapped_column(String(32), index=True)
+    confidence: Mapped[float] = mapped_column(Float)
+    uncertain: Mapped[bool] = mapped_column(Boolean, default=False)
+    probabilities: Mapped[dict] = mapped_column(JSON, default=dict)
+    top_terms: Mapped[list] = mapped_column(JSON, default=list)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow)
+
+
+class AuthenticityAssessment(Base):
+    """Message authenticity check for a disputed message (fabricated screenshot vs compromised account vs
+    consistent with the account holder). Built by a tool-calling agent; every step is in ``tool_trace``."""
+    __tablename__ = "authenticity_assessments"
+    id: Mapped[str] = mapped_column(String(32), primary_key=True, default=_uuid)
+    case_id: Mapped[str] = mapped_column(ForeignKey("cases.id", ondelete="CASCADE"), index=True)
+    run_id: Mapped[str | None] = mapped_column(String(32), nullable=True)
+    evidence_id: Mapped[str] = mapped_column(ForeignKey("evidence.id", ondelete="CASCADE"), index=True)
+    disputed_text: Mapped[str] = mapped_column(Text)
+    claimed_sender: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    message_time: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    verdict: Mapped[str] = mapped_column(String(40))  # likely_fabricated|possible_impersonation|consistent_with_account_holder|insufficient_evidence
+    fabrication_score: Mapped[float] = mapped_column(Float, default=0.0)
+    compromise_score: Mapped[float] = mapped_column(Float, default=0.0)
+    indicators: Mapped[list] = mapped_column(JSON, default=list)
+    tool_trace: Mapped[list] = mapped_column(JSON, default=list)
+    recommendations: Mapped[list] = mapped_column(JSON, default=list)
+    summary: Mapped[str] = mapped_column(Text, default="")
+    mode: Mapped[str] = mapped_column(String(32), default="deterministic-planner")
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow)
+
+
+class HypothesisAnalysis(Base):
+    """One version of the Alternative Hypothesis Testing Engine's output for a case. Versions are never overwritten:
+    re-evaluation after new evidence creates a new version and records what changed."""
+    __tablename__ = "hypothesis_analyses"
+    id: Mapped[str] = mapped_column(String(32), primary_key=True, default=_uuid)
+    case_id: Mapped[str] = mapped_column(ForeignKey("cases.id", ondelete="CASCADE"), index=True)
+    run_id: Mapped[str | None] = mapped_column(String(32), nullable=True)
+    version: Mapped[int] = mapped_column(Integer, default=1)
+    trigger: Mapped[str] = mapped_column(String(64), default="manual")
+    evidence_ids: Mapped[list] = mapped_column(JSON, default=list)
+    question: Mapped[dict] = mapped_column(JSON, default=dict)
+    hypotheses: Mapped[list] = mapped_column(JSON, default=list)
+    matrix: Mapped[list] = mapped_column(JSON, default=list)
+    counter: Mapped[dict] = mapped_column(JSON, default=dict)
+    comparison: Mapped[list] = mapped_column(JSON, default=list)
+    next_evidence: Mapped[list] = mapped_column(JSON, default=list)
+    review: Mapped[dict] = mapped_column(JSON, default=dict)
+    changes: Mapped[dict] = mapped_column(JSON, default=dict)
+    baseline: Mapped[dict] = mapped_column(JSON, default=dict)
+    approval_status: Mapped[str] = mapped_column(String(16), default="pending")  # pending|approved|rejected
+    approval_note: Mapped[str | None] = mapped_column(Text, nullable=True)
+    approved_by: Mapped[str | None] = mapped_column(ForeignKey("users.id"), nullable=True)
+    created_by: Mapped[str | None] = mapped_column(ForeignKey("users.id"), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow)
+
+
+class HypothesisFeedback(Base):
+    """Investigator input to the hypothesis engine: add / edit / reject / restore / challenge a hypothesis."""
+    __tablename__ = "hypothesis_feedback"
+    id: Mapped[str] = mapped_column(String(32), primary_key=True, default=_uuid)
+    case_id: Mapped[str] = mapped_column(ForeignKey("cases.id", ondelete="CASCADE"), index=True)
+    user_id: Mapped[str | None] = mapped_column(ForeignKey("users.id"), nullable=True)
+    hypothesis_id: Mapped[str] = mapped_column(String(16))
+    action: Mapped[str] = mapped_column(String(16))  # add|edit|reject|restore|challenge
+    payload: Mapped[dict] = mapped_column(JSON, default=dict)
     created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow)

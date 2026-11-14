@@ -1,4 +1,4 @@
-# EVIDENCE-X API
+# GhostTrace API
 
 Interactive OpenAPI docs: `http://localhost:8000/docs` (use **Authorize** with your email/password).
 
@@ -87,7 +87,7 @@ Validation errors: `code: "validation_error"`, `details: [{ "field": "...", "mes
 | GET | `/api/health` | |
 
 ## Specification endpoints (added in session 2)
-These implement the paths named in the EVIDENCE-X master specification (all under `/api`). Aliases call the same handlers as the endpoints above, so permissions, auditing and responses are identical.
+These implement the paths named in the GhostTrace master specification (all under `/api`). Aliases call the same handlers as the endpoints above, so permissions, auditing and responses are identical.
 
 | Method | Path | Notes |
 |---|---|---|

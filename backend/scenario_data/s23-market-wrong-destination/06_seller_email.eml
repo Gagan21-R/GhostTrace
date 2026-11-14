@@ -1,0 +1,19 @@
+Received: from mail-out.techkartdeals.in by mx.inbox.example; Tue, 05 May 2026
+ 10:00:00 +0530
+Authentication-Results: mx.inbox.example; spf=pass
+ smtp.mailfrom=techkartdeals.in; dkim=pass header.d=techkartdeals.in;
+ dmarc=pass
+From: "TechKart Deals" <support@techkartdeals.in>
+To: "Asha Menon" <asha.menon@inboxmail.com>
+Subject: Order BH-778120 payment
+Date: Tue, 05 May 2026 10:00:00 +0530
+Message-ID: <d0fcc518590552ea@techkartdeals.in>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Dear Asha,
+We have not received any payment for this order. Our only UPI ID is techkartd=
+eals@okicici. Your receipt shows techkart.deals@okaxis, which is not ours. Pl=
+ease check with your bank.
+TechKart Deals

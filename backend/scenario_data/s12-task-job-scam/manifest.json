@@ -1,0 +1,35 @@
+[
+  {
+    "file": "01_job_chat.txt",
+    "category": "chat",
+    "collection_source": "WhatsApp export from Pooja Shetty's phone",
+    "tags": [
+      "chat"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "626c423c3e9def86b5a7fb941602dd98bce816a1dd0ee79c0c4a1a11ded00273",
+    "size": 803
+  },
+  {
+    "file": "02_bank_statement.csv",
+    "category": "bank statement",
+    "collection_source": "Bank statement download",
+    "tags": [
+      "bank"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "498085915dfdae6c1457bb0ac291dc59d9258d7494f62b92e7efc8e2f48dcad9",
+    "size": 258
+  },
+  {
+    "file": "03_dashboard.png",
+    "category": "screenshot",
+    "collection_source": "Screenshot by Pooja Shetty 12 Apr 2026",
+    "tags": [
+      "screenshot"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "3b0a1ffe1d287f867afe043d69e52a97c848837ec4f3302316ab96db14f3f59e",
+    "size": 33619
+  }
+]

@@ -1,4 +1,5 @@
 import { Activity, AlertOctagon, FileStack, FolderOpen, Gavel, HelpCircle, Plus, ShieldQuestion } from "lucide-react";
+import { ct, t } from "../lib/i18n";
 import { Link } from "react-router-dom";
 import { Area, AreaChart, Bar, BarChart, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { Badge, Empty, ErrorBox, Loading, OutcomeBadge, PageHeader, Section, Stat, statusTone } from "../components/ui";
@@ -17,7 +18,7 @@ export default function Dashboard() {
   const contra = Object.entries(data.contradictions_by_category).map(([k, v]) => ({ k: titleCase(k), v: v as number }));
   return (
     <div>
-      <PageHeader eyebrow="Overview" title="Investigation workspace" subtitle="Live figures from your cases. Scenario Lab test cases are excluded."
+      <PageHeader eyebrow="Overview" title="Investigation workspace" subtitle="Live figures from your cases."
         actions={<Link to="/cases/new" className="btn-primary"><Plus className="h-4 w-4" />New investigation</Link>} />
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4 xl:grid-cols-8">
         <Stat label="Cases" value={s.total_cases} icon={<FolderOpen className="h-4 w-4" />} />
@@ -66,7 +67,7 @@ export default function Dashboard() {
         <Section title="Integrity verification">
           <div className="grid grid-cols-3 gap-2 text-center">{[["match", "Verified", "text-emerald-700"], ["mismatch", "Mismatch", "text-rose-700"], ["missing", "Missing", "text-rose-700"]].map(([k, l, cls]) => (
             <div key={k} className="rounded-lg bg-slate-100 p-2"><div className={`text-xl font-semibold tabular-nums ${(data.integrity?.[k] || 0) && k !== "match" ? cls : k === "match" ? cls : "text-slate-700"}`}>{data.integrity?.[k] || 0}</div><div className="text-[11px] text-slate-500">{l}</div></div>))}</div>
-          <p className="mt-2 text-[11px] text-slate-500">Originals re-hashed against their intake SHA-256. A match shows integrity since intake, not authenticity.</p>
+          <p className="mt-2 text-[11px] text-slate-500">Originals re-hashed against their intake SHA-256.</p>
         </Section>
         <Section title="Needs attention">
           <div className="space-y-2 text-sm">
@@ -88,7 +89,7 @@ export default function Dashboard() {
           {data.recent_cases.length === 0 ? <div className="text-sm text-slate-500">No cases yet.</div> : (
             <ul className="divide-y divide-slate-100">{data.recent_cases.map((c: any) => (
               <li key={c.id}><Link to={`/cases/${c.id}`} className="flex items-center gap-2 py-2 text-sm hover:text-accent-700">
-                <span className="min-w-0 flex-1 truncate font-medium">{c.title}</span><Badge tone={statusTone(c.status)}>{c.status}</Badge></Link></li>))}</ul>)}
+                <span className="min-w-0 flex-1 truncate font-medium">{ct(c, "title")}</span><Badge tone={statusTone(c.status)}>{t(c.status)}</Badge></Link></li>))}</ul>)}
         </Section>
         <Section title="Recent reports">
           {data.recent_reports.length === 0 ? <div className="text-sm text-slate-500">No reports yet.</div> : (

@@ -64,7 +64,7 @@ function NewScenario({ cid, parent, onCreated }: { cid: string; parent: any | nu
       <input className="input" placeholder="Scenario title (optional)" value={title} onChange={(e) => setTitle(e.target.value)} />
       {err && <div className="text-sm text-rose-700">{err}</div>}
       <button className="btn-accent w-full justify-center" disabled={busy} onClick={submit}>{busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <FlaskRound className="h-4 w-4" />}Simulate in sandbox</button>
-      <p className="text-[11px] text-slate-500">The case is copied into an isolated sandbox, the assumption is applied there, and the analysis is re-run. Nothing is written to the real case.</p>
+      <p className="text-[11px] text-slate-500">The case is copied into an isolated sandbox, the assumption is applied there, and the analysis is re-run.</p>
     </div>
   );
 }

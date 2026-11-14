@@ -18,7 +18,7 @@ export default function ScenarioHistory() {
   return (
     <div>
       <Link to="/scenarios" className="mb-2 inline-flex items-center gap-1 text-xs font-medium text-slate-500 hover:text-ink-900"><ChevronLeft className="h-3.5 w-3.5" />Scenario Lab</Link>
-      <PageHeader title="Scenario test results" subtitle="Every completed run is stored. Select two or more runs to compare their measured metrics." />
+      <PageHeader title="Scenario test results" subtitle="Every completed run is stored." />
       {!data!.length ? <Empty title="No scenario runs yet" action={<Link to="/scenarios" className="btn-primary">Open Scenario Lab</Link>} /> : (
         <>
           {cmp.data && (

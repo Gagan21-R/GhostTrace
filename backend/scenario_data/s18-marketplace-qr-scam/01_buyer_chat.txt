@@ -1,0 +1,5 @@
+16/04/2026, 14:00 - Buyer Army Officer: I want your sofa, I am in the army so I cannot come. I will pay full 15000.
+16/04/2026, 14:05 - Lakshmi Rao: Ok, how will you pay?
+16/04/2026, 14:07 - Buyer Army Officer: Scan this qr code to receive the payment for your item.
+16/04/2026, 14:15 - Lakshmi Rao: Money got debited instead of credited!
+16/04/2026, 14:16 - Buyer Army Officer: Technical issue, scan again to get refund of both payments.

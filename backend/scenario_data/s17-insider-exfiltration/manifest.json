@@ -1,0 +1,46 @@
+[
+  {
+    "file": "01_usb_log.csv",
+    "category": "endpoint log",
+    "collection_source": "Endpoint agent export by IT security",
+    "tags": [
+      "log"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "44bf7323c137246012cec54cbe2e6e16e1799d1fe10c5c1b5635eafc4ac7410e",
+    "size": 319
+  },
+  {
+    "file": "02_mail_to_personal.eml",
+    "category": "email",
+    "collection_source": "Mail gateway journal export",
+    "tags": [
+      "email"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "cfe48cc0947a216cc0f194414e7108b8f263df80438af0b2b695940a76d77455",
+    "size": 875
+  },
+  {
+    "file": "03_resignation.pdf",
+    "category": "hr record",
+    "collection_source": "HR file",
+    "tags": [
+      "hr"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "2a79b94797906af5829dd416eb91aa9e2c21b71b518a04e58a0d166eeda16cb1",
+    "size": 1692
+  },
+  {
+    "file": "04_dlp_alerts.csv",
+    "category": "dlp log",
+    "collection_source": "DLP console export",
+    "tags": [
+      "log"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "46c77f142f4d0093eff6cc7302d9683fc3c5a135ba76833bf59f5cadca12d3a2",
+    "size": 145
+  }
+]

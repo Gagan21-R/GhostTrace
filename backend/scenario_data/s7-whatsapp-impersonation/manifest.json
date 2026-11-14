@@ -1,0 +1,73 @@
+[
+  {
+    "file": "01_complaint_screenshot.png",
+    "category": "screenshot",
+    "collection_source": "Screenshot submitted by complainant Sneha Kulkarni with her complaint",
+    "tags": [
+      "complaint",
+      "screenshot"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "a3b99b6a4d78088f245ac3118fa2bd93c53c133c5a836f2ba45cef18a9c34545",
+    "size": 41536
+  },
+  {
+    "file": "02_sneha_chat_export.txt",
+    "category": "chat",
+    "collection_source": "WhatsApp 'Export chat' from Sneha Kulkarni's phone, 19 Mar 2026",
+    "tags": [
+      "chat",
+      "complainant"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "52eae5df2be1c2a62170537e877807b5abe95fac6fd759f9366e582f2b38d751",
+    "size": 899
+  },
+  {
+    "file": "03_rohan_chat_export.txt",
+    "category": "chat",
+    "collection_source": "WhatsApp export from Rohan Verma's phone, seized and exported by police 20 Mar 2026",
+    "tags": [
+      "chat",
+      "accused"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "09b92953e0e1ae629cc6d3736157436fc338d2510606dfda2044e9f4cf963505",
+    "size": 1097
+  },
+  {
+    "file": "04_whatsapp_account_log.csv",
+    "category": "account log",
+    "collection_source": "Account activity for Rohan Verma's number, provider response to police request",
+    "tags": [
+      "log",
+      "account"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "7c53309411c4a78b3fe8cc6960571f8dd888bea877afd85712531755a69316aa",
+    "size": 612
+  },
+  {
+    "file": "05_hackathon_entry_log.csv",
+    "category": "attendance",
+    "collection_source": "Venue entry register, college hackathon (phones deposited at entrance)",
+    "tags": [
+      "alibi",
+      "attendance"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "ae86bbca068b9eae80f0b1d35272906d1a6ced7a3b391c8ee1814595ca09ec42",
+    "size": 309
+  },
+  {
+    "file": "06_complainant_statement.txt",
+    "category": "statement",
+    "collection_source": "Statement recorded by investigator 19 Mar 2026",
+    "tags": [
+      "statement"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "0e819d463f2014c6bf3b8f49452d033429b92425fbd39962ec10c7c9284e99f0",
+    "size": 263
+  }
+]

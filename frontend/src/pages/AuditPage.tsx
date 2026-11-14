@@ -1,4 +1,5 @@
 import { Link2, ShieldAlert, ShieldCheck } from "lucide-react";
+import { ct, t } from "../lib/i18n";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Badge, Hash, PageHeader, Section } from "../components/ui";
@@ -11,7 +12,7 @@ export default function AuditPage() {
   return (
     <div>
       <PageHeader eyebrow="Audit & Integrity" title="Audit trail and evidence integrity"
-        subtitle="Every intake, access, processing step, review decision and export is written to an append-only log. Each entry includes the hash of the previous one, so any edit or deletion breaks the chain." />
+        subtitle="Every intake, access, processing step, review decision and export is written to an append-only log." />
       <div className="grid gap-4 lg:grid-cols-2">
         <Section title="Audit chain verification">
           <div className="flex items-center gap-4">
@@ -29,7 +30,7 @@ export default function AuditPage() {
         <Section title="What integrity verification shows">
           <ul className="space-y-2 text-sm text-slate-700">
             <li>• <b>SHA-256 match:</b> the stored file is byte-identical to the one received at intake.</li>
-            <li>• It does <b>not</b> prove the file was genuine or unaltered before it reached EVIDENCE-X.</li>
+            <li>• It does <b>not</b> prove the file was genuine or unaltered before it reached GhostTrace.</li>
             <li>• It does <b>not</b> by itself establish legal admissibility or chain-of-custody compliance.</li>
             <li>• Hashing, verification and access checks are deterministic code; no LLM is involved.</li>
           </ul>
@@ -38,7 +39,7 @@ export default function AuditPage() {
       <Section title="Per-case integrity & audit" className="mt-4">
         <ul className="divide-y divide-slate-100">{(cases.data || []).map((c) => (
           <li key={c.id}><Link to={`/cases/${c.id}/audit`} className="flex items-center gap-3 py-2.5 text-sm hover:text-accent-700">
-            <span className="mono text-slate-500">{c.case_number}</span><span className="flex-1 truncate font-medium">{c.title}</span>
+            <span className="mono text-slate-500">{c.case_number}</span><span className="flex-1 truncate font-medium">{ct(c, "title")}</span>
             {c.is_scenario && <Badge tone="violet">scenario</Badge>}<Badge>{c.counts.evidence} items</Badge></Link></li>))}</ul>
       </Section>
     </div>

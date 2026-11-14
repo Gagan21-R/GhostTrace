@@ -5,7 +5,7 @@ rendered as PDF, DOCX or HTML. Every factual row carries a citation in the form
 ``[EV-001 | Page 3]`` and, where available, the evidence/segment IDs so the HTML and in-app views
 can link straight to the cited location. Labels:
 
-  ENGINE  produced by EVIDENCE-X agents and rules (requires human review)
+  ENGINE  produced by GhostTrace agents and rules (requires human review)
   HUMAN   decisions recorded by a human reviewer
   SYSTEM  deterministic platform records (hashes, intake times, audit counts)
 """
@@ -224,6 +224,16 @@ def build(db: Session, case: Case, scenario: dict | None = None) -> dict:
              "Timestamps marked metadata, estimated, or with an assumed timezone are less reliable than source-reported times.",
              "Inferred relationships are leads, not established identity. Missing evidence is not evidence of wrongdoing.",
              "Integrity since intake is verified; authenticity before intake is not established by hashing."]
+    from ..analysis import confidence as _conf
+    cr = _conf.compute(db, case.id)
+    if cr.get("score") is not None:
+        section("Model confidence report", "SYSTEM",
+                para(f"Overall model confidence: {cr['score']} / 100 ({cr['band']}). This measures how reliable the model's output is "
+                     "for this case; it is not a finding about any person."),
+                table(["Component", "Score", "Weight", "Basis"], [[c["name"], f"{c['score']}/100", f"{round(c['weight'] * 100)}%", c["detail"]]
+                                                               for c in cr["components"]], [46, 18, 16, 100]),
+                para("Weakest parts: " + (", ".join(cr["weakest"]) if cr.get("weakest") else "none below 80/100") + "."),
+                lst(cr.get("notes", [])))
     section("Confidence and limitations", "SYSTEM", lst(list(dict.fromkeys(lims))))
     section("Audit and processing summary", "SYSTEM",
             table(["Audit action", "Count"], [[k, str(v)] for k, v in sorted(audit_counts.items())], [120, 60]),

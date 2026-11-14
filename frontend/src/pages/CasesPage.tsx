@@ -1,4 +1,5 @@
 import { FlaskConical, Plus, Search } from "lucide-react";
+import { ct, t } from "../lib/i18n";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Badge, Empty, ErrorBox, Loading, PageHeader, VERDICT_LABEL, statusTone } from "../components/ui";
@@ -30,15 +31,15 @@ export default function CasesPage() {
             <tbody className="divide-y divide-slate-100">
               {data!.map((c) => (
                 <tr key={c.id} className="hover:bg-slate-50/70">
-                  <td className="px-4 py-3"><Link to={`/cases/${c.id}`} className="font-medium text-ink-900 hover:text-accent-700">{c.title}</Link>
+                  <td className="px-4 py-3"><Link to={`/cases/${c.id}`} className="font-medium text-ink-900 hover:text-accent-700">{ct(c, "title")}</Link>
                     <div className="mono text-slate-500">{c.case_number}{c.is_scenario && <Badge tone="violet" className="ml-2">scenario</Badge>}</div></td>
-                  <td className="hidden px-4 text-slate-600 md:table-cell">{titleCase(c.case_type)}</td>
+                  <td className="hidden px-4 text-slate-600 md:table-cell">{t(titleCase(c.case_type))}</td>
                   <td className="px-4 tabular-nums">{c.counts.evidence}</td>
                   <td className="hidden px-4 lg:table-cell"><div className="flex gap-1.5">
                     <Badge tone={c.counts.contradictions ? "red" : "slate"}>{c.counts.contradictions} conflicts</Badge>
                     <Badge tone={c.counts.gaps_open ? "amber" : "slate"}>{c.counts.gaps_open} gaps</Badge></div></td>
                   <td className="hidden px-4 lg:table-cell">{c.verdict ? <Badge tone={statusTone(c.verdict)}>{VERDICT_LABEL[c.verdict] || c.verdict}</Badge> : <span className="text-slate-400">—</span>}</td>
-                  <td className="px-4"><Badge tone={statusTone(c.status)}>{c.status}</Badge></td>
+                  <td className="px-4"><Badge tone={statusTone(c.status)}>{t(c.status)}</Badge></td>
                   <td className="hidden px-4 text-slate-500 md:table-cell">{fmtDate(c.updated_at)}</td>
                 </tr>))}
             </tbody>

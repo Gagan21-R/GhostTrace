@@ -1,0 +1,19 @@
+Received: from mail-out.techkartdeals.in by mx.inbox.example; Thu, 07 May 2026
+ 10:00:00 +0530
+Authentication-Results: mx.inbox.example; spf=pass
+ smtp.mailfrom=techkartdeals.in; dkim=pass header.d=techkartdeals.in;
+ dmarc=pass
+From: "TechKart Deals" <support@techkartdeals.in>
+To: "Asha Menon" <asha.menon@inboxmail.com>
+Subject: Your order BH-778120
+Date: Thu, 07 May 2026 10:00:00 +0530
+Message-ID: <cc194761f09b5cb6@techkartdeals.in>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Dear Asha,
+We received your payment. The courier reports a weather delay at the Bengalur=
+u hub (AWB SW77812045). If it is not delivered by 12 May, a full refund will =
+be processed.
+TechKart Deals

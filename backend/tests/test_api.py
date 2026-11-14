@@ -71,7 +71,8 @@ def test_full_case_pipeline_and_isolation(client, admin_token):
     res = _wait(client, alice, run["run_id"])
     assert res["status"] == "completed", res
     assert [a["agent"] for a in res["agents"]] == ["intake", "extraction", "entity_intelligence", "timeline", "relationship",
-                                                   "evidence_dna", "integrity_inspection", "contradiction", "evidence_gap"]
+                                                   "evidence_dna", "integrity_inspection", "message_classification", "message_authenticity",
+                                                   "contradiction", "evidence_gap", "confidence_report"]
 
     cons = client.get(f"/api/cases/{cid}/contradictions", headers=auth(alice)).json()
     cats = {c["category"] for c in cons}

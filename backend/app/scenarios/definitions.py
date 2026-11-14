@@ -58,7 +58,7 @@ S["s1-phishing"] = {
         "forbidden": [{"type": "gap", "category": "unverified_sender", "file": "09_flipkart_newsletter.eml",
                        "description": "Authenticated newsletter must not be flagged as unverified"},
                       {"type": "suspicious_url", "domain": "flipkart.com", "description": "Legitimate domain must not be flagged"}],
-        "scored_entities": {"types": ["email", "phone", "website", "transaction"],
+        "scored_entities": {"types": ["email", "upi_id", "phone", "website", "transaction"],
                             "values": ["alerts@hdfc-secure-kyc.xyz", "ananya.rao@mailbox.in", "support@kyc-update-help.top",
                                        "bounce@mailer-kyc.top", "kycdesk.verify@okaxis", "refunds@kyc-update-help.top",
                                        "noreply@flipkart.com", "9876543210", "8002586161",
@@ -303,3 +303,11 @@ S["s2h-sparse-account-records"] = {
         "ocr_expect": {"07_device_list.png": ["Unknown device - Linux - Lagos, NG - 14 Mar 2026 02:14"]},
     },
 }
+
+
+from .trial_defs import TRIALS  # noqa: E402
+
+S.update(TRIALS)
+from .marketplace import MARKET_DEFS  # noqa: E402
+
+S.update(MARKET_DEFS)

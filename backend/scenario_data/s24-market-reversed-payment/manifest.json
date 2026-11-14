@@ -1,0 +1,68 @@
+[
+  {
+    "file": "01_chat.txt",
+    "category": "chat",
+    "collection_source": "WhatsApp export from the buyer's phone",
+    "tags": [
+      "chat"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "4c0241a585ecde58c7275644a7d7a11f9bf1d9a77ff35ff9435b07fc982949f1",
+    "size": 401
+  },
+  {
+    "file": "02_payment_screenshot.png",
+    "category": "payment receipt",
+    "collection_source": "Screenshot from the buyer's payment app",
+    "tags": [
+      "payment"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "018d0f51cd3b7c0be99b4af1491abefaa308d3ebbc7a03e9401e5a0e661a6cea",
+    "size": 30758
+  },
+  {
+    "file": "03_bank_statement.csv",
+    "category": "bank statement",
+    "collection_source": "Statement downloaded from the buyer's bank",
+    "tags": [
+      "bank"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "791b9524a80d8d616302f53f3944eb813586b078b49b4467a58c91f08c950d8f",
+    "size": 212
+  },
+  {
+    "file": "04_order_confirmation.pdf",
+    "category": "order",
+    "collection_source": "Downloaded from the buyer's BazaarHub account",
+    "tags": [
+      "order"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "34f8f7ca7e3f84c76cbaebf4b3f5b921fa01659d1d15f59cb440a5dee862b8d7",
+    "size": 1781
+  },
+  {
+    "file": "07_complaint.txt",
+    "category": "complaint",
+    "collection_source": "Complaint statement recorded at the cyber cell on 9 May 2026",
+    "tags": [
+      "complaint"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "c0b6e70a0ccf3342b804f00db3554fbe6f2de02104675b807d51b48969fc6181",
+    "size": 192
+  },
+  {
+    "file": "08_marketplace_listing.png",
+    "category": "marketplace listing",
+    "collection_source": "Screenshot of the seller profile page taken by the buyer",
+    "tags": [
+      "listing"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "c0d8ef6ce29560dae0f7826424717d3ecfb811e189cde5c9944d131a5a1667c1",
+    "size": 33897
+  }
+]

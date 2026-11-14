@@ -20,6 +20,7 @@ EXT_TYPES: dict[str, tuple[str, str]] = {
     ".html": ("html", "text/html"), ".htm": ("html", "text/html"),
     ".json": ("chat", "application/json"),
     ".mp3": ("audio", "audio/mpeg"), ".wav": ("audio", "audio/wav"),
+    ".webm": ("audio", "audio/webm"), ".ogg": ("audio", "audio/ogg"),
     ".mp4": ("video", "video/mp4"),
 }
 
@@ -117,6 +118,10 @@ def inspect_upload(filename: str, data: bytes, max_bytes: int) -> IntakeResult:
         return fail("File extension is .wav but content is not RIFF/WAVE audio")
     if ext == ".mp3" and not (head.startswith(b"ID3") or head[:2] in (b"\xff\xfb", b"\xff\xf3", b"\xff\xf2")):
         return fail("File extension is .mp3 but content is not MPEG audio")
+    if ext == ".webm" and not head.startswith(b"\x1a\x45\xdf\xa3"):
+        return fail("File extension is .webm but content is not a WebM/Matroska container")
+    if ext == ".ogg" and not head.startswith(b"OggS"):
+        return fail("File extension is .ogg but content is not an Ogg container")
     if ext == ".mp4" and data[4:8] != b"ftyp":
         return fail("File extension is .mp4 but content is not an MP4 container")
     if ext in (".txt", ".md", ".log", ".csv", ".eml", ".json", ".mbox", ".html", ".htm") and not _is_text(data):

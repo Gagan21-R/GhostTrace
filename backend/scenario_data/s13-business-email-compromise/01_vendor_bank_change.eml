@@ -1,0 +1,18 @@
+Received: from mail-out.acme-supp1y.com by mx.inbox.example; Tue, 14 Apr 2026
+ 10:12:00 +0530
+From: "Accounts - Acme Supply" <accounts@acme-supp1y.com>
+To: "Finance" <finance@brightbuild.in>
+Subject: Updated bank details for invoice INV-2207
+Date: Tue, 14 Apr 2026 10:12:00 +0530
+Message-ID: <6c24d050787faa9e@acme-supp1y.com>
+Reply-To: acme.accounts.desk@gmail.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Dear Finance team,
+Our bank account is under audit. Please change the beneficiary bank account f=
+or all future invoices to:
+Account: 50200077881122, IFSC: HDFC0009921, Name: Acme Supply Trading.
+Please process INV-2207 today, it is urgent and confidential.
+Regards, Accounts

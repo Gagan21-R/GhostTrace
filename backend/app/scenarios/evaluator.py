@@ -47,6 +47,12 @@ def evaluate(db: Session, case_id: str, gt: dict, runs: list[AnalysisRun], durat
     seg_ids = {s.id for s in segs}
     from ..queries import primary_hypothesis
     hyp = primary_hypothesis(db, case_id)
+    from ..models import AuthenticityAssessment, HypothesisAnalysis, IntegrityFinding, MessageClassification
+    hyp_a = db.scalars(select(HypothesisAnalysis).where(HypothesisAnalysis.case_id == case_id).order_by(HypothesisAnalysis.version.desc())).first()
+    hyp_cmp = {c["id"]: c for c in (hyp_a.comparison if hyp_a else [])}
+    auths = list(db.scalars(select(AuthenticityAssessment).where(AuthenticityAssessment.case_id == case_id)))
+    cls = list(db.scalars(select(MessageClassification).where(MessageClassification.case_id == case_id)))
+    ifind = list(db.scalars(select(IntegrityFinding).where(IntegrityFinding.case_id == case_id)))
 
     def con_text(c):
         return json.dumps([c.description, c.key, c.reason, c.source_a, c.source_b], default=str)
@@ -127,6 +133,49 @@ def evaluate(db: Session, case_id: str, gt: dict, runs: list[AnalysisRun], durat
             if hit:
                 status, by = "found", f"{hit.relation}: {hit.explanation[:110]}"
                 matched_dep_ids.add(hit.id)
+        elif t in ("authenticity", "authenticity_indicator"):
+            for a in auths:
+                if "file" in m and by_name.get(m["file"]) and a.evidence_id != by_name[m["file"]].id:
+                    continue
+                if t == "authenticity" and a.verdict == m["verdict"]:
+                    status, by = "found", f"{a.verdict}: {a.summary[:120]}"
+                    break
+                hit = next((i for i in a.indicators if t == "authenticity_indicator" and i.get("key") == m["key"]), None)
+                if hit:
+                    status, by = "found", hit["text"][:140]
+                    break
+        elif t == "classification":
+            e = by_name.get(m["file"])
+            hit = next((c for c in cls if e and c.evidence_id == e.id and c.label in m["labels"] and not c.uncertain), None)
+            if hit:
+                status, by = "found", f"{hit.label} ({hit.confidence:.0%}) {hit.scope} {hit.locator}: {hit.text[:80]}"
+        elif t == "event":
+            hit = next((ev for ev in events if ev.event_type == m["event_type"]), None)
+            if hit:
+                status, by = "found", f"{hit.event_type}: {hit.title[:120]}"
+        elif t == "leading_hypothesis":
+            lead = hyp_a.comparison[0] if hyp_a and hyp_a.comparison else None
+            if lead and lead["id"] in m["hids"] and lead["label"] in ("strongly_supported", "partially_supported"):
+                status, by = "found", f"{lead['id']} {lead['title']}: {lead['label_text']}"
+        elif t == "hypothesis_label":
+            c = hyp_cmp.get(m["hid"])
+            if c and c["label"] in m["labels"]:
+                status, by = "found", f"{c['id']}: {c['label_text']}"
+        elif t == "hypothesis_not_strong":
+            if hyp_a and not any(c["label"] == "strongly_supported" for c in hyp_a.comparison):
+                status, by = "found", "; ".join(f"{c['id']} {c['label']}" for c in hyp_a.comparison)
+        elif t == "next_evidence":
+            hit = hyp_a and next((n for n in hyp_a.next_evidence if n["id"] == m["id"]), None)
+            if hit:
+                status, by = "found", f"#{hit['rank']} {hit['evidence']}"
+        elif t == "review_passed":
+            if hyp_a and hyp_a.review.get("status") == "passed":
+                status, by = "found", f"{hyp_a.review.get('citations_checked')} citations checked, no high-severity issue"
+        elif t == "integrity_check":
+            e = by_name.get(m["file"])
+            hit = e and next((x for x in ifind if x.evidence_id == e.id and x.check == m["check"]), None)
+            if hit:
+                status, by = "found", hit.observation[:140]
         elif t == "integrity":
             ok = all(e.sha256 and e.last_verification == "match" for e in evs.values())
             if ok:
@@ -135,7 +184,7 @@ def evaluate(db: Session, case_id: str, gt: dict, runs: list[AnalysisRun], durat
 
     # ---------------------------------------------------------------- forbidden checks
     violations = []
-    all_text = " ".join([hyp.statement if hyp else ""] + [json.dumps(hyp.assessment) if hyp else ""] +
+    all_text = " ".join([hyp.statement if hyp else ""] + [json.dumps(hyp.assessment) if hyp else ""] + [a.summary for a in auths] +
                         [str(k.get("text", "")) for k in counter_items] + [c.description for c in cons] + [g.description for g in gaps])
     for fb in gt.get("forbidden", []):
         if fb["type"] == "gap":
@@ -150,6 +199,9 @@ def evaluate(db: Session, case_id: str, gt: dict, runs: list[AnalysisRun], durat
                 violations.append(fb["description"])
         elif fb["type"] == "text":
             if re.search(fb["pattern"], all_text, re.I):
+                violations.append(fb["description"])
+        elif fb["type"] == "authenticity":
+            if any(a.verdict == fb["verdict"] for a in auths):
                 violations.append(fb["description"])
 
     # Irrelevant (control) records must not be used as support or linked into conflicts.

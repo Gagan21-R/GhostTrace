@@ -1,0 +1,35 @@
+[
+  {
+    "file": "01_buyer_chat.txt",
+    "category": "chat",
+    "collection_source": "WhatsApp export from Lakshmi Rao's phone",
+    "tags": [
+      "chat"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "f22730648cc8b18d60c0be3a3e053e2ebc8279edef521f94cdf5323254866d08",
+    "size": 444
+  },
+  {
+    "file": "02_qr_code.png",
+    "category": "screenshot",
+    "collection_source": "Image received on WhatsApp",
+    "tags": [
+      "screenshot"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "9eb04314ac995b15e9db40da7bc4a53fa4367cb90061297f22c992daec7ec18b",
+    "size": 23002
+  },
+  {
+    "file": "03_bank_statement.csv",
+    "category": "bank statement",
+    "collection_source": "Bank statement download",
+    "tags": [
+      "bank"
+    ],
+    "collected_by": "Scenario dataset collector",
+    "sha256": "fc639b79d7e7fa0fd1f306b3b2448cee4fd99c5bdfbf9f18d7a127da0cba1c6e",
+    "size": 107
+  }
+]

@@ -101,6 +101,9 @@ def execute(db: Session, run_id: str, user_id: str, custom_files: list[tuple[str
         runs.append(arun)
         st2 = orch.run_adversarial(db, arun, user, cb, span=(0.7, 0.9))
         orch.finish(db, arun, st2, user)
+        cb("testing alternative hypotheses", 0.9)
+        from ..agents import hypothesis_engine
+        hypothesis_engine.run(db, case.id, user, trigger="scenario run")
 
         cb("evaluating against ground truth", 0.92)
         duration = int((time.perf_counter() - t0) * 1000)

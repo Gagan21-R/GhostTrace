@@ -1,6 +1,6 @@
 """Plain-language guide used by the "Explain" assistant.
 
-Each topic explains one part of EVIDENCE-X in simple words: what it is, a concrete example, why it
+Each topic explains one part of GhostTrace in simple words: what it is, a concrete example, why it
 matters, and a practical tip. ``keywords`` let the assistant match section titles and free-text
 questions to the right topic without any AI model.
 """
@@ -15,9 +15,9 @@ def topic(key, title, keywords, what, example, why, tip, related=()):
 
 
 # ------------------------------------------------------------------ the product
-topic("evidence_x", "What EVIDENCE-X is", ["evidence-x", "evidencex", "this app", "platform", "what is this", "overview of the app", "landing", "welcome"],
-      "EVIDENCE-X is a workspace for digital investigations. You put in files - emails, chats, screenshots, bank statements, recordings - and it reads them, lines up what happened, finds things that don't add up, and tells you what's still missing.",
-      "A fraud victim gives you an email, a WhatsApp export and a bank statement. EVIDENCE-X shows the email came first, the payment followed 35 minutes later, and the receipt's reference number doesn't match the bank's.",
+topic("evidence_x", "What GhostTrace is", ["ghosttrace", "ghost trace", "evidence-x", "evidencex", "this app", "platform", "what is this", "overview of the app", "landing", "welcome"],
+      "GhostTrace is a workspace for digital investigations. You put in files - emails, chats, screenshots, bank statements, recordings - and it reads them, lines up what happened, finds things that don't add up, and tells you what's still missing.",
+      "A fraud victim gives you an email, a WhatsApp export and a bank statement. GhostTrace shows the email came first, the payment followed 35 minutes later, and the receipt's reference number doesn't match the bank's.",
       "Investigations are slow because the clues are spread across many files. Having them connected in one place, with every finding pointing back to its source, saves hours and reduces mistakes.",
       "Start with Cases → New case, upload files, press Start processing, then look at the Timeline and Contradictions.",
       ["cases", "evidence_vault", "processing", "challenge"])
@@ -59,7 +59,7 @@ topic("access", "Access, sharing and roles", ["access", "assignments", "share", 
       "Only the case owner can share a case or allow external AI for it.",
       ["external_ai"])
 topic("external_ai", "External AI provider", ["external ai", "ai provider", "authorise external ai", "llm", "language model"],
-      "By default EVIDENCE-X never sends evidence to an outside AI service. If the case owner switches this on, the counter-investigation step may send extracted text to the configured AI provider for extra ideas - and every idea it returns is still checked against the evidence.",
+      "By default GhostTrace never sends evidence to an outside AI service. If the case owner switches this on, the counter-investigation step may send extracted text to the configured AI provider for extra ideas - and every idea it returns is still checked against the evidence.",
       "Left off, all analysis runs on this server with fixed rules.",
       "Evidence can be private. Sending it outside should be a deliberate, recorded decision.",
       "Leave it off unless your organisation has approved the provider.",
@@ -80,7 +80,7 @@ topic("evidence_vault", "Evidence Vault", ["evidence vault", "evidence", "upload
 topic("sha256", "SHA-256 hash (file fingerprint)", ["sha-256", "sha256", "hash", "fingerprint", "verify hash", "re-verify", "integrity verification", "hash verification"],
       "A SHA-256 hash is a long code calculated from a file's exact bytes - like a fingerprint. If even one character in the file changes, the code changes completely.",
       "If EV-004's code today matches the code recorded at upload, the stored file is byte-for-byte the one received.",
-      "It proves the file hasn't changed since it entered EVIDENCE-X. It does NOT prove the file was genuine before it arrived.",
+      "It proves the file hasn't changed since it entered GhostTrace. It does NOT prove the file was genuine before it arrived.",
       "Press 'Verify hash' or 'Re-verify all' before producing a report.",
       ["evidence_vault", "integrity_inspection"])
 topic("derivatives", "Derivatives", ["derivative", "derivatives", "ocr text", "transcript", "extracted text file"],
@@ -133,7 +133,7 @@ topic("timeline", "Timeline", ["timeline", "chronolog", "events", "timestamp", "
       "Times marked 'date only' or with the ⓘ (assumed timezone) are less certain. Upload and file times are hidden by default because they are not event times.",
       ["timestamp_kinds", "contradictions"])
 topic("timestamp_kinds", "Timestamp labels", ["source-reported", "source reported", "metadata", "estimated", "unknown", "timezone", "provenance of time", "date only", "system"],
-      "Source-reported: the time is written in the record itself. Metadata: taken from the file's hidden properties (can be wrong). Estimated: worked out from phrases like 'yesterday'. Unknown: no time at all. System: when EVIDENCE-X received the file - not when anything happened.",
+      "Source-reported: the time is written in the record itself. Metadata: taken from the file's hidden properties (can be wrong). Estimated: worked out from phrases like 'yesterday'. Unknown: no time at all. System: when GhostTrace received the file - not when anything happened.",
       "A chat message's own time is source-reported; a PDF's 'created' date is metadata.",
       "Different sources of time are not equally reliable; the labels stop weak times being treated as facts.",
       "If a case's timezone is unknown, choose 'unknown' so times aren't silently converted.",
@@ -171,7 +171,7 @@ topic("gaps", "Evidence gaps", ["gaps", "evidence gaps", "missing", "incomplete"
 
 # ------------------------------------------------------------------ flagship
 topic("challenge", "Challenge Centre", ["challenge", "challenge centre", "challenge engine", "adversarial", "hypothesis", "hypotheses", "candidate", "balanced assessment"],
-      "The Challenge Centre is where EVIDENCE-X tries to prove itself wrong. One agent proposes the best explanation, a second deliberately looks for evidence against it, a third checks every citation against the original files, and a skeptical reviewer weighs both sides.",
+      "The Challenge Centre is where GhostTrace tries to prove itself wrong. One agent proposes the best explanation, a second deliberately looks for evidence against it, a third checks every citation against the original files, and a skeptical reviewer weighs both sides.",
       "Explanation: 'phishing email led to the payment'. Challenge: 'the receipt and bank record have different references - maybe two different transfers'.",
       "Good investigations test their own theories. This catches overconfident conclusions before a person relies on them.",
       "Read the challenges before the conclusion. Your 'Accept / Needs more evidence / Reject' decision is recorded.",
@@ -257,7 +257,7 @@ topic("profile", "Your profile", ["profile", "change password", "password", "acc
       "Strong passwords protect sensitive evidence.",
       "Use at least 10 characters with an uppercase letter and a digit.", ["access"])
 topic("contact", "Contact form", ["contact", "contact form", "get in touch", "message us"],
-      "The contact form sends a message to the people who run this EVIDENCE-X installation. Admins read it in Settings & Admin.",
+      "The contact form sends a message to the people who run this GhostTrace installation. Admins read it in Settings & Admin.",
       "'We'd like a demo for our fraud team' - sent with your name and email.",
       "It's the simplest way to reach the team without an account.",
       "Don't include case evidence in a contact message.", [])
@@ -266,6 +266,41 @@ topic("team", "The team (the agents)", ["team", "team showcase", "who works", "m
       "The Counter-Investigator's whole job is to disagree with the Investigator.",
       "Separate roles mean conclusions are tested, not just produced.",
       "Open any case's Challenge Centre to see them work together.", ["agents", "challenge"])
+topic("naive_bayes", "Naive Bayes message labels", ["naive bayes", "naive", "bayes", "classifier", "message labels", "label", "ai lab",
+                                                     "model card", "classify", "harassment label", "extortion", "credential request"],
+      "OCR reads the words in a screenshot. Naive Bayes then decides what the words mean: harassment, extortion, a payment scam, phishing, a request for an OTP, or an ordinary message. It counts how often each word appears in examples of each kind and picks the most likely kind. It also shows which words pushed it there.",
+      "\"Send 5000 tonight or I share your photos\" is labelled Extortion, because 'share', 'photos' and 'send <amount>' are common in extortion examples.",
+      "Investigators can find the threatening messages among hundreds quickly, and they can see why each message was flagged.",
+      "Treat a label as a pointer for a person to read, not as proof of intent. The model card in the AI Lab shows how accurate it is.", ["authenticity", "extraction"])
+topic("tool_calling", "Tool calling (how agents work)", ["tool", "tools", "tool calling", "tool call", "function calling", "tool console", "agent called"],
+      "Agents don't read the database directly. They call small tools, such as 'search the chat exports', 'inspect this screenshot' or 'list security events around 22:41', and every call is recorded with its input, output and time. The same tools can be driven by fixed steps (offline) or by an AI model that chooses which tool to call next.",
+      "To check a threat screenshot, the agent calls find_disputed_messages, then inspect_screenshot, then search_message_exports, then account_security_events, and so on.",
+      "Every step can be replayed and audited, and an AI cannot reach anything a tool doesn't allow.",
+      "Open 'Agent called N tools' under any Message Check result to see the trace, or call a tool yourself in the Tool console.", ["authenticity", "agents"])
+topic("authenticity", "Message Check (fake screenshot or hacked account?)", ["message check", "authenticity", "impersonation", "hacked", "fake screenshot",
+                                                                           "fabricated", "pretending", "linked device", "whatsapp web", "sim swap", "account holder"],
+      "When a complaint rests on a chat screenshot, Message Check asks three questions. Is the screenshot fake? Was the message really sent from that account? Was someone else using the account at the time? It compares the screenshot with both phones' chat exports, looks for editing traces, checks account logs for new linked devices or SIM changes, checks where the account holder was, and compares the writing style with their other messages.",
+      "A threat appears to come from Rohan. The account log shows a WhatsApp Web session was linked 43 minutes earlier and sent that exact message, while Rohan's phone was in a locker at a hackathon. Result: possible impersonation.",
+      "Without this check, a hacked account or an edited screenshot can lead to an innocent person being accused.",
+      "The result is a set of indicators for a human to confirm. It never decides who typed the message; it lists the records you still need, such as provider logs and carrier SIM records.", ["naive_bayes", "tool_calling"])
+
+topic("confidence", "Confidence report", ["confidence", "confidence report", "confidence score", "how correct", "how accurate", "reliability", "trust score"],
+      "At the end of processing, the confidence report gives a score from 0 to 100 for how reliable the model's output is in this case. It is built from parts you can check: file integrity, how clearly OCR and speech-to-text read the files, how sure the Naive Bayes labels are, how many findings point to a source, how many claims passed verification, and the accuracy measured in the Scenario Lab.",
+      "A case of clean PDFs and CSVs might score 88; a case of blurry screenshots and a noisy voice note might score 61, with OCR and speech marked as the weak parts.",
+      "You can see which parts of the output to trust and which to double-check. It measures the model, never a person's guilt.",
+      "Open the Confidence tab after processing, or read the Confidence section in the PDF report.", ["evaluation", "verification"])
+topic("voice", "Voice recording", ["voice", "record", "recording", "microphone", "speak", "language detection", "audio statement"],
+      "You can record a person's voice straight from the browser. The recording is stored in the evidence vault with its SHA-256, the Whisper model detects whether it is Kannada, Hindi or English and transcribes it, and the whole analysis runs again with the new evidence.",
+      "A witness gives a short statement in Kannada; it appears as a new evidence item marked 'Kannada (94%)' with its transcript, and the timeline and message labels update.",
+      "Statements are captured at once and linked to the rest of the evidence.",
+      "Ask for the person's consent before recording. The speech model is less accurate for Kannada than for English, so check the transcript.", ["extraction", "naive_bayes"])
+
+topic("hypothesis_lab", "Hypothesis Lab (alternative explanations)", ["hypothesis lab", "hypotheses", "alternative explanation", "alternative hypothesis",
+                                                                     "what else could have happened", "evidence matrix", "competing explanations", "fits best"],
+      "The Hypothesis Lab never assumes the complaint is right. It writes three to five different explanations for what happened (for example deliberate fraud, a delivery delay, a payment sent to the wrong account, a failed payment, or someone impersonating the seller) and tests each one against every file. A matrix shows which records support or contradict each explanation, a counter-evidence agent attacks each one, and a reviewer checks every citation.",
+      "A buyer says the seller cheated her. The bank statement later shows the payment was reversed, so 'payment failed' moves up and 'deliberate fraud' becomes contradicted. The lab shows exactly which record caused the change.",
+      "It protects against confirmation bias: the first accusation is tested, not accepted. It also tells you which single record would settle the question.",
+      "Labels such as 'partially supported' describe the evidence, not guilt. A person must approve the assessment before it is used.", ["challenge", "missing_evidence"])
 
 
 GLOSSARY = {k: v for k, v in T.items()}

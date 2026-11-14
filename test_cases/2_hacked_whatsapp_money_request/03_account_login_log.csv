@@ -1,0 +1,6 @@
+Time,Account,Event,Device,IP address,Location
+2026-04-21 19:05 +05:30,Aditi Rao +91 99001 23456,Message sent,Primary phone (iPhone),49.207.11.30,Bengaluru
+2026-04-21 23:31 +05:30,Aditi Rao +91 99001 23456,Linked device added,WhatsApp Web (Firefox on Linux),45.144.22.9,Unknown
+2026-04-21 23:44 +05:30,Aditi Rao +91 99001 23456,Message sent,WhatsApp Web (Firefox on Linux),45.144.22.9,Unknown
+2026-04-21 23:47 +05:30,Aditi Rao +91 99001 23456,Message sent,WhatsApp Web (Firefox on Linux),45.144.22.9,Unknown
+2026-04-22 08:05 +05:30,Aditi Rao +91 99001 23456,Linked device removed,Primary phone (iPhone),49.207.11.30,Bengaluru

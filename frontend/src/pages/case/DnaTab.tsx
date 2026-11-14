@@ -52,11 +52,11 @@ export default function DnaTab() {
                     <tr key={i}><td className="py-1.5">{m.attribute}</td><td className="mono">{m.value}</td><td><SourceRef src={{ ...m.a, evidence_code: d.a.code }} /></td>
                       <td><SourceRef src={{ ...m.b, evidence_code: d.b.code }} /></td></tr>))}</tbody></table>)}
             </li>); })}</ul>
-          <p className="mt-3 text-[11px] text-slate-500">A shared phone number, email or identifier links records; it never establishes that two people are the same person.</p>
+          
         </Section>
         <div className="space-y-4">
           <Section title="Independent source groups">
-            <p className="mb-2 text-xs text-slate-500">Files grouped with their copies and derivatives. Each group counts as one source when corroboration is assessed.</p>
+            <p className="mb-2 text-xs text-slate-500">Files grouped with their copies and derivatives.</p>
             <ul className="space-y-1.5">{data.source_groups.map((g: any[], i: number) => (
               <li key={i} className="flex flex-wrap items-center gap-1.5 rounded-lg bg-slate-100 px-2.5 py-1.5 text-xs">
                 <span className="mr-1 font-semibold text-slate-500">S{i + 1}</span>{g.map((e) => <span key={e.id} className="mono" title={e.filename}>{e.code}</span>)}
